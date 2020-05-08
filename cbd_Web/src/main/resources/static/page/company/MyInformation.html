@@ -1,0 +1,99 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计费</title>
+    <link rel="stylesheet" href="../../elementUI/elementUI.css"/>
+    <link rel="stylesheet" href="css/adminIndex.css"/>
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <style>
+        a{
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <el-container>
+        <!-- 内容显示区-->
+        <el-main>
+            <!-- 按钮区-->
+            <div class="main_button" style="margin-bottom:30px">
+                <el-form :inline="true" label-width="80px">
+                    <el-form-item label="起始时间:">
+                        <el-date-picker type="date" placeholder="选择日期" v-model="startdate" style="width: 100%;"></el-date-picker>
+                    </el-form-item>
+                    <el-form-item label="截止时间">
+                        <el-date-picker type="date" placeholder="选择日期" v-model="enddate" style="width: 100%;"></el-date-picker>
+                    </el-form-item>
+                    <el-button type="primary" @click="getAdminLog" icon="el-icon-search">查找</el-button>
+                </el-form>
+            </div>
+            <h2>计费信息</h2>
+            <el-table :data="tableData"
+                      highlight-current-row
+                      style="width:100%"
+            >
+                <el-table-column prop="name" label="交易日期">
+                </el-table-column>
+                <el-table-column prop="gender" label="交易时间">
+                </el-table-column>
+                <el-table-column prop="age" label="支出">
+                </el-table-column>
+                <el-table-column prop="age" label="收入">
+                </el-table-column>
+
+            </el-table>
+            <!-- 分页区 -->
+            <el-pagination style="margin: 20px auto;" background
+                           layout="prev,pager,next,sizes,total,jumper "
+                           :current-page="currentPage"
+                           :page-size="pageSize"
+                           :pager-count=5
+                           :page-sizes=[3,5,10]
+                           :total="total"
+                           @current-change="currentChange"
+                           @size-change="sizeChange"
+            >
+            </el-pagination>
+            <h2>合计信息</h2>
+            <el-table :data="tableData"
+                      highlight-current-row
+                      style="width:100%"
+            >
+                <el-table-column prop="name" label="交易总笔数">
+                </el-table-column>
+                <el-table-column prop="gender" label="支出金额">
+                </el-table-column>
+                <el-table-column prop="age" label="收入金额">
+                </el-table-column>
+            </el-table>
+        </el-main>
+
+    </el-container>
+</div>
+</body>
+
+<script>
+    app = new Vue({
+        el:"#app",
+        data:{
+            startdate:'',
+            enddate:'',
+            logtype:''
+        },
+
+        methods:{
+
+        }
+    });
+</script>
+</html>
+
+

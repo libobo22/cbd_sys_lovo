@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>企业查看已租赁车位</title>
+    <link rel="stylesheet" href="../../elementUI/elementUI.css"/>
+    <link rel="stylesheet" href="css/adminIndex.css"/>
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<body>
+
+      <div align="center" style="font-size: 20px;">已租赁车位</div>
+
+      <div id="app" align="center">
+      <template>
+          <el-table
+                  :data="tableData"
+                  stripe
+                  style="width: 80%">
+              <el-table-column
+                      prop="carPlace"
+                      label="车位位置"
+                      width="180">
+              </el-table-column>
+              <el-table-column
+                      prop="carNumber"
+                      label="车位号"
+                      width="180">
+              </el-table-column>
+              <el-table-column
+                      prop="Contactno"
+                      label="合同编号"
+                      width="180">
+              </el-table-column>
+              <el-table-column
+                      prop="contractStrat"
+                      label="合同开始日期"
+                      width="180">
+              </el-table-column>
+              <el-table-column
+                      prop="contractEnd"
+                      label="合同结束日期"
+                      width="180">
+              </el-table-column>
+
+          </el-table>
+      </template>
+      <el-pagination
+              background
+              layout="prev, pager, next"
+              :total="1000">
+      </el-pagination>
+
+      <el-button style="margin-left: 600px" type="primary" @click="OnReturn">返回</el-button>
+      </div>
+
+
+
+
+
+</body>
+
+<script>
+    app = new Vue({
+        el:"#app",
+        data() {
+            return {
+                tableData: [{
+                    carPlace: '朝阳路十三号',
+                    carNumber: 'EX666',
+                    Contactno: '254841',
+                    contractStrat: '2020-1-1',
+                    contractEnd: '2021-1-1'
+                },{
+                    carPlace: '朝阳路十三号',
+                    carNumber: 'EX666',
+                    Contactno: '254841',
+                    contractStrat: '2020-1-1',
+                    contractEnd: '2021-1-1'
+                },{
+                    carPlace: '朝阳路十三号',
+                    carNumber: 'EX666',
+                    Contactno: '254841',
+                    contractStrat: '2020-1-1',
+                    contractEnd: '2021-1-1'
+                },{
+                    carPlace: '朝阳路十三号',
+                    carNumber: 'EX666',
+                    Contactno: '254841',
+                    contractStrat: '2020-1-1',
+                    contractEnd: '2021-1-1'
+                },{
+                    carPlace: '朝阳路十三号',
+                    carNumber: 'EX666',
+                    Contactno: '254841',
+                    contractStrat: '2020-1-1',
+                    contractEnd: '2021-1-1'
+                },{
+                    carPlace: '朝阳路十三号',
+                    carNumber: 'EX666',
+                    Contactno: '254841',
+                    contractStrat: '2020-1-1',
+                    contractEnd: '2021-1-1'
+                },{
+                    carPlace: '朝阳路十三号',
+                    carNumber: 'EX666',
+                    Contactno: '254841',
+                    contractStrat: '2020-1-1',
+                    contractEnd: '2021-1-1'
+                }]
+            }
+        },
+        methods: {
+            OnReturn(){
+                location.href="myContract.html"
+            }
+        }
+    });
+</script>
+
+
+</html>
