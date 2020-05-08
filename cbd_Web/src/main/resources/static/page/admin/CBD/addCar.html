@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>投诉</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="css/addCar.css"/>
+</head>
+<body>
+    <div id="app">
+        <el-form ref="form" :model="form" label-width="130px" >
+            <div id="in">
+                <el-form-item label="车位所在地址">
+                    <el-input  v-model="form.address"></el-input>
+                </el-form-item>
+                <el-form-item label="车位区域编号">
+                    <el-input  v-model="form.areaNumber"></el-input>
+                </el-form-item>
+                <el-form-item label="车位起始数">
+                    <el-input  v-model="form.startNumber"></el-input>
+                </el-form-item>
+                <el-form-item label="车位总数">
+                    <el-input v-model="form.sumNumber"></el-input>
+                </el-form-item>
+            </div>
+
+            <el-form-item>
+                <el-button type="primary" @click="add()">添加</el-button>
+            </el-form-item>
+
+        </el-form>
+    </div>
+</body>
+</html>
+
+<script src="../../../vue/Vue.js"></script>
+<script src="../../../elementUI/elementUI.js"></script>
+<script  src="js/addCar.js"></script>

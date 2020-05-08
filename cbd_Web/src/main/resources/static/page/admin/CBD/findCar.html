@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>投诉</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="css/findCar.css"/>
+</head>
+<body>
+    <div id="app">
+        <template>
+            <el-table
+                    :data="tableData"
+                    stripe
+                    style="width: 100%">
+                <el-table-column
+                        prop="carAddress"
+                        label="车位所在地址"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="carNumber"
+                        label="车位编号"
+                        width="180">
+                </el-table-column>
+            </el-table>
+        </template>
+    </div>
+</body>
+</html>
+
+<script src="../../../vue/Vue.js"></script>
+<script src="../../../elementUI/elementUI.js"></script>
+<script  src="js/findCar.js"></script>
