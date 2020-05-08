@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>响应时间统计</title>
+    <link rel="stylesheet" href="../../../elementUI/elementUI.css"/>
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="search">
+            <el-form :inline="true" label-width="80px" style="margin: 0 200px;">
+                <el-form-item label="业务类型">
+                    <el-select v-model="type" placeholder="请选择业务类型">
+                        <el-option label="个人用户" value="personal"></el-option>
+                        <el-option label="企业用户" value="company"></el-option>
+                        <el-option label="后台管理员" value="admin"></el-option>
+                        <el-option label="超级管理员" value="superAdmin"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="开始日期">
+                    <el-date-picker
+                            v-model="startDate"
+                            type="datetime"
+                            value-format="yyyy-MM-dd HH:mm:ss"
+                            placeholder="选择日期时间">
+                    </el-date-picker>
+                </el-form-item>
+                <el-form-item label="结束日期">
+                    <el-date-picker
+                            v-model="endDate"
+                            type="datetime"
+                            value-format="yyyy-MM-dd HH:mm:ss"
+                            placeholder="选择日期时间">
+                    </el-date-picker>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="onSubmit">查询</el-button>
+                </el-form-item>
+            </el-form>
+        </div>
+        <div id="main" style="width: 800px;height:500px;margin: 0 auto"></div>
+    </div>
+</body>
+<!--vue.js 必须在elementUI.js之前导入-->
+<script src="../../../vue/Vue.js"></script>
+<script src="../../../elementUI/elementUI.js"></script>
+<script  src="js/response.js"></script>
+</html>
