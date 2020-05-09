@@ -5,6 +5,16 @@
   <title>后台页面</title>
  <link rel="stylesheet" href="../../elementUI/elementUI.css"/>
     <link rel="stylesheet" href="css/adminIndex.css"/>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body,#app{
+            width: 100%;
+            height:100%;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -17,7 +27,7 @@
                 <a href="#" style="color: #FFFFFF">注销</a>
             </div>
       </el-header>
-       <el-container>
+       <el-container  style="height:100%">
         <!-- 侧边栏 -->
        <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
            <el-scrollbar style="width: 100%">
@@ -43,48 +53,48 @@
                </el-submenu>
                <el-submenu index="2">
                  <template slot="title"><i class="el-icon-tickets"></i>合约管理</template>
-                 <el-menu-item-group>
-                   <template slot="title">外部合约模块</template>
+                 <!--<el-menu-item-group>-->
+                   <!--<template slot="title">外部合约模块</template>-->
                    <el-menu-item index="2-1">
-                       <el-link href="#" target="show" :underline="false">外部合约</el-link>
+                       <el-link href="contract/externalContract.html" target="show" :underline="false">外部合约</el-link>
                    </el-menu-item>
-                 </el-menu-item-group>
-                 <el-menu-item-group title="分组2">
-                     <template slot="title">租户合约模块</template>
+                 <!--</el-menu-item-group>-->
+                 <!--<el-menu-item-group>-->
+                     <!--<template slot="title">租户合约模块</template>-->
                      <el-menu-item index="2-3">
-                         <el-link href="#" target="show" :underline="false">租户合约</el-link>
+                         <el-link href="contract/lesseeContract.html" target="show" :underline="false">租户合约</el-link>
                      </el-menu-item>
-                 </el-menu-item-group>
+                 <!--</el-menu-item-group>-->
                </el-submenu>
                <el-submenu index="3">
                  <template slot="title"><i class="el-icon-phone-outline"></i>投诉受理</template>
-                 <el-menu-item-group>
+                 <!--<el-menu-item-group>-->
                      <el-menu-item index="3-1">
                          <el-link href="complain/complain.html" target="show" :underline="false">投诉管理</el-link>
                      </el-menu-item>
-                 </el-menu-item-group>
+                 <!--</el-menu-item-group>-->
                </el-submenu>
                  <el-submenu index="4">
                      <template slot="title"><i class="el-icon-truck"></i>CBD车位</template>
-                     <el-menu-item-group>
+                     <!--<el-menu-item-group>-->
                          <el-menu-item index="3-1">
                              <el-link href="CBD/findCar.html" target="show" :underline="false">查看CBD车位</el-link>
                          </el-menu-item>
                          <el-menu-item index="3-2">
                              <el-link href="CBD/addCar.html" target="show" :underline="false">添加CBD车位</el-link>
                          </el-menu-item>
-                     </el-menu-item-group>
+                     <!--</el-menu-item-group>-->
                  </el-submenu>
                  <el-submenu index="5">
                      <template slot="title"><i class="el-icon-s-data"></i>性能统计</template>
-                     <el-menu-item-group>
+                     <!--<el-menu-item-group>-->
                          <el-menu-item index="3-1">
                              <el-link href="performance/response.html" target="show" :underline="false">响应统计</el-link>
                          </el-menu-item>
                          <el-menu-item index="3-2">
                              <el-link href="performance/onlineCount.html" target="show" :underline="false">在线人数</el-link>
                          </el-menu-item>
-                     </el-menu-item-group>
+                     <!--</el-menu-item-group>-->
                  </el-submenu>
                  <el-menu-item index="6">
                      <i class="el-icon-notebook-2"></i>
@@ -99,7 +109,7 @@
        </el-aside>
          <!-- 内容区-->
       <el-main>
-           <iframe src="" frameborder="0" style="width: 100%;height:100%;" name="show"></iframe>
+           <iframe src="" frameborder="0" style="width: 100%;height:650px;" name="show" frameborder="0" border="0" scrolling="no"></iframe>
       </el-main>
    </el-container>
 
