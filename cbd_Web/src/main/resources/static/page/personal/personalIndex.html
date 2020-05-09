@@ -20,50 +20,48 @@
         <el-container>
             <!-- 侧边栏 -->
             <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
-                <el-scrollbar style="width: 100%">
-                    <el-menu :default-openeds="['1', '3']">
-                        <el-submenu index="1">
-                            <template slot="title"><i class="el-icon-truck"></i>我的车位</template>
-                            <el-menu-item-group>
-                                <el-menu-item index="1-1" >
-                                    <!-- 直接跳转页面-->
-                                    <el-link href="#" target="show" :underline="false">查看车位</el-link>
-                                </el-menu-item>
-                                <el-menu-item index="1-2">
-                                    <el-link href="#" target="show" :underline="false">添加车位</el-link>
-                                </el-menu-item>
-                            </el-menu-item-group>
-                        </el-submenu>
-                        <el-menu-item index="2">
-                            <i class="el-icon-shopping-cart-2"></i>
-                            <el-link href="#" target="show" :underline="false">我要租车位</el-link>
-                        </el-menu-item>
-                        <el-menu-item index="3">
-                            <i class="el-icon-shopping-cart-2"></i>
-                            <el-link href="#" target="show" :underline="false">我要买车位</el-link>
-                        </el-menu-item>
-                        <el-menu-item index="4">
-                            <i class="el-icon-document-copy"></i>
-                            <el-link href="#" target="show" :underline="false">我的合同</el-link>
-                        </el-menu-item>
-                        <el-menu-item index="5">
-                            <i class="el-icon-notebook-2"></i>
-                            <el-link href="#" target="show" :underline="false">我的账单</el-link>
-                        </el-menu-item>
-                        <el-menu-item index="6">
-                            <i class="el-icon-tickets"></i>
-                            <el-link href="#" target="show" :underline="false">成交记录</el-link>
-                        </el-menu-item>
-                        <el-menu-item index="7">
-                            <i class="el-icon-chat-dot-round"></i>
-                            <el-link href="#" target="show" :underline="false">消息提醒</el-link>
-                        </el-menu-item>
-                        <el-menu-item index="8">
-                            <i class="el-icon-setting"></i>
-                            <el-link href="#" target="show" :underline="false">修改信息</el-link>
-                        </el-menu-item>
-                    </el-menu>
-                </el-scrollbar>
+                <el-menu :default-openeds="['1', '3']">
+                    <el-submenu index="1">
+                        <template slot="title"><i class="el-icon-truck"></i>我的车位</template>
+                        <el-menu-item-group>
+                            <el-menu-item index="1-1" >
+                                <!-- 直接跳转页面-->
+                                <el-link href="findCarport.html" target="show" :underline="false">查看车位</el-link>
+                            </el-menu-item>
+                            <el-menu-item index="1-2">
+                                <el-link href="addCarport.html" target="show" :underline="false">添加车位</el-link>
+                            </el-menu-item>
+                        </el-menu-item-group>
+                    </el-submenu>
+                    <el-menu-item index="2">
+                        <i class="el-icon-shopping-cart-2"></i>
+                        <el-link href="rentCarport.html" target="show" :underline="false">我要租车位</el-link>
+                    </el-menu-item>
+                    <el-menu-item index="3">
+                        <i class="el-icon-shopping-cart-2"></i>
+                        <el-link href="buyCarport.html" target="show" :underline="false">我要买车位</el-link>
+                    </el-menu-item>
+                    <el-menu-item index="4">
+                        <i class="el-icon-document-copy"></i>
+                        <el-link href="contract.html" target="show" :underline="false">我的合同</el-link>
+                    </el-menu-item>
+                    <el-menu-item index="5">
+                        <i class="el-icon-notebook-2"></i>
+                        <el-link href="bill.html" target="show" :underline="false">我的账单</el-link>
+                    </el-menu-item>
+                    <el-menu-item index="6">
+                        <i class="el-icon-tickets"></i>
+                        <el-link href="deal.html" target="show" :underline="false">成交记录</el-link>
+                    </el-menu-item>
+                    <el-menu-item index="7">
+                        <i class="el-icon-chat-dot-round"></i>
+                        <el-link href="personalMessage.html" target="show" :underline="false">消息提醒</el-link>
+                    </el-menu-item>
+                    <el-menu-item index="8">
+                        <i class="el-icon-setting"></i>
+                        <el-link href="personalupdate.html" target="show" :underline="false">修改信息</el-link>
+                    </el-menu-item>
+                </el-menu>
             </el-aside>
             <!-- 内容区-->
             <el-main>
