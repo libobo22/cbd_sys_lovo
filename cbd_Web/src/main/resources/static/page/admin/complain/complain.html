@@ -9,6 +9,7 @@
 <body>
     <div id="app">
         <template>
+            <div id="ta">
             <el-table
                     :data="tableData"
                     stripe
@@ -42,6 +43,20 @@
                     </template>
                 </el-table-column>
             </el-table>
+            </div>
+
+            <div id="page" class="block">
+                <span class="demonstration"></span>
+                <el-pagination
+                        @size-change="handleSizeChange"
+                        @current-change="handleCurrentChange"
+                        :current-page="currentPage"
+                        :page-sizes="[100, 200, 300, 400]"
+                        :page-size="100"
+                        layout="total, sizes, prev, pager, next"
+                        :total="400">
+                </el-pagination>
+            </div>
         </template>
     </div>
 </body>

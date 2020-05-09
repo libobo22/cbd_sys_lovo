@@ -11,6 +11,7 @@ app = new Vue({
                 areaNumber:"",
                 startNumber:"",
                 sumNumber:"",
+                type: []
             }
         }
     },

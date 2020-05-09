@@ -2,6 +2,7 @@ app = new Vue({
     el:"#app",
     data() {
         return {
+            currentPage: 5,
             tableData:[{
                 carAddress:"车位地址1",
                 seller:"卖家1",
@@ -35,8 +36,21 @@ app = new Vue({
             dialogFormVisible: false,
         }
     }, methods: {
+        query(row,_index){
+            //记录索引
+            this.listIndex=_index;
+            //记录数据
+            this.editObj=row;
+            //显示弹窗
+            this.dialogFormVisible=true;
+        },
         sure() {
 
+        }, handleSizeChange(val) {
+            console.log(`每页 ${val} 条`);
+        },
+        handleCurrentChange(val) {
+            console.log(`当前页: ${val}`);
         }
     }
 });

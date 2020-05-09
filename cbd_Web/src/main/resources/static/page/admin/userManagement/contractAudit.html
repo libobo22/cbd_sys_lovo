@@ -44,7 +44,7 @@
                     width="180">
                 <template slot-scope="scope">
                     <!--打开嵌套表单的 Dialog-->
-                    <el-button @click="dialogFormVisible = true" type="primary" size="small">查看详情</el-button>
+                    <el-button @click="query(scope.row,scope.$index)" type="primary" size="small">查看详情</el-button>
                 </template>
             </el-table-column>
             <el-table-column
@@ -57,10 +57,23 @@
             </el-table-column>
         </el-table>
         </div>
+
+        <div id="page" class="block">
+            <span class="demonstration"></span>
+            <el-pagination
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange"
+                    :current-page="currentPage"
+                    :page-sizes="[100, 200, 300, 400]"
+                    :page-size="100"
+                    layout="total, sizes, prev, pager, next"
+                    :total="400">
+            </el-pagination>
+        </div>
     </template>
     <!--查看的嵌套表格-->
 
-    <el-dialog title="查看车位详情" :visible.sync="dialogFormVisible">
+    <el-dialog title="查看车位详情"  width="700px" :visible.sync="dialogFormVisible">
 
         <el-form ref="form" :model="form" label-width="130px">
             <div id="in">

@@ -3,8 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <title>添加租户合约</title>
+    <link rel="stylesheet" href="../../../elementUI/elementUI.css"/>
+    <link rel="stylesheet" href="css/addlesseeContract.css">
 </head>
 <body>
+<h1 style="text-align: center">新增外部合约</h1>
+<div id="addContract" style="width: 700px;margin: 50px auto">
+    <el-form ref="form" label-width="130px">
+        <div id="in">
+            <el-form-item label="合同编号">
+                <el-input v-model="contractNumber" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="合同单位">
+                <el-input v-model="contractCompany" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="联系人">
+                <el-input v-model="linkman" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="联系电话">
+                <el-input v-model="linkmanPhone" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="单位详细地址">
+                <el-input v-model="companyAddress" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="合同生效日期">
+                <el-input v-model="contractStartDate" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="合同截至日期">
+                <el-input v-model="contractEndDate" autocomplete="off"></el-input>
+            </el-form-item>
+        </div>
+        <div id="r">
+            <el-form-item label="成交价格">
+                <el-input v-model="dealPrice" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="合同复印件">
+                <el-input type="file" v-model="contractOfCopy" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="车位所在地址">
+                <el-input v-model="carAddress" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="车位区域编号">
+                <el-input v-model="carNumber" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="车位起始数">
+                <el-input v-model="carStartNumber" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="车位总数">
+                <el-input v-model="carSum" autocomplete="off"></el-input>
+            </el-form-item>
 
+        </div>
+        <div style="float: left;margin-top: 80px">
+            <el-button type="primary" @click="onSubmit">添加</el-button>
+            <el-button type="primary" @click="onBack">返回</el-button>
+        </div>
+    </el-form>
+
+</div>
 </body>
+<!--vue.js 必须在elementUI.js之前导入-->
+<script src="../../../vue/Vue.js"></script>
+<script src="../../../elementUI/elementUI.js"></script>
+<script  src="js/addLesseeContract.js"></script>
+
 </html>

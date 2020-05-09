@@ -51,6 +51,20 @@
         <div id="addButton">
             <el-button  type="primary" @click="dialogFormVisible = true">新增企业</el-button>
         </div>
+
+        <div id="page" class="block">
+            <span class="demonstration"></span>
+            <el-pagination
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange"
+                    :current-page="currentPage"
+                    :page-sizes="[100, 200, 300, 400]"
+                    :page-size="100"
+                    layout="total, sizes, prev, pager, next"
+                    :total="400">
+            </el-pagination>
+        </div>
+
     </template>
     <!--查看的嵌套表格-->
     <el-dialog title="查看企业详细信息" :visible.sync="dialogTableVisible">

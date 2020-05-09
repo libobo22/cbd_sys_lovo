@@ -13,3 +13,10 @@
 .el-dialog__body{
     height: 50vh;overflow: auto;
 }
+/*#ta{*/
+    /*margin-left: 100px;*/
+/*}*/
+#page{
+     margin-left:300px;
+     margin-top: 20px;
+ }

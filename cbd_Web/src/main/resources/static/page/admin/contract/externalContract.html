@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>外部合约</title>
     <link rel="stylesheet" href="../../../elementUI/elementUI.css"/>
+    <link rel="stylesheet" href="css/externalContract.css">
 </head>
 <body>
     <div id="app">
@@ -36,17 +37,70 @@
                 </el-pagination>
             </template>
             <el-dialog title="详细信息" :append-to-body="true" custom-class="dialogDiv" :visible.sync="dialogInfoVisible" width="70%" height="80%">
-                    <el-image
+
+
+                    <span>合同复印件 点击图片查看</span><el-image
                             style="width: 30px; height: 30px"
                             :src="rowInfo.contractOfCopy"
                             :preview-src-list="rowInfo.srcList">
                     </el-image>
 
                 <el-table :data="rowInfo.carArray">
-                    <el-table-column property="carNumber" label="车位编号" width="150"></el-table-column>
-                    <el-table-column property="carAddress" label="车位地址" width="200"></el-table-column>
+                    <el-table-column property="contractCompany" label="合同单位" width="150"></el-table-column>
+                    <el-table-column property="linkMan" label="联系人" width="200"></el-table-column>
+                    <el-table-column property="linkPhone" label="联系电话" width="200"></el-table-column>
+                    <el-table-column property="companyAddress" label="车位地址" width="200"></el-table-column>
+                    <el-table-column property="contractStartDate" label="合同生效日期" width="200"></el-table-column>
+                    <el-table-column property="contractEndDate" label="合同结束日期" width="200"></el-table-column>
+                    <el-table-column property="dealPrice" label="成交价格" width="200"></el-table-column>
+                    <!--<el-table-column property="contractOfCopy" label="合同复印件" width="200"></el-table-column>-->
+                    <el-table-column property="contractNumber" label="合同编号" width="200"></el-table-column>
+                    <el-table-column property="contractStatus" label="合同状态" width="200"></el-table-column>
+
                 </el-table>
             </el-dialog>
+
+            <el-dialog title="续约" width="700px" :visible.sync="dialogFormVisible">
+                <el-form ref="form" :model="form" label-width="130px">
+                    <div id="in">
+                        <el-form-item label="合同编号">
+                            <el-input  v-model="form.contractNumber" autocomplete="off"></el-input>
+                        </el-form-item>
+                        <el-form-item label="合同单位">
+                            <el-input  v-model="form.contractCompany" autocomplete="off"></el-input>
+                        </el-form-item>
+                        <el-form-item label="对方联系人">
+                            <el-input  v-model="form.linkMan" autocomplete="off"></el-input>
+                        </el-form-item>
+                        <el-form-item label="联系电话">
+                            <el-input  v-model="form.linkPhone" autocomplete="off"></el-input>
+                        </el-form-item>
+
+                    </div>
+                    <div id="r">
+
+                        <el-form-item label="合同生效日期">
+                            <el-input  v-model="form.startDate" autocomplete="off"></el-input>
+                        </el-form-item>
+                        <el-form-item label="合同截止日期">
+                            <el-input  v-model="form.endDate" autocomplete="off"></el-input>
+                        </el-form-item>
+
+                        <el-form-item label="成交价格">
+                            <el-input  v-model="form.price" autocomplete="off"></el-input>
+                        </el-form-item>
+                        <el-form-item label="上传新合同复印件">
+                            <el-input type="file" v-model="form.contractOfCopy" autocomplete="off"></el-input>
+                        </el-form-item>
+
+                    </div>
+                    <div id="sureButon">
+                    <el-button size="mini" @click="sure()">续约</el-button>
+                    </div>
+
+                </el-form>
+            </el-dialog>
+
         </div>
     </div>
 </body>

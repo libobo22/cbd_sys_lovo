@@ -4,10 +4,17 @@ app = new Vue({
         update() {
         },
         del(){
+        },
+        handleSizeChange(val) {
+            console.log(`每页 ${val} 条`);
+        },
+        handleCurrentChange(val) {
+            console.log(`当前页: ${val}`);
         }
     },
      data() {
           return {
+              currentPage: 5,
               tableData: [{
                   userName: 'admin',
                   role: '用户管理角色',
@@ -31,4 +38,23 @@ app = new Vue({
               }
           }
      }
+
+
 });
+// var Main = {
+//     methods: {
+//         handleSizeChange(val) {
+//             console.log(`每页 ${val} 条`);
+//         },
+//         handleCurrentChange(val) {
+//             console.log(`当前页: ${val}`);
+//         }
+//     },
+//     data() {
+//         return {
+//             currentPage: 5,
+//         };
+//     }
+// }
+
+

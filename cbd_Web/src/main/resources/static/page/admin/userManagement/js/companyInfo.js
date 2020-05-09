@@ -2,6 +2,7 @@ app = new Vue({
      el:"#app",
      data() {
           return {
+              currentPage: 5,
               tableData:[{
                   companyName:"公司1",
                   linkMan:"负责人1",
@@ -26,6 +27,12 @@ app = new Vue({
      }, methods: {
           addCompany() {
 
-          }
+          },
+        handleSizeChange(val) {
+            console.log(`每页 ${val} 条`);
+        },
+        handleCurrentChange(val) {
+            console.log(`当前页: ${val}`);
+        }
      }
 });

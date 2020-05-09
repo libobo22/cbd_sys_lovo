@@ -4,12 +4,22 @@ contract=new Vue({
    data:{
        dialogInfoVisible: false,
        dialogExtensionVisible: false,
+       dialogFormVisible:false,
        // 默认显示第一条
        currentPage:1,
        pageSize:5,
        total:1000,
        rowInfo:{},
-
+        form:{
+            contractNumber:"",
+            contractCompany:"",
+            linkMan:"",
+            linkPhone:"",
+            startDate:"",
+            endDate:"",
+            price:"",
+            contractOfCopy:""
+        },
        tableData: [{
            contractID:1,
            company: '北京三维天地有限公司',
@@ -28,19 +38,52 @@ contract=new Vue({
            contractNumber:'20160504009',
            carArray:[
                {
-                   carAddress:'上海市普陀区金沙江路',
-                   carNumber:'A0023'
+                   contractCompany:'合同单位',
+                   linkMan:'联系人',
+                   linkPhone:'联系电话',
+                   companyAddress:'车位地址',
+                   contractStartDate:'合同生效日期',
+                   contractEndDate:'合同结束日期',
+                   dealPrice:'成交价格',
+                   contractOfCopy:'合同复印件',
+                   contractNumber:'合同编号',
+                   contractStatus:'合同状态'
+
                },
                {
-                   carAddress:'上海市普陀区金沙江路',
-                   carNumber:'A0024'
+                   contractCompany:'合同单位',
+                   linkMan:'联系人',
+                   linkPhone:'联系电话',
+                   companyAddress:'车位地址',
+                   contractStartDate:'合同生效日期',
+                   contractEndDate:'合同结束日期',
+                   dealPrice:'成交价格',
+                   // contractOfCopy:'合同复印件',
+                   contractNumber:'合同编号',
+                   contractStatus:'合同状态'
                },
                {
-                   carAddress:'上海市普陀区金沙江路',
-                   carNumber:'A0025'
+                   contractCompany:'合同单位',
+                   linkMan:'联系人',
+                   linkPhone:'联系电话',
+                   companyAddress:'车位地址',
+                   contractStartDate:'合同生效日期',
+                   contractEndDate:'合同结束日期',
+                   dealPrice:'成交价格',
+                   // contractOfCopy:'合同复印件',
+                   contractNumber:'合同编号',
+                   contractStatus:'合同状态'
                },{
-                   carAddress:'上海市普陀区金沙江路',
-                   carNumber:'A0026'
+                   contractCompany:'合同单位',
+                   linkMan:'联系人',
+                   linkPhone:'联系电话',
+                   companyAddress:'车位地址',
+                   contractStartDate:'合同生效日期',
+                   contractEndDate:'合同结束日期',
+                   dealPrice:'成交价格',
+                   // contractOfCopy:'合同复印件',
+                   contractNumber:'合同编号',
+                   contractStatus:'合同状态'
                }
            ]
        },
@@ -62,19 +105,51 @@ contract=new Vue({
                contractNumber:'20160504009',
                carArray:[
                    {
-                       carAddress:'上海市普陀区金沙江路',
-                       carNumber:'A0023'
+                       contractCompany:'合同单位',
+                       linkMan:'联系人',
+                       linkPhone:'联系电话',
+                       companyAddress:'车位地址',
+                       contractStartDate:'合同生效日期',
+                       contractEndDate:'合同结束日期',
+                       dealPrice:'成交价格',
+                       // contractOfCopy:'合同复印件',
+                       contractNumber:'合同编号',
+                       contractStatus:'合同状态'
                    },
                    {
-                       carAddress:'上海市普陀区金沙江路',
-                       carNumber:'A0024'
+                       contractCompany:'合同单位',
+                       linkMan:'联系人',
+                       linkPhone:'联系电话',
+                       companyAddress:'车位地址',
+                       contractStartDate:'合同生效日期',
+                       contractEndDate:'合同结束日期',
+                       dealPrice:'成交价格',
+                       // contractOfCopy:'合同复印件',
+                       contractNumber:'合同编号',
+                       contractStatus:'合同状态'
                    },
                    {
-                       carAddress:'上海市普陀区金沙江路',
-                       carNumber:'A0025'
+                       contractCompany:'合同单位',
+                       linkMan:'联系人',
+                       linkPhone:'联系电话',
+                       companyAddress:'车位地址',
+                       contractStartDate:'合同生效日期',
+                       contractEndDate:'合同结束日期',
+                       dealPrice:'成交价格',
+                       // contractOfCopy:'合同复印件',
+                       contractNumber:'合同编号',
+                       contractStatus:'合同状态'
                    },{
-                       carAddress:'上海市普陀区金沙江路',
-                       carNumber:'A0026'
+                       contractCompany:'合同单位',
+                       linkMan:'联系人',
+                       linkPhone:'联系电话',
+                       companyAddress:'车位地址',
+                       contractStartDate:'合同生效日期',
+                       contractEndDate:'合同结束日期',
+                       dealPrice:'成交价格',
+                       // contractOfCopy:'合同复印件',
+                       contractNumber:'合同编号',
+                       contractStatus:'合同状态'
                    }
                ]
            }]
@@ -99,10 +174,14 @@ contract=new Vue({
         },
         contractExtension(row) {
             console.log(row);
+            this.dialogFormVisible=true;
         },
         relieveContract(contractID){
             console.log(contractID);
             alert("您确定要解约");
+        },
+        sure(){
+
         }
     },
 });
