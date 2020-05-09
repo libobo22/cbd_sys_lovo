@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../elementUI/elementUI.css"/>
+    <title>账单</title>
+</head>
+<body>
+
+<!--账单查询信息输入-->
+<div id="bill" align="center">
+    <el-form ref="form" :model="form" label-width="100%" >
+
+    <el-row :gutter="20">
+        <el-col :span="6"><div class="grid-content bg-purple">
+        <el-form-item label="开始时间" >
+            <el-col :span="11">
+                <el-date-picker type="date" placeholder="选择日期" v-model="startDate" style="width: 180px;"></el-date-picker>
+            </el-col>
+        </el-form-item>
+        </div></el-col>
+
+            <el-col :span="6"><div class="grid-content bg-purple">
+        <el-form-item label="结束时间" >
+            <el-col :span="11">
+                <el-date-picker type="date" placeholder="选择日期" v-model="endDate" style="width: 180px;"></el-date-picker>
+            </el-col>
+        </el-form-item>
+        </div></el-col>
+
+
+            <el-col :span="4"><div class="grid-content bg-purple">
+        <el-form-item>
+            <el-button type="primary" @click="find">按时间查询账单</el-button>
+        </el-form-item>
+            </div></el-col>
+    </el-row>
+    </el-form>
+</div>
+
+<!--计费信息表格-->
+<div id="consumption" align="center">
+    <template>
+        <el-table
+                :data="tableData"
+                stripe
+                style="width: 100%">
+            <el-table-column
+                    prop="transactionDate"
+                        label="交易日期"
+                    width="200">
+            </el-table-column>
+
+            <el-table-column
+                    prop="transactionTime"
+                    label="交易时间"
+                    width="200">
+            </el-table-column>
+
+
+            <el-table-column
+                    prop="expenditure"
+                    label="支出"
+                    width="200">
+            </el-table-column>
+
+            <el-table-column
+                    prop="income"
+                    label="收入"
+                    width="200">
+            </el-table-column>
+
+            <el-table-column
+                    prop="remarks"
+                    label="备注"
+                    width="200">
+            </el-table-column>
+
+        </el-table>
+    </template>
+
+    <!--    分页 -->
+    <el-pagination
+            background
+            layout="prev, pager, next"
+            :total="1000">
+    </el-pagination>
+
+</div>
+
+
+<!--合计信息表格-->
+<div id="total" align="center">
+
+    <h3>合计</h3>
+    <template>
+        <el-table
+                :data="tableData"
+                stripe
+                style="width: 100%">
+            <el-table-column
+                    prop="totalNumber"
+                    label="交易次数"
+                    width="180">
+            </el-table-column>
+
+            <el-table-column
+                    prop="totalExpenditure"
+                    label="支出总金额"
+                    width="180">
+            </el-table-column>
+
+            <el-table-column
+                    prop="totalIncome"
+                    label="收入总金额"
+                    width="180">
+            </el-table-column>
+        </el-table>
+    </template>
+</div>
+
+
+</body>
+
+<script src="../../vue/Vue.js"></script>
+<script src="../../elementUI/elementUI.js"></script>
+<script src="js/bill.js"></script>
+
+</html>

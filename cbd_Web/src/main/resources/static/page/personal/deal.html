@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../elementUI/elementUI.css"/>
+    <title>成交记录</title>
+</head>
+<body>
+<!--成交记录表-->
+<div id="deal" align="center">
+    <h3>历史记录</h3>
+    <template>
+        <el-table
+                :data="tableData"
+                stripe
+                style="width: 100%">
+            <el-table-column
+                    prop="carInfo"
+                    label="车位号"
+                    width="180">
+            </el-table-column>
+
+            <el-table-column
+                    prop="address"
+                    label="车位地址"
+                    width="180">
+            </el-table-column>
+
+            <el-table-column
+                    prop="buyLeaseUser"
+                    label="购买人/租赁人"
+                    width="180">
+            </el-table-column>
+
+            <el-table-column
+                    prop="sellerTenantUser"
+                    label="出售人/招租人"
+                    width="180">
+            </el-table-column>
+
+            <el-table-column
+                    prop="dealDate"
+                    label="时间"
+                    width="180">
+            </el-table-column>
+
+            <el-table-column
+                    prop="operation"
+                    label="操作"
+                    width="180">
+                　　　　<template slot-scope="scope">
+                <el-button type="primary" @click="complaint">投诉</el-button>　
+                　　　　</template>
+            </el-table-column>
+
+        </el-table>
+    </template>
+
+    <!--    分页 -->
+    <el-pagination
+            background
+            layout="prev, pager, next"
+            :total="1000">
+    </el-pagination>
+
+
+</div>
+
+</body>
+
+<script src="../../vue/Vue.js"></script>
+<script src="../../elementUI/elementUI.js"></script>
+<script src="js/deal.js"></script>
+
+
+</html>
