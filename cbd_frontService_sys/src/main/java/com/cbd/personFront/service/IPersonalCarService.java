@@ -1,4 +1,4 @@
-package com.cbd.front.service;
+package com.cbd.personFront.service;
 
 public interface IPersonalCarService {
 

@@ -1,4 +1,4 @@
-package com.cbd.front.bean;
+package com.cbd.personFront.bean;
 
 import lombok.Data;
 

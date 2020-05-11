@@ -1,4 +1,4 @@
-package com.cbd.front.dao;
+package com.cbd.personFront.dao;
 
 public interface IPersonalCarDao {
 }
