@@ -40,4 +40,15 @@ public class CarLeaseBean {
      * 车位
      */
     private PersonalCarBean personalCar;
+
+    public CarLeaseBean() {
+    }
+
+    public CarLeaseBean(Date leaseStartDate, Date leaseEndDate, float price, int leaseStatus, PersonalCarBean personalCar) {
+        this.leaseStartDate = leaseStartDate;
+        this.leaseEndDate = leaseEndDate;
+        this.price = price;
+        this.leaseStatus = leaseStatus;
+        this.personalCar = personalCar;
+    }
 }
