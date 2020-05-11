@@ -1,4 +1,4 @@
-package com.cbd.commons.bean;
+package com.cbd.front.bean;
 
 /**
  * 车位实体类
