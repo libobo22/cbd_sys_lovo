@@ -4,6 +4,7 @@ package com.cbd.personFront.bean;
 import lombok.Data;
 
 import java.sql.Date;
+import java.text.DateFormat;
 
 /**
  * 车位租凭实体类
@@ -19,12 +20,12 @@ public class CarLeaseBean {
     /**
      * 租赁开始时间
      */
-    private Date leaseStartDate;
+    private String leaseStartDate;
 
     /**
      * 租凭结束时间
      */
-    private Date leaseEndDate;
+    private String leaseEndDate;
 
     /**
      * 出租价钱
@@ -33,6 +34,7 @@ public class CarLeaseBean {
 
     /**
      * 出租/出售状态
+     * 0待预约，1已预约，2已签约
      */
     private int leaseStatus;
 
@@ -44,11 +46,23 @@ public class CarLeaseBean {
     public CarLeaseBean() {
     }
 
-    public CarLeaseBean(Date leaseStartDate, Date leaseEndDate, float price, int leaseStatus, PersonalCarBean personalCar) {
+    public CarLeaseBean(String leaseStartDate, String leaseEndDate, float price, int leaseStatus, PersonalCarBean personalCar) {
         this.leaseStartDate = leaseStartDate;
         this.leaseEndDate = leaseEndDate;
         this.price = price;
         this.leaseStatus = leaseStatus;
         this.personalCar = personalCar;
+    }
+
+    @Override
+    public String toString() {
+        return "CarLeaseBean{" +
+                "carLeaseID=" + carLeaseID +
+                ", leaseStartDate=" + leaseStartDate +
+                ", leaseEndDate=" + leaseEndDate +
+                ", price=" + price +
+                ", leaseStatus=" + leaseStatus +
+                ", personalCar=" + personalCar +
+                '}';
     }
 }

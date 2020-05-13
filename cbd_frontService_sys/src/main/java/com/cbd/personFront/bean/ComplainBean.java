@@ -32,6 +32,7 @@ public class ComplainBean {
 
     /**
      * 投诉状态
+     * 投诉状态(1代表投诉成功，2代表投诉失败)
      */
     private int adminCheckStatus;
 
