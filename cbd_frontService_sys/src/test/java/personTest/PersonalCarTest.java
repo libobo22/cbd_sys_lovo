@@ -1,4 +1,4 @@
-package personFrontTest;
+package personTest;
 
 import com.cbd.personFront.PersonFrontMain;
 import com.cbd.personFront.bean.PersonalCarBean;
