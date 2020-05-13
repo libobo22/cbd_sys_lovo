@@ -60,4 +60,18 @@ public class PersonalCarBean {
         this.phone = phone;
         this.identityNum = identityNum;
     }
+
+    @Override
+    public String toString() {
+        return "PersonalCarBean{" +
+                "carID=" + carID +
+                ", carPropertyNum='" + carPropertyNum + '\'' +
+                ", carAddress='" + carAddress + '\'' +
+                ", carNumber='" + carNumber + '\'' +
+                ", propertyCopy='" + propertyCopy + '\'' +
+                ", realName='" + realName + '\'' +
+                ", phone='" + phone + '\'' +
+                ", identityNum='" + identityNum + '\'' +
+                '}';
+    }
 }
