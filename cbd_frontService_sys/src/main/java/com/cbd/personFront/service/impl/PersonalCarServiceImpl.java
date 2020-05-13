@@ -6,6 +6,8 @@ import com.cbd.personFront.service.IPersonalCarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service(value = "personalCarService")
 public class PersonalCarServiceImpl implements IPersonalCarService {
 
@@ -15,6 +17,16 @@ public class PersonalCarServiceImpl implements IPersonalCarService {
     @Override
     public void addPersonalCar(PersonalCarBean personalCarBean) {
         personalCarDao.addPersonalCar(personalCarBean);
+    }
+
+    @Override
+    public List<PersonalCarBean> findByCar(String identityNum, int page, int number) {
+        return null;
+    }
+
+    @Override
+    public void updateCar(int carID, String realName, String phone, String identityNum) {
+
     }
 
 

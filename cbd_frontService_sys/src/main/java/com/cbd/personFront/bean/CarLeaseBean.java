@@ -33,10 +33,19 @@ public class CarLeaseBean {
     private float price;
 
     /**
-     * 出租/出售状态
-     * 0待预约，1已预约，2已签约
+     * 1待预约，2已预约，3已签约
      */
     private int leaseStatus;
+
+    /**
+     * 发布用户身份证
+     */
+    private String releaseIdentityNum;
+
+    /**
+     * 1：出租。2：出售
+     */
+    private int leaseBuy;
 
     /**
      * 车位

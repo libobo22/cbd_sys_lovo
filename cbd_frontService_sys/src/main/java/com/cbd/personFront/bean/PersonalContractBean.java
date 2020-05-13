@@ -11,7 +11,7 @@ import java.sql.Date;
 public class PersonalContractBean {
 
     /**
-     * 后台id
+     * 合同id
      */
     private String contractID;
 

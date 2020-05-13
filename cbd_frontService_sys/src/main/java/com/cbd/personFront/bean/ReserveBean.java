@@ -29,6 +29,7 @@ public class ReserveBean {
 
     /**
      * 预定状态
+     * 0待预约，1已预约，2已签约
      */
     private int reserveStatus;
 
