@@ -5,6 +5,11 @@
 <mapper namespace="com.cbd.companyFront.dao.ICompanyDao">
 
 
+    <select id="findAllContractDto" resultType="contractDto">
+        select lesseeContractID as contractID, companyID, contractNumber as contactno,
+         contractStartDate as contractStrat, cntractEndDate as contractEnd,
+         contractOfCopy, dealPrice as price, contractStatus as contactnoStatus from t_lesseeContract2;
+    </select>
 
   
 </mapper>
