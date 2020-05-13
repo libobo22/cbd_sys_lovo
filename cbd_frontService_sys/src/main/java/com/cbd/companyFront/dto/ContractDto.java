@@ -19,16 +19,16 @@ public class ContractDto {
     private String contactno;
 
     /**合同开始日期*/
-    private Date contractStrat;
+    private String contractStrat;
 
     /**合同结束日期*/
-    private Date contractEnd;
+    private String contractEnd;
 
     /**合同复印件*/
     private String copyOfContract;
 
     /**成交价格*/
-    private double price;
+    private String price;
 
     /**合同状态*/
     private int contactnoStatus;
@@ -37,8 +37,8 @@ public class ContractDto {
     public ContractDto() {
     }
 
-    public ContractDto(int contactnoID, int companyID, String contactno, Date contractStrat,
-                       Date contractEnd, String copyOfContract, double price, int contactnoStatus) {
+    public ContractDto(int contactnoID, int companyID, String contactno, String contractStrat,
+                       String contractEnd, String copyOfContract, String price, int contactnoStatus) {
         this.contactnoID = contactnoID;
         this.companyID = companyID;
         this.contactno = contactno;
