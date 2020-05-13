@@ -12,15 +12,18 @@ public interface ICompanyDao {
     List<ContractDto> findAllContractDto();
 
     /**查看已租车位*/
-    List<LeaseCarDto> findLeaseCar();
+    List<LeaseCarDto> findLeaseCar(int id);
 
     /**查看CBD空闲车位*/
-    List<CBDFreeCar> findCBDFreeCar();
+    List<CBDFreeCar> findCBDFreeCar(int id);
 
     /**查看账单*/
     List<BillDto> findAllBill();
 
+    /**查看企业信息*/
+    CompanyInfoDto findCompanyByID(int id);
+
     /**修改企业信息*/
-    CompanyInfoDto findByID(int id);
+    void updateCompanyInfo(int id,String logName,String logPass,String linkman,String linkPhone);
 
 }

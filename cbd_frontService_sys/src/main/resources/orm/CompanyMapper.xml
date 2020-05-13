@@ -11,5 +11,24 @@
          contractOfCopy as copyOfContract, dealPrice as price, contractStatus as contactnoStatus from t_lesseeContract2;
     </select>
 
+    <select id="findLeaseCar" resultType="leaseCarDto" parameterType="int">
+        select c.carAddress as carPlace, c.carNumber as carNumber, l.contractNumber as Contactno,
+         l.contractStartDate as contractStrat, l.contractEndDate as contractEnd from t_cbdCarLease2 z,
+         t_cbdCar2 c,t_lesseeContract2 l where z.cbdCarID=c.cbdCarID and z.lesseeContractID=l.lesseeContractID
+         and l.lesseeContractID=#{id}
+    </select>
+
+    <select id="findCBDFreeCar" parameterType="int" resultType="cBDFreeCar">
+        select carAddress carPlace, carNumber from t_cbdCar2 where cbdCarStatus=#{id}
+    </select>
+    
+    <select id="findCompanyByID" parameterType="int" resultType="companyInfoDto">
+        select companyID, loginName as logName, loginPwd as logPass, companyName, floor, linkman  linkMan, linkPhone from t_company2 where companyID=#{id} ;
+    </select>
+
+
+    <update id="updateCompanyInfo">
+        update t_company2 set loginName=#{param2},loginPwd=#{param3},linkman=#{param4},linkPhone=#{param5} where companyID=#{param1}
+    </update>
   
 </mapper>

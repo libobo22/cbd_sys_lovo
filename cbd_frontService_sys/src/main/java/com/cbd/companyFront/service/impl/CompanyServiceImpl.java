@@ -24,13 +24,13 @@ public class CompanyServiceImpl implements ICompanyService {
     }
 
     @Override
-    public List<LeaseCarDto> findLeaseCar() {
-        return dao.findLeaseCar();
+    public List<LeaseCarDto> findLeaseCar(int id) {
+        return dao.findLeaseCar(id);
     }
 
     @Override
-    public List<CBDFreeCar> findCBDFreeCar() {
-        return dao.findCBDFreeCar();
+    public List<CBDFreeCar> findCBDFreeCar(int id) {
+        return dao.findCBDFreeCar(id);
     }
 
     @Override
@@ -39,7 +39,12 @@ public class CompanyServiceImpl implements ICompanyService {
     }
 
     @Override
-    public CompanyInfoDto findByID(int id) {
-        return dao.findByID(id);
+    public CompanyInfoDto findCompanyByID(int id) {
+        return dao.findCompanyByID(id);
+    }
+
+    @Override
+    public void updateCompanyInfo(int id, String logName, String logPass, String linkman, String linkPhone) {
+        dao.updateCompanyInfo(id, logName, logPass, linkman, linkPhone);
     }
 }
