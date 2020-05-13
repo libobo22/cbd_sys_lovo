@@ -6,9 +6,9 @@
 
 
     <select id="findAllContractDto" resultType="contractDto">
-        select lesseeContractID as contractID, companyID, contractNumber as contactno,
-         contractStartDate as contractStrat, cntractEndDate as contractEnd,
-         contractOfCopy, dealPrice as price, contractStatus as contactnoStatus from t_lesseeContract2;
+        select lesseeContractID as contactnoID, companyID, contractNumber as contactno,
+         contractStartDate as contractStrat, contractEndDate as contractEnd,
+         contractOfCopy as copyOfContract, dealPrice as price, contractStatus as contactnoStatus from t_lesseeContract2;
     </select>
 
   
