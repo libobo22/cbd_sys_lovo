@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 车位mapper-->
+<mapper namespace="com.cbd.personFront.dao.IPersonalCarDao">
+    <resultMap id="PersonalCarRM" type="PersonalCarBean">
+          <result property="carID" column="pk_carID"/>
+          <result property="carPropertyNum" column="f_carPropertyNum"/>
+          <result property="carAddress" column="f_carAddress"/>
+         <result property="carNumber" column="f_carNumber"/>
+        <result property="propertyCopy" column="f_propertyCopy"/>
+        <result property="realName" column="f_realName"/>
+        <result property="phone" column="f_phone"/>
+        <result property="identityNum" column="f_identityNum"/>
+    </resultMap>
+
+
+    <insert id="addPersonalCar" parameterType="PersonalCarBean">
+        INSERT into t_personalCar(f_carPropertyNum,f_carAddress,f_carNumber,f_propertyCopy,f_realName,f_phone,f_identityNum) VALUES(#{carPropertyNum},#{carAddress},#{carNumber},#{propertyCopy},#{realName},#{phone},#{identityNum})
+    </insert>
+
+
+</mapper>

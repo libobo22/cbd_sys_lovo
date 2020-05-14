@@ -18,6 +18,26 @@ new Vue({
             titleNumber:"88888889999",
 
             price:"9999元",
+
+            tableData: [{
+                contractNumber:"88888888",
+                address:"红瓦寺",
+                titleNumber: '车位产权证编号 65443',
+            }, {
+                contractNumber:"88888888",
+                address:"红瓦寺",
+                titleNumber: '车位产权证编号 65443',
+            }, {
+                contractNumber:"88888888",
+                address:"红瓦寺",
+                titleNumber: '车位产权证编号 65443',
+            }, {
+                contractNumber:"88888888",
+                address:"红瓦寺",
+                titleNumber: '车位产权证编号 65443',
+            }],
+
+            contractInfo: false,
             form:{
 
             }

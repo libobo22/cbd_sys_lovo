@@ -19,26 +19,25 @@ new Vue({
     data() {
         return {
             tableData: [{
-                transactionDate: '2020/09/23',
-                transactionTime: '10:32',
+                transactionTime: '2020/09/23 10:32',
                 expenditure: '9999元',
                 income: '8888元',
                 remarks: '无'
             }, {
-                transactionDate: '2020/09/23',
-                transactionTime: '10:32',
+
+                transactionTime: '2020/09/23 10:32',
                 expenditure: '9999元',
                 income: '8888元',
                 remarks: '无'
             }, {
-                transactionDate: '2020/09/23',
-                transactionTime: '10:32',
+
+                transactionTime: '2020/09/23 10:32',
                 expenditure: '9999元',
                 income: '8888元',
                 remarks: '无'
             }, {
-                transactionDate: '2020/09/23',
-                transactionTime: '10:32',
+
+                transactionTime: '2020/09/23 10:32',
                 expenditure: '9999元',
                 income: '8888元',
                 remarks: '无'

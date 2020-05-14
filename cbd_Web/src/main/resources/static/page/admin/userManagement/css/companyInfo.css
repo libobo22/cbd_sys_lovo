@@ -7,14 +7,14 @@
 }
 
 .el-input{
-    width: 260px;
+    width: 300px;
 }
 #add{
     margin-left: 300px;
 }
-/*#addform{*/
-    /*margin-left: 100px;*/
-/*}*/
+#addform{
+    margin-left: 100px;
+}
 #page{
     margin-left: 200px;
     margin-top: 20px;

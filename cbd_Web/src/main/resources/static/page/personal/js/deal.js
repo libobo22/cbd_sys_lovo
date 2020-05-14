@@ -30,6 +30,8 @@ new Vue({
                 sellerTenantUser: '李四',
                 dealDate:'2010-09-03',
             }],
+
+            complaintInfo: false,
         }
     },
 
