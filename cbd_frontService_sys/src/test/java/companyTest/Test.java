@@ -51,7 +51,7 @@ public class Test {
 
 
     @org.junit.Test
-    public void findBil(){
+    public void findBil(){//查询账单
         List<BillDto> list = service.findAllBill(Date.valueOf("2020-1-1"), Date.valueOf("2022-1-1"), 1, 1);
 
         for (BillDto billDto : list) {
@@ -69,7 +69,7 @@ public class Test {
 
 
 
-    @org.junit.Test
+    @org.junit.Test//修改企业信息
     public void updateCompanyInfo(){//修改企业信息
         service.updateCompanyInfo(1, "张三2", "1232", "张三2", "666");
     }
