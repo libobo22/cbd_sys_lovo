@@ -1,15 +1,13 @@
 package companyTest;
 import com.cbd.companyFront.CompanyMain;
-import com.cbd.companyFront.dto.CBDFreeCar;
-import com.cbd.companyFront.dto.CompanyInfoDto;
-import com.cbd.companyFront.dto.ContractDto;
-import com.cbd.companyFront.dto.LeaseCarDto;
+import com.cbd.companyFront.dto.*;
 import com.cbd.companyFront.service.ICompanyService;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.sql.Date;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -22,7 +20,7 @@ public class Test {
 
     @org.junit.Test
     public void findAllContract(){//查看所有合同
-        List<ContractDto> list = service.findAllContractDto();
+        List<ContractDto> list = service.findAllContractDto(1,5);
 
         for (ContractDto contractDto : list) {
             System.out.println(contractDto.toString());
@@ -34,7 +32,7 @@ public class Test {
 
     @org.junit.Test
     public void findLeaseCar(){//查看已租赁车位
-        List<LeaseCarDto> list = service.findLeaseCar(4);
+        List<LeaseCarDto> list = service.findLeaseCar(4,1,6);
 
         for (LeaseCarDto leaseCarDto : list) {
             System.out.println(leaseCarDto.toString());
@@ -44,10 +42,20 @@ public class Test {
 
     @org.junit.Test
     public void findCBDFreeCar(){//查看CBD空闲车位
-        List<CBDFreeCar> list = service.findCBDFreeCar(0);
+        List<CBDFreeCar> list = service.findCBDFreeCar(0,1,5);
 
         for (CBDFreeCar cbdFreeCar : list) {
             System.out.println(cbdFreeCar.toString());
+        }
+    }
+
+
+    @org.junit.Test
+    public void findBil(){
+        List<BillDto> list = service.findAllBill(Date.valueOf("2020-1-1"), Date.valueOf("2022-1-1"), 1, 1);
+
+        for (BillDto billDto : list) {
+            System.out.println(billDto.toString());
         }
     }
 
@@ -62,9 +70,11 @@ public class Test {
 
 
     @org.junit.Test
-    public void updateCompanyInfo(){
+    public void updateCompanyInfo(){//修改企业信息
         service.updateCompanyInfo(1, "张三2", "1232", "张三2", "666");
     }
+
+
 
 
 

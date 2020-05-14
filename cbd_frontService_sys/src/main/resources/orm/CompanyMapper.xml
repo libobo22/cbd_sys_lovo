@@ -8,18 +8,32 @@
     <select id="findAllContractDto" resultType="contractDto">
         select lesseeContractID as contactnoID, companyID, contractNumber as contactno,
          contractStartDate as contractStrat, contractEndDate as contractEnd,
-         contractOfCopy as copyOfContract, dealPrice as price, contractStatus as contactnoStatus from t_lesseeContract2;
+         contractOfCopy as copyOfContract, dealPrice as price, contractStatus as contactnoStatus
+          from t_lesseeContract2  limit #{param1},#{param2};
     </select>
 
-    <select id="findLeaseCar" resultType="leaseCarDto" parameterType="int">
+    <select id="findLeaseCar" resultType="leaseCarDto">
         select c.carAddress as carPlace, c.carNumber as carNumber, l.contractNumber as Contactno,
          l.contractStartDate as contractStrat, l.contractEndDate as contractEnd from t_cbdCarLease2 z,
          t_cbdCar2 c,t_lesseeContract2 l where z.cbdCarID=c.cbdCarID and z.lesseeContractID=l.lesseeContractID
-         and l.lesseeContractID=#{id}
+         and l.lesseeContractID=#{param1} limit #{param2},#{param3}
     </select>
 
-    <select id="findCBDFreeCar" parameterType="int" resultType="cBDFreeCar">
-        select carAddress carPlace, carNumber from t_cbdCar2 where cbdCarStatus=#{id}
+    <select id="findCBDFreeCar" resultType="cBDFreeCar">
+        select carAddress carPlace, carNumber from t_cbdCar2 where cbdCarStatus=#{param1} limit #{param2},#{param3}
+    </select>
+
+    <select id="findAllBill" resultType="billDto">
+        select transactionTime as dealDate, expenditure as expend, income, remarks as Remarks from t_bill
+         <where>
+             <if test="start!=null">
+                 and transactionTime >= #{start}
+             </if>
+             <if test="end!=null">
+                 <![CDATA[and transactionTime <= #{end}]]>
+             </if>
+         </where>
+         limit #{currPage},#{numbers}
     </select>
     
     <select id="findCompanyByID" parameterType="int" resultType="companyInfoDto">

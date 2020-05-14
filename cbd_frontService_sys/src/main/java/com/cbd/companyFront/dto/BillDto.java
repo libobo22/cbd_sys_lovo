@@ -11,7 +11,7 @@ import java.util.Date;
 public class BillDto {
 
     /**交易日期*/
-    private Date dealDate;
+    private String dealDate;
 
     /**交易时间*/
     private String dealTime;
@@ -29,7 +29,7 @@ public class BillDto {
     public BillDto() {
     }
 
-    public BillDto(Date dealDate, String dealTime, double expend, double income, String remarks) {
+    public BillDto(String dealDate, String dealTime, double expend, double income, String remarks) {
         this.dealDate = dealDate;
         this.dealTime = dealTime;
         this.expend = expend;
