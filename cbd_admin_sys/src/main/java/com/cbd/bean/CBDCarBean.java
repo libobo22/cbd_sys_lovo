@@ -9,12 +9,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.ibatis.type.JdbcType;
 
+import java.io.Serializable;
+
 /**
  * CBD车位实体类
  */
 @Data
 @TableName("t_cbdCar")
-public class CBDCarBean {
+public class CBDCarBean implements Serializable {
     /**
      * 车位id
      */
