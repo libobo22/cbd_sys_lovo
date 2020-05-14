@@ -11,8 +11,8 @@ public class PersonalBean {
     private String identityNum;
     private String job;
     private String email;
-    private Integer dealNum;
-    private Integer complainNum;
+    private Integer dealNum = 0;
+    private Integer complainNum = 0;
     private LoginBean loginBean;
 
 
@@ -112,5 +112,19 @@ public class PersonalBean {
         this.loginBean = loginBean;
     }
 
-
+    @Override
+    public String toString() {
+        return "PersonalBean{" +
+                "persionId=" + persionId +
+                ", realName='" + realName + '\'' +
+                ", homeAddress='" + homeAddress + '\'' +
+                ", phone='" + phone + '\'' +
+                ", identityNum='" + identityNum + '\'' +
+                ", job='" + job + '\'' +
+                ", email='" + email + '\'' +
+                ", dealNum=" + dealNum +
+                ", complainNum=" + complainNum +
+                ", loginBean=" + loginBean.getLoginName() + loginBean.getLoginPwd() +
+                '}';
+    }
 }

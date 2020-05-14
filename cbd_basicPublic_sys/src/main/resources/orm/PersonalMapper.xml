@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cbd.dao.IPersonalDao">
+    <resultMap id="personalRM" type="personalBean">
+        <result property="persionId" column="pk_personalID"/>
+        <result property="realName" column="f_realName"/>
+        <result property="homeAddress" column="f_homeAddress"/>
+        <result property="phone" column="f_phone"/>
+        <result property="identityNum" column="f_identityNum"></result>
+        <result property="job" column="f_job"></result>
+        <result property="email" column="f_email"></result>
+        <result property="dealNum" column="f_dealNum"></result>
+        <result property="complainNum" column="f_complainNum"></result>
+        <association property="loginBean" javaType="LoginBean" >
+            <result property="loginID" column="pk_loginID"/>
+            <result property="loginName" column="f_loginName"/>
+            <result property="loginPwd" column="f_loginPwd"/>
+            <result property="status" column="f_status"/>
+        </association>
+    </resultMap>
+
+    <select id="findById" resultMap="personalRM" parameterType="int">
+        SELECT * from t_personalID JOIN t_login on fk_loginID = pk_loginID WHERE pk_personalID = #{param}
+    </select>
+
+    <insert id="add" parameterType="personalBean">
+        INSERT INTO t_personalID(f_realName,f_homeAddress,f_phone,f_identityNum,f_job,f_email,f_dealNum,f_complainNum,fk_loginID)
+        VALUES(#{realName},#{homeAddress},#{phone},#{identityNum},#{job},#{email},#{dealNum},#{complainNum},#{loginBean.loginID})
+    </insert>
+
+    <update id="updateById">
+        UPDATE t_personalID,t_login set f_loginPwd = #{pwd},f_homeAddress=#{address} ,f_phone=#{phone} ,f_job=#{job},f_email=#{email}  WHERE pk_loginID = fk_loginID = #{id}
+    </update>
+
+</mapper>
