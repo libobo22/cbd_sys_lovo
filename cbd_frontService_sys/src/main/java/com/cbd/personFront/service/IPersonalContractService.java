@@ -11,12 +11,12 @@ public interface IPersonalContractService {
 
     /**
      * 根据当前用身份证号查询当前用户的合同。（当前用户可以是卖方的身份证号码或是卖方的身份证号。
-     * @param IdentityNum 当前用户身份证号
+     * @param identityNum 当前用户身份证号
      *  @param page 页码数
      *  @param number 每页显示多少条数
      * @return
      */
-    public List<PersonalContractBean> findByPersonalContract(String IdentityNum,int page, int number);
+    public List<PersonalContractBean> findByPersonalContract(String identityNum,int page, int number);
 
 
     /**
@@ -49,6 +49,12 @@ public interface IPersonalContractService {
      * @param contractID 合同id
      */
     void updateStatus(int auditStatus,int newStatus,int contractID,String userStatus );
+
+    /**
+     * 添加个人用户合同
+     * @param personalContractBean
+     */
+    void addContract(PersonalContractBean personalContractBean);
 
 
 }

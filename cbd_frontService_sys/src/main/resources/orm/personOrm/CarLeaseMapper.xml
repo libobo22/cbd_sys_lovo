@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 车位mapper-->
+<mapper namespace="com.cbd.personFront.dao.ICarLeaseDao">
+
+    <resultMap id="CarLeaseRM" type="CarLeaseBean">
+          <result property="carLeaseID" column="carLeaseID"/>
+          <result property="leaseStartDate" column="leaseStartDate"/>
+          <result property="leaseEndDate" column="leaseEndDate"/>
+         <result property="price" column="price"/>
+        <result property="leaseStatus" column="leaseStatus"/>
+        <result property="leaseBuy" column="leaseBuy"/>
+        <result property="releaseIdentityNum" column="releaseIdentityNum"/>
+
+        <association property="personalCar"  javaType="PersonalCarBean">
+            <result property="carID" column="carID"/>
+            <result property="carPropertyNum" column="carPropertyNum"/>
+            <result property="carAddress" column="carAddress"/>
+            <result property="carNumber" column="carNumber"/>
+            <result property="propertyCopy" column="propertyCopy"/>
+            <result property="realName" column="realName"/>
+            <result property="phone" column="phone"/>
+            <result property="identityNum" column="identityNum"/>
+        </association>
+    </resultMap>
+
+    <sql id="leaseMysql">
+        <if  test="leaseStartDate != null and leaseStartDate != '' ">
+            <![CDATA[
+          and c.leaseStartDate >= #{leaseStartDate}
+            ]]>
+        </if>
+        <if test="leaseEndDate != null and leaseEndDate != '' ">
+            <![CDATA[
+           and c.leaseEndDate <= #{leaseEndDate}
+            ]]>
+        </if>
+    </sql>
+
+<!--    查询待出租车位-->
+    <select id="findByDateLease" resultMap="CarLeaseRM" >
+        select * from t_carLease c,t_personalCar p WHERE p.carID = c.carID
+        AND c.leaseBuy = #{leaseBuy} and c.leaseStatus = #{leaseStatus}
+        <include refid="leaseMysql"></include>
+        limit #{index},#{number}
+    </select>
+
+
+    <sql id="sellMysql">
+        <if  test="carAddress != null and carAddress != '' ">
+          and p.carAddress like "%"#{carAddress}"%"
+        </if>
+        <if test="carNumber != null and carNumber != '' ">
+           and p.carNumber = #{carNumber}
+        </if>
+    </sql>
+
+<!--    查询待出售车位-->
+    <select id="findByBuyCar" resultMap="CarLeaseRM">
+        select * from t_carLease c,t_personalCar p WHERE p.carID = c.carID
+        AND c.leaseBuy = #{leaseBuy} and c.leaseStatus = #{leaseStatus}
+        <include refid="sellMysql"></include>
+        limit #{index},#{number}
+    </select>
+
+<!--    添加租凭/出售 车位-->
+    <insert id="addLeaseCar" parameterType="CarLeaseBean">
+    insert into t_carLease(leaseStartDate,leaseEndDate,price,leaseStatus,carID,leaseBuy,releaseIdentityNum)
+    value (#{leaseStartDate},#{leaseEndDate},#{price},#{leaseStatus},#{personalCar.carID},#{leaseBuy},#{releaseIdentityNum})
+    </insert>
+
+
+</mapper>

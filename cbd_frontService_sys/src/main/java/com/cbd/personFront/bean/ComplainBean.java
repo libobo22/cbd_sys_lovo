@@ -3,6 +3,7 @@ package com.cbd.personFront.bean;
 import lombok.Data;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 /**
  * 投诉实体类
@@ -28,7 +29,9 @@ public class ComplainBean {
     /**
      * 投诉日期
      */
-    private Date complainDate;
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss ");// 格式化时间
+    java.util.Date date = new java.util.Date();// 获取当前时间
+    private String complainDate =  sdf.format(date);
 
     /**
      * 投诉状态
@@ -69,10 +72,13 @@ public class ComplainBean {
     public ComplainBean() {
     }
 
-    public ComplainBean(CarLeaseBean carLease, String complainInfo, Date complainDate, int adminCheckStatus, String complainRealName, String complainPhone, String complainIdentityNum, String beComplainRealName, String beComplainPhone, String beComplainIdentityNum) {
-        this.carLease = carLease;
+    public ComplainBean(int carLeaseId, String complainInfo, int adminCheckStatus, String complainRealName, String complainPhone, String complainIdentityNum, String beComplainRealName, String beComplainPhone, String beComplainIdentityNum) {
+
+        CarLeaseBean carLeaseBean = new CarLeaseBean();
+        carLeaseBean.setCarLeaseID(carLeaseId);
+        this.carLease = carLeaseBean;
+
         this.complainInfo = complainInfo;
-        this.complainDate = complainDate;
         this.adminCheckStatus = adminCheckStatus;
         this.complainRealName = complainRealName;
         this.complainPhone = complainPhone;

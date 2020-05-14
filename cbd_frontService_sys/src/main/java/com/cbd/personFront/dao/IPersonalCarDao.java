@@ -19,11 +19,11 @@ public interface IPersonalCarDao {
     /**
      * 根据车位主人身份证号查询，当前用户的所有车位
      * @param identityNum 身份证号
-     * @param page 页码数
+     * @param index 下标
      * @param number 每页显示多少条数
      * @return
      */
-    List<PersonalCarBean> findByCar(String identityNum, int page, int number);
+    List<PersonalCarBean> findByCar(String identityNum, int index, int number);
 
 
     /**

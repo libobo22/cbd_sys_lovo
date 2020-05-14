@@ -3,8 +3,9 @@ package com.cbd.personFront.bean;
 
 import lombok.Data;
 
-import java.sql.Date;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * 车位租凭实体类
@@ -20,7 +21,9 @@ public class CarLeaseBean {
     /**
      * 租赁开始时间
      */
-    private String leaseStartDate;
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss ");// 格式化时间
+    java.util.Date date = new Date();// 获取当前时间
+    private String leaseStartDate = sdf.format(date);
 
     /**
      * 租凭结束时间
@@ -55,12 +58,14 @@ public class CarLeaseBean {
     public CarLeaseBean() {
     }
 
-    public CarLeaseBean(String leaseStartDate, String leaseEndDate, float price, int leaseStatus, PersonalCarBean personalCar) {
-        this.leaseStartDate = leaseStartDate;
+    public CarLeaseBean( String leaseEndDate, float price, int leaseStatus, int personalCarId,String releaseIdentityNum) {
+        this.releaseIdentityNum = releaseIdentityNum;
         this.leaseEndDate = leaseEndDate;
         this.price = price;
         this.leaseStatus = leaseStatus;
-        this.personalCar = personalCar;
+        PersonalCarBean car = new PersonalCarBean();
+        car.setCarID(personalCarId);
+        this.personalCar = car;
     }
 
     @Override

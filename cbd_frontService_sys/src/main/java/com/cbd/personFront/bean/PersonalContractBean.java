@@ -16,7 +16,7 @@ public class PersonalContractBean {
     private String contractID;
 
     /**
-     * 车位
+     * 车位租凭类
      */
     private CarLeaseBean carLease;
 
@@ -32,11 +32,13 @@ public class PersonalContractBean {
 
     /**
      * 卖方签约状态
+     * 2拒绝签约，1代表已签约，0代表未签约
      */
     private int sellStatus;
 
     /**
      * 管理员审核状态
+     * 2审核不通过，1代表已审核通过，0代表未审核
      */
     private int adminCheckStatus;
 
@@ -48,7 +50,7 @@ public class PersonalContractBean {
     /**
      * 合同生效日期
      */
-    private Date implementDate;
+    private String implementDate;
 
     /**
      * 买方真实名字
@@ -78,13 +80,13 @@ public class PersonalContractBean {
     /**
      * 卖方身份证号
      */
-    private short sellIdentityNum;
+    private String sellIdentityNum;
 
 
     public PersonalContractBean() {
     }
 
-    public PersonalContractBean(CarLeaseBean carLease, String contractNumber, int buyStatus, int sellStatus, int adminCheckStatus, float dealPrice, Date implementDate, String buyRealName, String buyPhone, String buyIdentityNum, String sellRealName, String sellPhone, short sellIdentityNum) {
+    public PersonalContractBean(CarLeaseBean carLease, String contractNumber, int buyStatus, int sellStatus, int adminCheckStatus, float dealPrice, String implementDate, String buyRealName, String buyPhone, String buyIdentityNum, String sellRealName, String sellPhone, String sellIdentityNum) {
         this.carLease = carLease;
         this.contractNumber = contractNumber;
         this.buyStatus = buyStatus;

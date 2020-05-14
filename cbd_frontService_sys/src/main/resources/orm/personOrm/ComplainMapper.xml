@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 投诉mapper-->
+<mapper namespace="com.cbd.personFront.dao.IComplainDao">
+
+    <resultMap id="ComplainRM" type="ComplainBean">
+          <result property="complainID" column="complainID"/>
+          <result property="complainInfo" column="complainInfo"/>
+          <result property="complainDate" column="complainDate"/>
+         <result property="adminCheckStatus" column="adminCheckStatus"/>
+        <result property="complainRealName" column="complainRealName"/>
+        <result property="complainPhone" column="complainPhone"/>
+        <result property="complainIdentityNum" column="complainIdentityNum"/>
+        <result property="beComplainRealName" column="beComplainRealName"/>
+        <result property="beComplainPhone" column="beComplainPhone"/>
+        <result property="beComplainIdentityNum" column="releaseIdentityNum"/>
+
+        <association property="carLease"  javaType="CarLeaseBean">
+            <result property="carLeaseID" column="carLeaseID"/>
+            <result property="leaseStartDate" column="leaseStartDate"/>
+            <result property="leaseEndDate" column="leaseEndDate"/>
+            <result property="price" column="price"/>
+            <result property="leaseStatus" column="leaseStatus"/>
+            <result property="leaseBuy" column="leaseBuy"/>
+            <result property="releaseIdentityNum" column="releaseIdentityNum"/>
+
+            <association property="personalCar"  javaType="PersonalCarBean" column="{id=carId}" select="findPersonalCar">
+                <result property="carID" column="carID"/>
+                <result property="carPropertyNum" column="carPropertyNum"/>
+                <result property="carAddress" column="carAddress"/>
+                <result property="carNumber" column="carNumber"/>
+                <result property="propertyCopy" column="propertyCopy"/>
+                <result property="realName" column="realName"/>
+                <result property="phone" column="phone"/>
+                <result property="identityNum" column="identityNum"/>
+            </association>
+
+        </association>
+    </resultMap>
+
+   <insert id="addComplain" parameterType="ComplainBean">
+       insert into t_complain(complainInfo,complainDate,adminCheckStatus,complainRealName,complainPhone,complainIdentityNum,beComplainRealName,beComplainPhone,beComplainIdentityNum,carLeaseID)
+       value (#{complainInfo},#{complainDate},#{adminCheckStatus},#{complainRealName},#{complainPhone},#{complainIdentityNum},#{beComplainRealName},#{beComplainPhone},#{beComplainIdentityNum},#{carLease.carLeaseID})
+   </insert>
+
+
+    <select id="findPersonalCar" resultType="personalCarBean">
+		select * from t_personalCar where carID = #{id}
+	</select>
+
+
+    <select id="findByContract" resultMap="ComplainRM">
+        SELECT * from t_complain c,t_carLease l,t_personalCar p WHERE
+        c.carLeaseID = l.carLeaseID and l.carID = p.carID and
+        c.complainIdentityNum = #{IdentityNum} OR c.beComplainIdentityNum = #{IdentityNum}
+        limit #{index},#{number}
+    </select>
+
+</mapper>
