@@ -4,10 +4,15 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.apache.ibatis.type.JdbcType;
 
 /**
  * CBD车位实体类
  */
+@Data
 @TableName("t_cbdCar")
 public class CBDCarBean {
     /**
@@ -44,7 +49,11 @@ public class CBDCarBean {
     /**
      * 外部合约（若该车位是外部租赁的，则有对应的外部合约）
      */
+    @TableField(exist = false)
     private ExternalContractBean externalContract;
+
+    @TableField("externalContractID")
+    private int externalContractID;
 
     public Integer getCbdCarID() {
         return cbdCarID;
@@ -95,7 +104,7 @@ public class CBDCarBean {
         //1代表有效，0代表无效。默认有效
         if (this.cbdCarStatus==1){
             return "有效";
-        }else if (this.cbdCarStatus==2){
+        }else if (this.cbdCarStatus==0){
             return "无效";
         }
         return null;
@@ -111,5 +120,13 @@ public class CBDCarBean {
 
     public void setExternalContract(ExternalContractBean externalContract) {
         this.externalContract = externalContract;
+    }
+
+    public int getExternalContractID() {
+        return externalContractID;
+    }
+
+    public void setExternalContractID(int externalContractID) {
+        this.externalContractID = externalContractID;
     }
 }
