@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cbd.dao.ILogDao">
+    <resultMap id="logRM" type="logBean">
+        <result property="logID" column="pk_logID"/>
+        <result property="logType" column="f_logType"/>
+        <result property="operationType" column="f_operationType"/>
+        <result property="logInfo" column="f_logInfo"/>
+        <result property="dateTime" column="f_datetime"></result>
+        <result property="loginName" column="f_loginName"></result>
+        <result property="ip" column="f_ip"></result>
+    </resultMap>
+
+    <select id="findLogByItem" resultMap="logRM" parameterType="int">
+        select * from t_log where f_logType = #{param1} and f_operationType = #{param2}
+    </select>
+
+    <insert id="add" parameterType="LogBean">
+        insert into t_log(f_logType,f_operationType,f_logInfo,f_datetime,f_loginName,f_ip)
+        values(#{logType},#{operationType},#{logInfo},#{dateTime},#{loginName},#{ip})
+    </insert>
+
+  
+</mapper>

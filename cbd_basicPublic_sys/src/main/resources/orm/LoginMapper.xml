@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cbd.dao.ILoginDao">
+    <resultMap id="loginRM" type="loginBean">
+        <result property="loginID" column="pk_loginID"/>
+        <result property="loginName" column="f_loginName"/>
+        <result property="loginPwd" column="f_loginPwd"/>
+        <result property="status" column="f_status"/>
+    </resultMap>
+
+    <select id="findLoginByItem" resultMap="loginRM" parameterType="string">
+        select * from t_login where f_loginName = #{param1} and f_loginPwd = #{param2} and f_status = 1
+    </select>
+
+    <insert id="addLogin" parameterType="LoginBean">
+        insert into t_login(f_loginName,f_loginPwd,f_status) values(#{loginName},#{loginPwd},#{status})
+    </insert>
+
+
+    <update id="updateLogin" parameterType="int">
+        update t_login set f_status = #{param2} where pk_loginID = #{param1}
+    </update>
+  
+</mapper>
