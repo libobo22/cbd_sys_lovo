@@ -77,5 +77,6 @@ public class ExternalContractBean {
     /**
      * 该外部合约对应的所有车位信息
      */
+    @TableField(exist = false)
     private List<CBDCarBean> cbdCarList;
 }

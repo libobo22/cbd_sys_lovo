@@ -81,14 +81,14 @@ public class CBDCarBean implements Serializable {
         this.carNumber = carNumber;
     }
 
-    public String getLeaseStatus() {
-        if (this.leaseStatus==1){
-            return "已租赁";
-        }else if (this.leaseStatus==2){
-            return "未租赁";
-        }
-        return null;
-    }
+//    public String getLeaseStatus() {
+//        if (this.leaseStatus==1){
+//            return "已租赁";
+//        }else if (this.leaseStatus==2){
+//            return "未租赁";
+//        }
+//        return null;
+//    }
 
     public void setLeaseStatus(Integer leaseStatus) {
         this.leaseStatus = leaseStatus;
@@ -102,15 +102,15 @@ public class CBDCarBean implements Serializable {
         this.inOrOutStatus = inOrOutStatus;
     }
 
-    public String getCbdCarStatus() {
-        //1代表有效，0代表无效。默认有效
-        if (this.cbdCarStatus==1){
-            return "有效";
-        }else if (this.cbdCarStatus==0){
-            return "无效";
-        }
-        return null;
-    }
+//    public String getCbdCarStatus() {
+//        //1代表有效，0代表无效。默认有效
+//        if (this.cbdCarStatus==1){
+//            return "有效";
+//        }else if (this.cbdCarStatus==0){
+//            return "无效";
+//        }
+//        return null;
+//    }
 
     public void setCbdCarStatus(Integer cbdCarStatus) {
         this.cbdCarStatus = cbdCarStatus;
@@ -130,5 +130,13 @@ public class CBDCarBean implements Serializable {
 
     public void setExternalContractID(int externalContractID) {
         this.externalContractID = externalContractID;
+    }
+
+    public Integer getLeaseStatus() {
+        return leaseStatus;
+    }
+
+    public Integer getCbdCarStatus() {
+        return cbdCarStatus;
     }
 }
