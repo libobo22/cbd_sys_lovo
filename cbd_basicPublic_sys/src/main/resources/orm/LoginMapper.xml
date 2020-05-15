@@ -8,6 +8,7 @@
         <result property="loginName" column="f_loginName"/>
         <result property="loginPwd" column="f_loginPwd"/>
         <result property="status" column="f_status"/>
+        <result property="type" column="f_type"></result>
     </resultMap>
 
     <select id="findLoginByItem" resultMap="loginRM" parameterType="string">
@@ -15,7 +16,7 @@
     </select>
 
     <insert id="addLogin" parameterType="LoginBean">
-        insert into t_login(f_loginName,f_loginPwd,f_status) values(#{loginName},#{loginPwd},#{status})
+        insert into t_login(f_loginName,f_loginPwd,f_status,f_type) values(#{loginName},#{loginPwd},#{status},#{type})
     </insert>
 
 
