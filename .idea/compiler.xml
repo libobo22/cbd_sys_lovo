@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="cbd_admin_sys" />
+        <module name="cbd_Web" />
+        <module name="cbd_frontService_sys" />
         <module name="cbd_basicPublic_sys" />
         <module name="cbd_commons" />
-        <module name="cbd_frontService_sys" />
-        <module name="cbd_Web" />
+        <module name="cbd_admin_sys" />
       </profile>
     </annotationProcessing>
   </component>

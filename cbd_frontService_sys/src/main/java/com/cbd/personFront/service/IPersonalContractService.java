@@ -27,7 +27,7 @@ public interface IPersonalContractService {
     PersonalContractBean findByContractInfo(int contractId);
 
     /**
-     * 根据当前用户身份证号，审核状态为1（已审核）查询历史交易记录；
+     * 根据当前用户身份证号(可以是卖方或者买方)，审核状态为1（已审核）查询历史交易记录；
      * @param IdentityNum 当前用户身份证号
      * @param page 页码数
      * @param number 每页显示多少条数
@@ -43,12 +43,12 @@ public interface IPersonalContractService {
      * 并且只能修改未审核的合同
      * 审核状态改为1（已审核通过）将车位状态改为 2已签约（调车位租凭的状态修改）
      * 审核状态改为1（已审核通过）将车位主人信息该为卖方的信息（调车位用户信息修改接口）
-     * @param auditStatus 审核状态  （2审核不通过，1代表已审核通过，0代表未审核）
      * @param newStatus 要修改为什么状态 (2拒绝签约，1代表已签约，0代表未签约）
+     *                  审核状态  （2审核不通过，1代表已审核通过，0代表未审核）
      * @param userStatus 是什么用户（卖家/买家/审核员）
      * @param contractID 合同id
      */
-    void updateStatus(int auditStatus,int newStatus,int contractID,String userStatus );
+    void updateStatus(int newStatus,int contractID,String userStatus );
 
     /**
      * 添加个人用户合同

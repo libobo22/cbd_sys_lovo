@@ -58,7 +58,7 @@ public class CarLeaseBean {
     public CarLeaseBean() {
     }
 
-    public CarLeaseBean( String leaseEndDate, float price, int leaseStatus, int personalCarId,String releaseIdentityNum) {
+    public CarLeaseBean( String leaseEndDate, float price, int leaseStatus,int leaseBuy, int personalCarId,String releaseIdentityNum) {
         this.releaseIdentityNum = releaseIdentityNum;
         this.leaseEndDate = leaseEndDate;
         this.price = price;
@@ -66,6 +66,7 @@ public class CarLeaseBean {
         PersonalCarBean car = new PersonalCarBean();
         car.setCarID(personalCarId);
         this.personalCar = car;
+        this.leaseBuy = leaseBuy;
     }
 
     @Override

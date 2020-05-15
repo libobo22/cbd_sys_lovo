@@ -32,5 +32,21 @@ public class ContractTest {
         System.out.println(service.findByContractInfo(1));
     }
 
+    @Test
+   public void findByHistory(){
+        System.out.println(service.findByHistory("5123456789876543567890",1,3));
+    }
+
+    @Test
+    public void updateStatus(){
+        service.updateStatus(1,1,"审核员");
+    }
+
+    @Test
+    public void addContract(){
+        PersonalContractBean bean = new PersonalContractBean(15,"9999888",0,0,0,999.88f,null,"张三","1399999","510999333","李四","152000000","510***000");
+        service.addContract(bean);
+    }
+
 
 }

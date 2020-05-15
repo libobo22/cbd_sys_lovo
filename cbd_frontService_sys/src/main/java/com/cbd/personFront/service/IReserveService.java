@@ -33,5 +33,10 @@ public interface IReserveService {
      */
     List<ReserveBean> findByBeReserve(String beReserveIdentityNum,int page, int number);
 
-
+    /**
+     * 根据预定车位id修改预定车位状
+     * @param state 预定状态（1代表预定成功，2代表正在预定，3代表预定失败）
+     * @param reserveId 预定车位ID
+     */
+    public void updateState(int state,int reserveId);
 }

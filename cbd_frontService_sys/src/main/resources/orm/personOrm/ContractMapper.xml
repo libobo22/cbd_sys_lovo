@@ -62,5 +62,36 @@
       and c.contractID = #{contractId}
     </select>
 
+    <select id="findByHistory" resultMap="ContractRM">
+      select * from t_personalContract c,t_carLease l,t_personalCar p where
+        c.carLeaseID = l.carLeaseID and l.carID = p.carID
+        and c.buyIdentityNum = #{IdentityNum} or c.sellIdentityNum = #{IdentityNum}
+         and c.adminCheckStatus = '1'
+         limit #{index},#{number}
+    </select>
+
+    <update id="sellUpdateStatus">
+        update t_personalContract set sellStatus = #{sellStatus} where contractID =  #{contractID}
+    </update>
+
+    <update id="buyUpdateStatus">
+        update t_personalContract set buyStatus = #{buyStatus} where contractID = #{contractID}
+    </update>
+
+    <update id="adminUpdateStatus">
+        update t_personalContract set adminCheckStatus = #{adminCheckStatus} where contractID = #{contractID}
+    </update>
+
+    <update id="updateImplementDate">
+        update t_personalContract set implementDate = #{implementDate} where contractID = #{contractID}
+    </update>
+
+    <insert id="addContract" parameterType="personalContractBean">
+        insert into t_personalContract(contractNumber,buyStatus,sellStatus,adminCheckStatus,dealPrice,implementDate,buyRealName,buyPhone,buyIdentityNum,sellRealName,sellPhone,sellIdentityNum,carLeaseID)
+        value (#{contractNumber},#{buyStatus},#{sellStatus},#{adminCheckStatus},#{dealPrice},#{implementDate},#{buyRealName},#{buyPhone},#{buyIdentityNum},#{sellRealName},#{sellPhone},#{sellIdentityNum},#{carLease.carLeaseID})
+    </insert>
+
+
+
 
 </mapper>

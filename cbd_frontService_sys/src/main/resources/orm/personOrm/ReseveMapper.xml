@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 预定车位mapper-->
+<mapper namespace="com.cbd.personFront.dao.IReserveDao">
+    <resultMap id="ReserveRM" type="ReserveBean">
+          <result property="reserveID" column="reserveID"/>
+          <result property="leaveMessage" column="leaveMessage"/>
+          <result property="reserveDate" column="reserveDate"/>
+         <result property="reserveStatus" column="reserveStatus"/>
+        <result property="ownerRealName" column="ownerRealName"/>
+        <result property="ownerPhone" column="ownerPhone"/>
+        <result property="ownerIdentityNum" column="ownerIdentityNum"/>
+        <result property="reserveRealName" column="reserveRealName"/>
+        <result property="reservePhone" column="reservePhone"/>
+        <result property="reserveIdentityNum" column="reserveIdentityNum"/>
+
+        <association property="carLease"  javaType="CarLeaseBean">
+            <result property="carLeaseID" column="carLeaseID"/>
+            <result property="leaseStartDate" column="leaseStartDate"/>
+            <result property="leaseEndDate" column="leaseEndDate"/>
+            <result property="price" column="price"/>
+            <result property="leaseStatus" column="leaseStatus"/>
+            <result property="leaseBuy" column="leaseBuy"/>
+            <result property="releaseIdentityNum" column="releaseIdentityNum"/>
+
+            <association property="personalCar"  javaType="PersonalCarBean" column="{id=carId}" select="findPersonalCar">
+                <result property="carID" column="carID"/>
+                <result property="carPropertyNum" column="carPropertyNum"/>
+                <result property="carAddress" column="carAddress"/>
+                <result property="carNumber" column="carNumber"/>
+                <result property="propertyCopy" column="propertyCopy"/>
+                <result property="realName" column="realName"/>
+                <result property="phone" column="phone"/>
+                <result property="identityNum" column="identityNum"/>
+            </association>
+        </association>
+    </resultMap>
+
+
+    <select id="findPersonalCar" resultType="personalCarBean">
+		select * from t_personalCar where carID = #{id}
+	</select>
+
+
+    <insert id="addReserve" parameterType="reserveBean">
+        insert into t_reserve(leaveMessage,reserveDate,reserveStatus,ownerRealName,ownerPhone,ownerIdentityNum,reserveRealName,reservePhone,reserveIdentityNum,carLeaseID)
+        value (#{leaveMessage},#{reserveDate},#{reserveStatus},#{ownerRealName},#{ownerPhone},#{ownerIdentityNum},#{reserveRealName},#{reservePhone},#{reserveIdentityNum},#{carLease.carLeaseID})
+    </insert>
+
+    <select id="findByReserve" resultMap="ReserveRM">
+        select * from t_reserve r,t_carLease l,t_personalCar p where
+        r.carLeaseID = l.carLeaseID and l.carID = p.carID and
+        r.reserveIdentityNum = #{reserveIdentityNum}
+        limit #{index},#{number}
+    </select>
+
+    <select id="findByBeReserve" resultMap="ReserveRM">
+        select * from t_reserve r,t_carLease l,t_personalCar p where
+        r.carLeaseID = l.carLeaseID and l.carID = p.carID and
+        r.ownerIdentityNum = #{beReserveIdentityNum}
+        limit #{index},#{number}
+    </select>
+
+    <update id="updateState" >
+        update t_reserve set reserveStatus = #{state} where reserveID = #{reserveId}
+    </update>
+
+
+</mapper>

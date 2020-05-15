@@ -28,11 +28,11 @@ public interface IPersonalContractDao {
     /**
      * 根据当前用户身份证号，审核状态为1（已审核）查询历史交易记录；
      * @param IdentityNum 当前用户身份证号
-     * @param page 页码数
+     * @param index 下标
      * @param number 每页显示多少条数
      * @return
      */
-    public List<PersonalContractBean> findByHistory(String IdentityNum,int page, int number);
+    public List<PersonalContractBean> findByHistory(String IdentityNum,int index, int number);
 
     /**
      * 根据合同id修合同状态

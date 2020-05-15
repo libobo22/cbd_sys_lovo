@@ -86,8 +86,10 @@ public class PersonalContractBean {
     public PersonalContractBean() {
     }
 
-    public PersonalContractBean(CarLeaseBean carLease, String contractNumber, int buyStatus, int sellStatus, int adminCheckStatus, float dealPrice, String implementDate, String buyRealName, String buyPhone, String buyIdentityNum, String sellRealName, String sellPhone, String sellIdentityNum) {
-        this.carLease = carLease;
+    public PersonalContractBean(int carLease, String contractNumber, int buyStatus, int sellStatus, int adminCheckStatus, float dealPrice, String implementDate, String buyRealName, String buyPhone, String buyIdentityNum, String sellRealName, String sellPhone, String sellIdentityNum) {
+        CarLeaseBean carLeaseBean = new CarLeaseBean();
+        carLeaseBean.setCarLeaseID(carLease);
+        this.carLease = carLeaseBean;
         this.contractNumber = contractNumber;
         this.buyStatus = buyStatus;
         this.sellStatus = sellStatus;
