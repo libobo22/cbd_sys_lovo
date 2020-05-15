@@ -18,7 +18,7 @@ public class TestLogin {
     @Test
     public void find(){
         LoginBean bean = new LoginBean();
-        bean = service.login("user1","123456");
+        bean = service.login("user1","222222");
         System.out.println(bean);
     }
 
@@ -30,8 +30,9 @@ public class TestLogin {
     @Test
     public void add(){
         LoginBean loginBean = new LoginBean();
-        loginBean.setLoginName("user2");
+        loginBean.setLoginName("user3");
         loginBean.setLoginPwd("123456");
+        loginBean.setType(1);
         service.addLogin(loginBean);
     }
 
