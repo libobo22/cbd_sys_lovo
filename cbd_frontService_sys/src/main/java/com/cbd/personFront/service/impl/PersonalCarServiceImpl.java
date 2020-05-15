@@ -21,12 +21,13 @@ public class PersonalCarServiceImpl implements IPersonalCarService {
 
     @Override
     public List<PersonalCarBean> findByCar(String identityNum, int page, int number) {
-        return null;
+        int index = (page-1)*number;
+        return personalCarDao.findByCar(identityNum,index,number);
     }
 
     @Override
     public void updateCar(int carID, String realName, String phone, String identityNum) {
-
+        personalCarDao.updateCar(carID,realName,phone,identityNum);
     }
 
 

@@ -7,15 +7,15 @@ import java.util.List;
 /**
  * 合同持久层接口
  */
-public interface IPersonalContract {
+public interface IPersonalContractDao {
     /**
      * 根据当前用身份证号查询当前用户的合同。（当前用户可以是卖方的身份证号码或是卖方的身份证号。
      * @param IdentityNum 当前用户身份证号
-     *  @param page 页码数
+     *  @param index 下标
      *  @param number 每页显示多少条数
      * @return
      */
-    public List<PersonalContractBean> findByPersonalContract(String IdentityNum, int page, int number);
+    public List<PersonalContractBean> findByPersonalContract(String IdentityNum, int index, int number);
 
 
     /**
@@ -48,6 +48,40 @@ public interface IPersonalContract {
      * @param contractID 合同id
      */
     void updateStatus(int auditStatus,int newStatus,int contractID,String userStatus );
+
+    /**
+     * 根据合同ID卖方修改签约状态
+     * @param contractID 合同id
+     * @param sellStatus 卖方签约状态（(2拒绝签约，1代表已签约，0代表未签约）
+     */
+   void sellUpdateStatus(int contractID,int sellStatus);
+
+    /**
+     *根据合同ID 买方修改签约状态
+     * @param contractID 合同ID
+     * @param buyStatus 方买签约状态（(2拒绝签约，1代表已签约，0代表未签约）
+     */
+   void buyUpdateStatus(int contractID,int buyStatus);
+
+    /**
+     * 审核员修改审核状态
+     * @param contractID 合同id
+     * @param adminCheckStatus 管理员审核状态（2审核不通过，1代表已审核通过，0代表未审核）
+     */
+   void adminUpdateStatus(int contractID,int adminCheckStatus);
+
+    /**
+     * 根据合同Id 修改合同生效时间
+     * @param contractID 合同
+     * @param implementDate 生效时间
+     */
+    void updateImplementDate(int contractID,String implementDate);
+
+    /**
+     * 添加个人用户合同
+     * @param personalContractBean
+     */
+    void addContract(PersonalContractBean personalContractBean);
 
 
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 车位mapper-->
+<mapper namespace="com.cbd.personFront.dao.IBillDao">
+<!--    <resultMap id="BillRM" type="BillBean">-->
+<!--          <result property="billId" column="pk_billId"/>-->
+<!--          <result property="expenditure" column="f_expenditure"/>-->
+<!--          <result property="income" column="f_income"/>-->
+<!--         <result property="remarks" column="f_remarks"/>-->
+<!--        <result property="transactionTime" column="f_transactionTime"/>-->
+<!--        <result property="IdentityNum" column="f_IdentityNum"/>-->
+<!--    </resultMap>-->
+
+<!--    根据当前用户身份证号查询用户账单并分页-->
+    <select id="findByBill" resultType="billBean">
+        select * from t_bill WHERE IdentityNum=#{IdentityNum} limit #{index},#{number}
+    </select>
+
+<!--    添加账单-->
+    <insert id="addBill" >
+        insert into t_bill(expenditure,income,remarks,transactionTime,IdentityNum)
+        value (#{expenditure},#{income},#{remarks},#{transactionTime},#{IdentityNum})
+    </insert>
+
+
+</mapper>

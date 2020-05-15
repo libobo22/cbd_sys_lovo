@@ -12,11 +12,11 @@ public interface IBillDao {
     /**
      * 根据当前用户身份证号查询用户账单
      * @param IdentityNum 当前用户身份证号
-     * @param page 页码数
+     * @param index 起始下标
      *  @param number 每页显示多少条数
      * @return
      */
-    List<BillBean> findByBill(String IdentityNum, int page, int number);
+    List<BillBean> findByBill(String IdentityNum, int index, int number);
 
     /**
      * 添加账单

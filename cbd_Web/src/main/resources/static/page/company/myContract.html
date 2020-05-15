@@ -5,7 +5,7 @@
     <title>我的合同</title>
     <link rel="stylesheet" href="../../elementUI/elementUI.css"/>
     <link rel="stylesheet" href="css/adminIndex.css"/>
-    <!-- import Vue before Element -->
+    <!-- 在Element之前引入vue -->
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <!-- 引入组件库 -->
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
@@ -78,10 +78,16 @@
 </body>
 
 <script>
+
+    var currPage = 1;
+    var numbers = 5;
+
     app = new Vue({
         el:"#app",
         data() {
             return {
+
+
                 dialogVisible: false,
                 src:'photos/1.png',
 
@@ -120,7 +126,35 @@
                 ]
             }
         },
+
+
+        //立即加载执行
+        mounted:function(){
+            this.findAllContract();
+        },
+
+
         methods: {
+
+            findAllContract(){//查看所有合同
+
+                var params = new URLSearchParams();
+                param.append("currPage",currPage)
+                param.append("numbers",numbers)
+
+                axios({
+                    methods: post,
+                    url: "http://127.0.0.1:8001/findCon",
+                    data: params
+                }).then(function (value) {
+                    alert(value)
+                }).catch(function (error) {
+                    console.log(error)
+                })
+
+            },
+
+
             OnFindFreeCar(){//查看CBD空闲车位
                 location.href="findLeaseCar.html"
             },

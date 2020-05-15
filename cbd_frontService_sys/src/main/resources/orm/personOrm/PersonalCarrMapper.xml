@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 车位mapper-->
+<mapper namespace="com.cbd.personFront.dao.IPersonalCarDao">
+    <resultMap id="PersonalCarRM" type="PersonalCarBean">
+          <result property="carID" column="carID"/>
+          <result property="carPropertyNum" column="carPropertyNum"/>
+          <result property="carAddress" column="carAddress"/>
+         <result property="carNumber" column="carNumber"/>
+        <result property="propertyCopy" column="propertyCopy"/>
+        <result property="realName" column="realName"/>
+        <result property="phone" column="phone"/>
+        <result property="identityNum" column="identityNum"/>
+    </resultMap>
+
+
+    <insert id="addPersonalCar" parameterType="PersonalCarBean">
+        INSERT into t_personalCar(carPropertyNum,carAddress,carNumber,propertyCopy,realName,phone,identityNum) VALUES(#{carPropertyNum},#{carAddress},#{carNumber},#{propertyCopy},#{realName},#{phone},#{identityNum})
+    </insert>
+
+
+    <select id="findByCar" resultMap="PersonalCarRM">
+        select * from  t_personalCar WHERE identityNum=#{identityNum} limit #{index},#{number}
+    </select>
+
+    <update id="updateCar" >
+        update t_personalCar set
+         realName =#{realName},phone =#{phone},identityNum=#{identityNum}
+        where carID = #{carID}
+    </update>
+
+</mapper>
