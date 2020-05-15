@@ -32,7 +32,7 @@ public class CarLeaseTest {
 
    @Test
    public void addLeaseCar(){
-       CarLeaseBean carLeaseBean = new CarLeaseBean("2022-08-20 13:17:02",999.33f,1,12,"510*******7778877");
+       CarLeaseBean carLeaseBean = new CarLeaseBean("2022-08-20 13:17:02",999.33f,1,12,8,"510*******7778877");
        carLeaseService.addLeaseCar(carLeaseBean);
    }
 
