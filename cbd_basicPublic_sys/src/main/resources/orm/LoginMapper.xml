@@ -15,7 +15,7 @@
         select * from t_login where f_loginName = #{param1} and f_loginPwd = #{param2} and f_status = 1
     </select>
 
-    <insert id="addLogin" parameterType="LoginBean">
+    <insert id="addLogin" parameterType="LoginBean" keyProperty="id" useGeneratedKeys="true">
         insert into t_login(f_loginName,f_loginPwd,f_status,f_type) values(#{loginName},#{loginPwd},#{status},#{type})
     </insert>
 

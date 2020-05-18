@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("login")
 public class LoginController {
     @Autowired
     private ILoginService service;
@@ -20,5 +19,8 @@ public class LoginController {
         return loginBean;
     }
 
-
+    @RequestMapping("delLogin/{loginId}")
+    public void delLogin(@PathVariable("loginId") int loginId){
+        service.delLogin(loginId,0);
+    }
 }
