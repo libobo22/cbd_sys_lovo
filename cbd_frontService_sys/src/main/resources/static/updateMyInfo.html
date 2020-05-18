@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <!-- import Vue before Element -->
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src ="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
     <!-- 引入组件库 -->
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 <body>
@@ -60,7 +61,49 @@
                     ],
                 }
             }
+        },
+
+        //立即加载执行
+        mounted:function(){
+            this.findMine();
+            this.updateMine();
+        },
+
+
+        methods:{
+
+            //查看个人信息
+            findMine(){
+                let _this = this;
+
+                axios({
+                    url:"findBillAll",
+                    method:"post",
+                    data:''
+                }).then(function (value) {
+                    _this.tableDataAll=value.data
+                }).catch(function (error) {
+                    console.log(error)
+                })
+            },
+
+            //修改个人信息
+            updateMine(){
+                let _this = this;
+
+                axios({
+                    url:"findBillAll",
+                    method:"post",
+                    data:''
+                }).then(function (value) {
+                    _this.tableDataAll=value.data
+                }).catch(function (error) {
+                    console.log(error)
+                })
+            }
+
         }
+
     })
 </script>
 

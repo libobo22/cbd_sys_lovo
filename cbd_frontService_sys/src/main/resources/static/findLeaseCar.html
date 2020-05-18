@@ -50,6 +50,9 @@
       </template><br>
 
       <el-pagination
+              @size-change="handleSizeChange"
+              @current-change="handleCurrentChange"
+
               background
               layout="prev, pager, next"
               :total="1000">
@@ -102,28 +105,11 @@
 
         //立即加载执行
         mounted:function(){
-            this.getID();
             this.findLease();
         },
 
 
         methods: {
-
-            //得到本企业ID
-            getID(){
-
-
-                axios({
-                    method:"post",
-                    url:"getID",
-                    data:""
-                }).then(function (value) {
-                    compantID=value.data;
-                }).catch(function (error) {
-                    console.log(error)
-                })
-            },
-
 
             //查看已租赁车位
             findLease(){

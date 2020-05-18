@@ -5,7 +5,7 @@ import com.cbd.companyFront.service.ICompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,7 +40,14 @@ public class CompanyServiceImpl implements ICompanyService {
     }
 
     @Override
-    public List<BillDto> findAllBill(Date start,Date end,int currPage,int numbers) {
+    public List<BillDto> findAllBill(String start,String end,int currPage,int numbers) {
+        if (start!=null & start!="" & start.length()!=0){
+            Date.valueOf(start);
+        }
+        if (end!=null & end!="" & end.length()!=0){
+            Date.valueOf(end);
+        }
+
         currPage = (currPage-1)*numbers;
         Map<String,Object> map = new HashMap<>();
         map.put("start",start);
@@ -52,7 +59,12 @@ public class CompanyServiceImpl implements ICompanyService {
     }
 
     @Override
-    public CompanyInfoDto findCompanyByID(int id) {
+    public List<AllBillDto> findBillAll() {
+        return dao.findBillAll();
+    }
+
+    @Override
+    public  List<CompanyInfoDto> findCompanyByID(int id) {
         return dao.findCompanyByID(id);
     }
 

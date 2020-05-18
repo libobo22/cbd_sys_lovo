@@ -23,7 +23,7 @@ public class BillDto {
     private double income;
 
     /**备注*/
-    private String Remarks;
+    private String remarks;
 
 
     public BillDto() {
@@ -34,6 +34,6 @@ public class BillDto {
         this.dealTime = dealTime;
         this.expend = expend;
         this.income = income;
-        Remarks = remarks;
+        this.remarks = remarks;
     }
 }

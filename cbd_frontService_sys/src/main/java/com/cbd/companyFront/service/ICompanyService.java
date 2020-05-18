@@ -19,10 +19,13 @@ public interface ICompanyService {
     List<CBDFreeCar> findCBDFreeCar(int id,int currPage,int numbers);
 
     /**查看账单*/
-    List<BillDto> findAllBill(Date start, Date end, int currPage, int numbers);
+    List<BillDto> findAllBill(String start, String end, int currPage, int numbers);
+
+    /**合计账单*/
+    List<AllBillDto> findBillAll();
 
     /**查看企业信息*/
-    CompanyInfoDto findCompanyByID(int id);
+    List<CompanyInfoDto> findCompanyByID(int id);
 
     /**修改企业信息*/
     void updateCompanyInfo(int id,String logName,String logPass,String linkman,String linkPhone);

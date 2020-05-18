@@ -20,20 +20,24 @@
     </select>
 
     <select id="findCBDFreeCar" resultType="cBDFreeCar">
-        select carAddress carPlace, carNumber from t_cbdCar2 where cbdCarStatus=#{param1} limit #{param2},#{param3}
+        select carAddress carPlace, carNumber from t_cbdCar2 where leaseStatus=#{param1} limit #{param2},#{param3}
     </select>
 
     <select id="findAllBill" resultType="billDto">
-        select transactionTime as dealDate, expenditure as expend, income, remarks as Remarks from t_bill
+        select transactionTime as dealDate, expenditure as expend, income, remarks from t_bill
          <where>
-             <if test="start!=null">
+             <if test="start!=null and start!=''">
                  and transactionTime >= #{start}
              </if>
-             <if test="end!=null">
+             <if test="end!=null and end!=''">
                  <![CDATA[and transactionTime <= #{end}]]>
              </if>
          </where>
          limit #{currPage},#{numbers}
+    </select>
+
+    <select id="findBillAll" resultType="allBillDto">
+        select count(*) as nums,sum(expenditure) as expendAll,sum(income) as incomeAll from t_bill
     </select>
     
     <select id="findCompanyByID" parameterType="int" resultType="companyInfoDto">
