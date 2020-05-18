@@ -27,7 +27,7 @@ public interface ICompanyDao {
     List<AllBillDto> findBillAll();
 
     /**查看企业信息*/
-    List<CompanyInfoDto> findCompanyByID(int id);
+    CompanyInfoDto findCompanyByID(int id);
 
     /**修改企业信息*/
     void updateCompanyInfo(int id,String logName,String logPass,String linkman,String linkPhone);

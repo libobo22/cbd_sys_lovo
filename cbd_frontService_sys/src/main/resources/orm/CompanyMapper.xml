@@ -41,7 +41,7 @@
     </select>
     
     <select id="findCompanyByID" parameterType="int" resultType="companyInfoDto">
-        select companyID, loginName as logName, loginPwd as logPass, companyName, floor, linkman  linkMan, linkPhone from t_company2 where companyID=#{id} ;
+        select companyID, loginName as logName, loginPwd as logPass, companyName, floor as companyFloor, linkman  linkMan, linkPhone from t_company2 where companyID=#{id} ;
     </select>
 
 

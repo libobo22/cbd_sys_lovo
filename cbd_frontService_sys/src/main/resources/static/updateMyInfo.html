@@ -24,10 +24,10 @@
                 <el-input placeholder="请输入密码" v-model="form.CompanyLoginPass" show-password style="width: 300px"></el-input>
             </el-form-item>
             <el-form-item label="企业名称">
-                <span>xxx</span>
+                <span>{{form.companyName}}</span>
             </el-form-item>
             <el-form-item label="企业楼层位置">
-                <span>xxx</span>
+                <span>{{form.companyFloor}}</span>
             </el-form-item>
             <el-form-item label="联系人">
                 <el-input placeholder="" v-model="form.Linkman" style="width: 300px"></el-input>
@@ -36,8 +36,7 @@
                 <el-input placeholder="" v-model="form.LinkmanPhone" style="width: 300px"></el-input>
             </el-form-item>
             <el-form-item>
-                <el-button type="primary" @click="">修改</el-button>
-                <el-button @click="">返回</el-button>
+                <el-button type="primary" @click="updateMine">修改</el-button>
             </el-form-item>
         </el-form>
     </div>
@@ -52,7 +51,12 @@
         data() {
             return {
                 form:{
-
+                    CompanyLoginName:'',
+                    CompanyLoginPass:'',
+                    Linkman:'',
+                    LinkmanPhone:'',
+                    companyName:'',
+                    companyFloor:''
                 },
                 rules:{//验证字段
                     CompanyLoginName: [
@@ -66,7 +70,6 @@
         //立即加载执行
         mounted:function(){
             this.findMine();
-            this.updateMine();
         },
 
 
@@ -77,11 +80,12 @@
                 let _this = this;
 
                 axios({
-                    url:"findBillAll",
+                    url:"findMine",
                     method:"post",
                     data:''
                 }).then(function (value) {
-                    _this.tableDataAll=value.data
+                    _this.form.companyName=value.data.companyName;
+                    _this.form.companyFloor=value.data.companyFloor;
                 }).catch(function (error) {
                     console.log(error)
                 })
@@ -90,13 +94,18 @@
             //修改个人信息
             updateMine(){
                 let _this = this;
+                let params = new URLSearchParams();
+                params.append("logName",this.form.CompanyLoginName)
+                params.append("logPass",this.form.CompanyLoginPass)
+                params.append("linkman",this.form.Linkman)
+                params.append("linkPhone",this.form.LinkmanPhone)
 
                 axios({
-                    url:"findBillAll",
+                    url:"updateMine",
                     method:"post",
-                    data:''
+                    data:params
                 }).then(function (value) {
-                    _this.tableDataAll=value.data
+
                 }).catch(function (error) {
                     console.log(error)
                 })

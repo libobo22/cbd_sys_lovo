@@ -63,10 +63,17 @@ public class CompanyController {
     }
 
     //查看企业信息
-
+    @RequestMapping("findMine")
+    @ResponseBody
+    public CompanyInfoDto findMine(){
+        return service.findCompanyByID(1);
+    }
 
     //修改企业
-
+    @RequestMapping("updateMine")
+    public void update(String logName,String logPass,String linkman,String linkPhone){
+        service.updateCompanyInfo(1,logName,logPass,linkman,linkPhone);
+    }
 
 
 }

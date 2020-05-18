@@ -64,7 +64,7 @@ public class CompanyServiceImpl implements ICompanyService {
     }
 
     @Override
-    public  List<CompanyInfoDto> findCompanyByID(int id) {
+    public  CompanyInfoDto findCompanyByID(int id) {
         return dao.findCompanyByID(id);
     }
 
