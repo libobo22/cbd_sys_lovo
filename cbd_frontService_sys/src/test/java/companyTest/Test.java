@@ -32,7 +32,7 @@ public class Test {
 
     @org.junit.Test
     public void findLeaseCar(){//查看已租赁车位
-        List<LeaseCarDto> list = service.findLeaseCar(4,1,6);
+        List<LeaseCarDto> list = service.findLeaseCar(1,1,6);
 
         for (LeaseCarDto leaseCarDto : list) {
             System.out.println(leaseCarDto.toString());
