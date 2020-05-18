@@ -16,7 +16,7 @@ public class LeaseCarDto {
     private String carNumber;
 
     /**合同编号*/
-    private String Contactno;
+    private String contactno;
 
     /**合同开始日期*/
     private String contractStrat;
@@ -32,7 +32,7 @@ public class LeaseCarDto {
                        String contractStrat, String contractEnd) {
         this.carPlace = carPlace;
         this.carNumber = carNumber;
-        Contactno = contactno;
+        this.contactno = contactno;
         this.contractStrat = contractStrat;
         this.contractEnd = contractEnd;
     }

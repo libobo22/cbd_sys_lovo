@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>企业查看已租赁车位</title>
+    <link rel="stylesheet" href="elementUI/elementUI.css"/>
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src ="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<body>
+
+      <div align="center" style="font-size: 20px;">已租赁车位</div>
+
+      <div id="app" align="center">
+      <template>
+          <el-table
+                  :data="tableData"
+                  stripe
+                  style="width: 80%">
+              <el-table-column
+                      prop="carPlace"
+                      label="车位位置"
+                      width="150">
+              </el-table-column>
+              <el-table-column
+                      prop="carNumber"
+                      label="车位号"
+                      width="150">
+              </el-table-column>
+              <el-table-column
+                      prop="contactno"
+                      label="合同编号"
+                      width="150">
+              </el-table-column>
+              <el-table-column
+                      prop="contractStrat"
+                      label="合同开始日期"
+                      width="180">
+              </el-table-column>
+              <el-table-column
+                      prop="contractEnd"
+                      label="合同结束日期"
+                      width="180">
+              </el-table-column>
+
+          </el-table>
+      </template><br>
+
+      <el-pagination
+              background
+              layout="prev, pager, next"
+              :total="1000">
+      </el-pagination>
+
+      <el-button style="margin-left: 600px" type="primary" @click="OnReturn">返回</el-button>
+      </div>
+
+</body>
+
+<script>
+
+    let currPage = 1;
+    let numbers = 6;
+    let compantID;
+    let contractCurrPage;
+
+    //得到页面传参
+    let url=location.search;
+    let theRequest=new Object();
+    if (url.indexOf('?')!=-1){
+        let str = url.substr(1)
+        let strs= str.split("&")
+        for (let i = 0; i < strs.length; i++) {
+            theRequest[strs[i].split('=')[0]] = strs[i].split('=')[1];
+        }
+        //alert(theRequest.id)
+        compantID=theRequest.id;
+        contractCurrPage=theRequest.currPage;
+    };
+
+
+    app = new Vue({
+        el:"#app",
+        data() {
+            return {
+
+                tableData:[],
+
+                /*tableData: [{
+                    carPlace: '朝阳路十三号',
+                    carNumber: 'EX666',
+                    Contactno: '254841',
+                    contractStrat: '2020-1-1',
+                    contractEnd: '2021-1-1'
+                }]*/
+            }
+        },
+
+
+        //立即加载执行
+        mounted:function(){
+            this.getID();
+            this.findLease();
+        },
+
+
+        methods: {
+
+            //得到本企业ID
+            getID(){
+
+
+                axios({
+                    method:"post",
+                    url:"getID",
+                    data:""
+                }).then(function (value) {
+                    compantID=value.data;
+                }).catch(function (error) {
+                    console.log(error)
+                })
+            },
+
+
+            //查看已租赁车位
+            findLease(){
+                let _this = this;
+                let params = new URLSearchParams();
+                params.append("id",compantID),
+                params.append("currPage",currPage),
+                params.append("numbers",numbers),
+
+                axios({
+                    method: "post",
+                    url: "findLease",
+                    data: params,
+                }).then(function (value) {
+                    _this.tableData=value.data;
+                }).catch(function (error) {
+                    console.log(error)
+                })
+            },
+
+
+            //分页
+            handleCurrentChange(val) {
+                currPage = val;
+                this.findLease();
+
+            },
+
+            //返回合同
+            OnReturn(){
+                location.href="myContract.html?contractCurrPage="+contractCurrPage+""
+            }
+        }
+    });
+</script>
+
+
+</html>
