@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/superAdminIndex.css"/>
 </head>
 <body>
-<div id="app">
+<div id="app" style="height: 100%">
     <el-container>
         <!-- 头部-->
         <el-header>
@@ -23,18 +23,18 @@
                     <el-menu :default-openeds="['1', '3']">
                         <el-menu-item index="1">
                             <i class="el-icon-user-solid"></i>
-                            <el-link href="#" target="show" :underline="false">查看管理员</el-link>
+                            <el-link href="superAdminPermission/superAdminPermission.html" target="show" :underline="false">查看管理员</el-link>
                         </el-menu-item>
                         <el-menu-item index="2">
                             <i class="el-icon-circle-plus"></i>
-                            <el-link href="#" target="show" :underline="false">添加管理员</el-link>
+                            <el-link href="superAdminPermission/addAdmin.html" target="show" :underline="false">添加管理员</el-link>
                         </el-menu-item>
                     </el-menu>
                 </el-scrollbar>
             </el-aside>
             <!-- 内容区-->
             <el-main>
-                <iframe src="" frameborder="0" style="width: 100%;height:100%;" name="show"></iframe>
+                <iframe src="" frameborder="0" style="width: 100%;" name="show"></iframe>
             </el-main>
         </el-container>
 

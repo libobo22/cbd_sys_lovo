@@ -13,6 +13,7 @@
         <module>cbd_admin_sys</module>
         <module>cbd_frontService_sys</module>
         <module>cbd_commons</module>
+        <module>cbd_register_center</module>
     </modules>
     <name>cbd_sys_lovo</name>
     <packaging>pom</packaging>
@@ -96,6 +97,24 @@
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
             <version>5.1.0</version>
+        </dependency>
+        <!--服务治理-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+            <version>2.1.4.RELEASE</version>
+        </dependency>
+        <!--熔断-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+            <version>2.1.4.RELEASE</version>
+        </dependency>
+        <!--数据调用-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <version>2.1.4.RELEASE</version>
         </dependency>
     </dependencies>
 </project>
