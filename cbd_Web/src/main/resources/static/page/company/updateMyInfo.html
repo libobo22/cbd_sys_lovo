@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>修改信息</title>
-    <link rel="stylesheet" href="../../elementUI/elementUI.css"/>
-    <link rel="stylesheet" href="css/adminIndex.css"/>
+    <link rel="stylesheet" href="elementUI/elementUI.css"/>
     <!-- import CSS -->
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <!-- import Vue before Element -->
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src ="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
     <!-- 引入组件库 -->
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 <body>
@@ -24,10 +24,10 @@
                 <el-input placeholder="请输入密码" v-model="form.CompanyLoginPass" show-password style="width: 300px"></el-input>
             </el-form-item>
             <el-form-item label="企业名称">
-                <span>xxx</span>
+                <span>{{form.companyName}}</span>
             </el-form-item>
             <el-form-item label="企业楼层位置">
-                <span>xxx</span>
+                <span>{{form.companyFloor}}</span>
             </el-form-item>
             <el-form-item label="联系人">
                 <el-input placeholder="" v-model="form.Linkman" style="width: 300px"></el-input>
@@ -36,8 +36,7 @@
                 <el-input placeholder="" v-model="form.LinkmanPhone" style="width: 300px"></el-input>
             </el-form-item>
             <el-form-item>
-                <el-button type="primary" @click="">修改</el-button>
-                <el-button @click="">返回</el-button>
+                <el-button type="primary" @click="updateMine">修改</el-button>
             </el-form-item>
         </el-form>
     </div>
@@ -52,7 +51,12 @@
         data() {
             return {
                 form:{
-
+                    CompanyLoginName:'',
+                    CompanyLoginPass:'',
+                    Linkman:'',
+                    LinkmanPhone:'',
+                    companyName:'',
+                    companyFloor:''
                 },
                 rules:{//验证字段
                     CompanyLoginName: [
@@ -61,7 +65,54 @@
                     ],
                 }
             }
+        },
+
+        //立即加载执行
+        mounted:function(){
+            this.findMine();
+        },
+
+
+        methods:{
+
+            //查看个人信息
+            findMine(){
+                let _this = this;
+
+                axios({
+                    url:"findMine",
+                    method:"post",
+                    data:''
+                }).then(function (value) {
+                    _this.form.companyName=value.data.companyName;
+                    _this.form.companyFloor=value.data.companyFloor;
+                }).catch(function (error) {
+                    console.log(error)
+                })
+            },
+
+            //修改个人信息
+            updateMine(){
+                let _this = this;
+                let params = new URLSearchParams();
+                params.append("logName",this.form.CompanyLoginName)
+                params.append("logPass",this.form.CompanyLoginPass)
+                params.append("linkman",this.form.Linkman)
+                params.append("linkPhone",this.form.LinkmanPhone)
+
+                axios({
+                    url:"updateMine",
+                    method:"post",
+                    data:params
+                }).then(function (value) {
+
+                }).catch(function (error) {
+                    console.log(error)
+                })
+            }
+
         }
+
     })
 </script>
 

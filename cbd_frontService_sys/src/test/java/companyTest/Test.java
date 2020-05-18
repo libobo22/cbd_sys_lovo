@@ -52,7 +52,7 @@ public class Test {
 
     @org.junit.Test
     public void findBil(){//查询账单
-        List<BillDto> list = service.findAllBill("2020-1-1", "2022-1-1", 1, 1);
+        List<BillDto> list = service.findAllBill(null, null, 1, 1);
 
         for (BillDto billDto : list) {
             System.out.println(billDto.toString());

@@ -41,12 +41,16 @@ public class CompanyServiceImpl implements ICompanyService {
 
     @Override
     public List<BillDto> findAllBill(String start,String end,int currPage,int numbers) {
-        if (start!=null & start!="" & start.length()!=0){
-            Date.valueOf(start);
+        System.out.println(start+"/"+end);
+        System.out.println(start.length()+"/"+end.length());
+
+        if (start.equals("null")){//特么！elementUI日期组件会传""和"null"（非null）两种空值！
+            start=null;
         }
-        if (end!=null & end!="" & end.length()!=0){
-            Date.valueOf(end);
+        if (end.equals("null")){//这里只能equals！不能==！！
+            end=null;
         }
+
 
         currPage = (currPage-1)*numbers;
         Map<String,Object> map = new HashMap<>();
