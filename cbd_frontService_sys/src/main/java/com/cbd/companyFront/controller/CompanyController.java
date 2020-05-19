@@ -20,7 +20,6 @@ public class CompanyController {
     @Autowired
     private ICompanyService service;
 
-
     //进入企业主页面页面
     @RequestMapping("main")
     public String companyMain(){
@@ -42,9 +41,5 @@ public class CompanyController {
         System.out.println(id+"/"+numbers);
         return service.findLeaseCar(id,currPage,numbers);
     }
-
-
-
-
 
 }

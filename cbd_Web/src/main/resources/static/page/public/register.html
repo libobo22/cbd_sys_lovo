@@ -41,7 +41,7 @@
                 <el-form-item label="验证码" >
                     <el-input placeholder="请输入手机验证码"v-model="form.code"></el-input>
                     <el-button type="primary" @click="getCode(phone)">获取手机验证码</el-button>
-                    <el-button type="primary" @click="register">注册</el-button>
+                    <el-button type="primary" @click="register()">注册</el-button>
                 </el-form-item>
             </el-form>
         </div>
@@ -50,6 +50,7 @@
 </body>
 <script src="../../vue/Vue.js"></script>
 <script src="../../elementUI/elementUI.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
     app=new Vue({
         el:"#app",
@@ -72,7 +73,20 @@
 
                 },
                 register(){
-
+                    axios({
+                        method: 'post',
+                        url: '/register',
+                        params: {
+                            userName: this.form.name,
+                            password: this.form.password,
+                            realName: this.form.realName,
+                            indetityNum: this.form.idNum,
+                            job: this.form.job,
+                            homeAddress: this.form.address,
+                            email: this.form.email,
+                            phone: this.form.phone
+                        }
+                })
                 }
             }
     })

@@ -42,7 +42,4 @@ public class PersonalController {
         personalBean.setIdentityNum(indetityNum);
         personalService.add(personalBean);
     }
-
-
-
 }
