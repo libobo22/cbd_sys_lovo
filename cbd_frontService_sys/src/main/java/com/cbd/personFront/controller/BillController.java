@@ -18,7 +18,7 @@ public class BillController {
     @Autowired
     IBillService billService;
 
-    @ApiOperation(value = "根据用户ID查询，该用户的账单")
+    @ApiOperation(value = "根据用户身份证查询，该用户的所有账单")
     @GetMapping("/findByBill")
     public List<BillBean> findByBill(String identityNum, int page, int number){
         return billService.findByBill(identityNum,page,number);

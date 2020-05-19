@@ -27,6 +27,7 @@ public class PersonalContractBean {
 
     /**
      * 买方签约状态
+     * 2拒绝签约，1代表已签约，0代表未签约
      */
     private int buyStatus;
 

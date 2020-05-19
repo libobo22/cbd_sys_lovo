@@ -1,12 +1,15 @@
 package com.cbd.personFront.bean;
 
 
+import lombok.Data;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
  * 预定实体类
  */
+@Data
 public class ReserveBean {
 
     /**

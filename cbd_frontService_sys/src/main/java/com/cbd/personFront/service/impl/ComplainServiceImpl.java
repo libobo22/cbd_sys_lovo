@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * 投诉业务实现类型
+ */
 @Service(value = "complainService")
 public class ComplainServiceImpl implements IComplainService {
 
