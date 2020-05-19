@@ -87,17 +87,17 @@
     let currPage = 1;
     let numbers = 5;
 
-    //得到页面传参
-    let url=location.search;
-    let theRequest=new Object();
-    if (url.indexOf('?')!=-1){
-        let str = url.substr(1)
-        let strs= str.split("&")
-        for (let i = 0; i < strs.length; i++) {
-            theRequest[strs[i].split('=')[0]] = strs[i].split('=')[1];
-        }
-        //currPage = theRequest.contractCurrPage;
-    };
+    // //得到页面传参
+    // let url=location.search;
+    // let theRequest=new Object();
+    // if (url.indexOf('?')!=-1){
+    //     let str = url.substr(1)
+    //     let strs= str.split("&")
+    //     for (let i = 0; i < strs.length; i++) {
+    //         theRequest[strs[i].split('=')[0]] = strs[i].split('=')[1];
+    //     }
+    //     //currPage = theRequest.contractCurrPage;
+    // };
 
 
     app = new Vue({
@@ -143,7 +143,7 @@
 
                 axios({
                     method: "post",
-                    url: "findContract",
+                    url: "/findContract",
                     data: params
                 }).then(function (value) {
                     //传值
@@ -168,7 +168,8 @@
 
 
             OnFindLeaseCar(obj){//查看已租车位
-                location.href="findLeaseCar.html?id="+obj+"&currPage="+currPage+""
+                //这里加上了http协议，因为static下的路径过多导致Url会叠加，所以全路径好一点！
+                location.href="http://127.0.0.1:8001/page/company/findLeaseCar.html?id="+obj+"&currPage="+currPage+""
             },
             renewal(){//续约
                 location.href="renewal.html"

@@ -121,7 +121,7 @@
 
                 axios({
                     method: "post",
-                    url: "findLease",
+                    url: "/findLease",
                     data: params,
                 }).then(function (value) {
                     _this.tableData=value.data;
@@ -140,7 +140,7 @@
 
             //返回合同
             OnReturn(){
-                location.href="myContract.html?contractCurrPage="+contractCurrPage+""
+                location.href="http://127.0.0.1:8001/page/company/myContract.html?contractCurrPage="+contractCurrPage+""
             }
         }
     });

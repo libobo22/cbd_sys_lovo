@@ -16,11 +16,11 @@
     <div align="center" style="font-size: 20px;">修改信息</div><p>
 
     <div id="app" >
-        <el-form :model="form" :rules="rules" ref="form" label-width="180px" class="demo-ruleForm" style="margin-left: 250px">
+        <el-form :model="form" :rules="rules" ref="forms" label-width="180px" class="demo-ruleForm" style="margin-left: 250px">
             <el-form-item label="企业登录名" prop="CompanyLoginName">
                 <el-input placeholder="" v-model="form.CompanyLoginName" style="width: 300px"></el-input>
             </el-form-item>
-            <el-form-item label="企业登录密码">
+            <el-form-item label="企业登录密码" prop="CompanyLoginPass">
                 <el-input placeholder="请输入密码" v-model="form.CompanyLoginPass" show-password style="width: 300px"></el-input>
             </el-form-item>
             <el-form-item label="企业名称">
@@ -29,16 +29,17 @@
             <el-form-item label="企业楼层位置">
                 <span>{{form.companyFloor}}</span>
             </el-form-item>
-            <el-form-item label="联系人">
+            <el-form-item label="联系人" prop="Linkman">
                 <el-input placeholder="" v-model="form.Linkman" style="width: 300px"></el-input>
             </el-form-item>
-            <el-form-item label="联系电话">
+            <el-form-item label="联系电话" prop="LinkmanPhone">
                 <el-input placeholder="" v-model="form.LinkmanPhone" style="width: 300px"></el-input>
             </el-form-item>
             <el-form-item>
-                <el-button type="primary" @click="updateMine">修改</el-button>
+                <el-button type="primary" @click="updateMine('forms')">修改</el-button>
             </el-form-item>
         </el-form>
+
     </div>
 
 
@@ -80,7 +81,7 @@
                 let _this = this;
 
                 axios({
-                    url:"findMine",
+                    url:"/findMine",
                     method:"post",
                     data:''
                 }).then(function (value) {
@@ -92,7 +93,7 @@
             },
 
             //修改个人信息
-            updateMine(){
+            updateMine(forms){
                 let _this = this;
                 let params = new URLSearchParams();
                 params.append("logName",this.form.CompanyLoginName)
@@ -101,14 +102,37 @@
                 params.append("linkPhone",this.form.LinkmanPhone)
 
                 axios({
-                    url:"updateMine",
+                    url:"/updateMine",
                     method:"post",
                     data:params
                 }).then(function (value) {
-
+                    if (value.data==1){
+                        _this.open();//这里就要用_this，用this是不行的！！
+                        _this.Reset(forms);
+                    } else {
+                        _this.close();
+                    }
                 }).catch(function (error) {
                     console.log(error)
                 })
+            },
+
+            //修改成功
+            open(){
+                this.$message({
+                    message: '修改成功',
+                    type: 'success'
+                });
+            },
+
+            //修改失败
+            close(){
+                this.$message.error('网络出现故障');
+            },
+
+            //清空表单
+            Reset(forms){
+                this.$refs[forms].resetFields();
             }
 
         }

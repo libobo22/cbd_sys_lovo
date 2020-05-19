@@ -77,8 +77,11 @@ public class Test {
 
     @org.junit.Test//修改企业信息
     public void updateCompanyInfo(){//修改企业信息
-        service.updateCompanyInfo(1, "张三2", "1232", "张三2", "666");
+        int i = service.updateCompanyInfo(1, "张三2", "1232", "张三2", "666");
+
+        System.out.println(i+"/");
     }
+
 
 
 

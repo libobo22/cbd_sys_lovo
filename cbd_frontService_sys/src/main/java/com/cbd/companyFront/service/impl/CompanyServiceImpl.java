@@ -5,7 +5,6 @@ import com.cbd.companyFront.service.ICompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -73,7 +72,8 @@ public class CompanyServiceImpl implements ICompanyService {
     }
 
     @Override
-    public void updateCompanyInfo(int id, String logName, String logPass, String linkman, String linkPhone) {
+    public int updateCompanyInfo(int id, String logName, String logPass, String linkman, String linkPhone) {
         dao.updateCompanyInfo(id, logName, logPass, linkman, linkPhone);
+        return id;
     }
 }

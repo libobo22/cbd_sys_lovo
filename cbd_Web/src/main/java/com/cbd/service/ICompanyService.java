@@ -1,8 +1,8 @@
 package com.cbd.service;
-
 import com.cbd.Vo.CompanyVo.*;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -12,36 +12,32 @@ import java.util.List;
 @FeignClient("frontService")
 public interface ICompanyService {
 
-    //进入企业主页面页面
-    @RequestMapping("/main")
-    String main();
-
     //查看所有合同
     @RequestMapping("/findContract")
-    List<ContractVo> findAllContract();
+    List<ContractVo> findAllContract(@RequestParam int currPage,@RequestParam int numbers);
 
     //查看已租车位
-    @RequestMapping("findLease")
-    List<LeaseCarVo> findLease();
+    @RequestMapping("/findLease")
+    List<LeaseCarVo> findLease(@RequestParam int id,@RequestParam int currPage,@RequestParam int numbers);
 
     //查看CBD空闲车位
-    @RequestMapping("findFree")
-    List<CBDFreeCarVo> findFreeCar(int currPage, int numbers);
+    @RequestMapping("/findFree")
+    List<CBDFreeCarVo> findFreeCar(@RequestParam int currPage,@RequestParam int numbers);
 
     //查看账单信息
-    @RequestMapping("findBill")
-    public List<BillVo> findBill(String start, String end, int currPage, int numbers);
+    @RequestMapping("/findBill")
+    public List<BillVo> findBill(@RequestParam String start,@RequestParam String end,@RequestParam int currPage,@RequestParam int numbers);
 
     //查看合计账单
-    @RequestMapping("findBillAll")
+    @RequestMapping("/findBillAll")
     List<AllBillVo> findBillAll();
 
     //查看企业信息
-    @RequestMapping("findMine")
-    CompanyInfoVo findMine();
+    @RequestMapping("/findMine")
+    CompanyInfoVo findCompanyByID(@RequestParam int id);
 
     //修改企业
-    @RequestMapping("updateMine")
-    void update(String logName,String logPass,String linkman,String linkPhone);
+    @RequestMapping("/updateMine")
+    int updateCompanyInfo(@RequestParam int id,@RequestParam String logName,@RequestParam String logPass,@RequestParam String linkman,@RequestParam String linkPhone);
 
 }

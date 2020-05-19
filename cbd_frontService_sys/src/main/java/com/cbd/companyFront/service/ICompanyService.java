@@ -1,7 +1,6 @@
 package com.cbd.companyFront.service;
 import com.cbd.companyFront.dto.*;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,6 +27,6 @@ public interface ICompanyService {
     CompanyInfoDto findCompanyByID(int id);
 
     /**修改企业信息*/
-    void updateCompanyInfo(int id,String logName,String logPass,String linkman,String linkPhone);
+    int updateCompanyInfo(int id, String logName, String logPass, String linkman, String linkPhone);
     
 }

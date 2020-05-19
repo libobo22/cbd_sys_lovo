@@ -129,7 +129,7 @@
                 params.append("numbers",numbers)
 
                 axios({
-                    url:"findBill",
+                    url:"/findBill",
                     method:"post",
                     data:params
                 }).then(function (value) {
@@ -145,7 +145,7 @@
                 let _this = this;
 
                 axios({
-                    url:"findBillAll",
+                    url:"/findBillAll",
                     method:"post",
                     data:''
                 }).then(function (value) {

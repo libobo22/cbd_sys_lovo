@@ -93,7 +93,7 @@
 
                 axios({
                     method: "post",
-                    url: "findFree",
+                    url: "/findFree",
                     data: params
                 }).then(function (value) {
                     _this.tableData = value.data;
@@ -112,9 +112,7 @@
 
             },
 
-            OnReturn(){
-                alert("返回")
-            }
+
         }
     });
 </script>
