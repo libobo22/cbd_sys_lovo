@@ -1,4 +1,4 @@
-package com.cbd.Entity;
+package com.cbd.Vo;
 
 import lombok.Data;
 
