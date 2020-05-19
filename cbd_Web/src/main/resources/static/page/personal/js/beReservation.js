@@ -1,3 +1,6 @@
+let currPage = 1;
+let numbers = 5;
+
 
 new Vue({
     el:"#beReservationDiv",
@@ -35,7 +38,11 @@ new Vue({
 
         }
     },
+
+
     methods: {
+
+
         agree:function() {
             console.log("同意预约")
         },

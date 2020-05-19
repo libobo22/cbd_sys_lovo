@@ -44,6 +44,30 @@ new Vue({
             }],
         }
     },
+
+    //立即加载执行
+    mounted:function(){
+        this.findAllBill();
+    },
+
+    methods: {
+       findAllBill(){
+           let params = new URLSearchParams();
+           params.append("page",currPage)
+           params.append("numbers",numbers)
+
+           axios({
+              method:"get",
+               url:"http://127.0.0.1:8004/findByBill?identityNum=511&number=3&page=1",
+               data:params
+           }).then(function (value) {
+               alert(value)
+           }).catch(function (error) {
+               console.log(error)
+           })
+       }
+    }
+
 });
 
 

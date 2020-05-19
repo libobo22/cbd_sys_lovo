@@ -21,7 +21,7 @@ public class CompanyInfoDto {
     private String companyName;
 
     /**企业楼层位置*/
-    private String floor;
+    private String companyFloor;
 
     /**联系人*/
     private String linkMan;
@@ -34,12 +34,12 @@ public class CompanyInfoDto {
     }
 
     public CompanyInfoDto(int companyID, String logName, String logPass,
-                          String companyName, String floor, String linkMan, String linkPhone) {
+                          String companyName, String companyFloor, String linkMan, String linkPhone) {
         this.companyID = companyID;
         this.logName = logName;
         this.logPass = logPass;
         this.companyName = companyName;
-        this.floor = floor;
+        this.companyFloor = companyFloor;
         this.linkMan = linkMan;
         this.linkPhone = linkPhone;
     }

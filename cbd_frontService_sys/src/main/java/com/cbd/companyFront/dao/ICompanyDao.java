@@ -23,10 +23,15 @@ public interface ICompanyDao {
     /**查看账单*/
     List<BillDto> findAllBill(Map map);
 
+    /**合计账单*/
+    List<AllBillDto> findBillAll();
+
     /**查看企业信息*/
     CompanyInfoDto findCompanyByID(int id);
 
     /**修改企业信息*/
     void updateCompanyInfo(int id,String logName,String logPass,String linkman,String linkPhone);
+
+
 
 }

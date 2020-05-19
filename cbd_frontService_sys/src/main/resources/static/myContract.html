@@ -14,7 +14,7 @@
 
     <div align="center" style="font-size: 20px;">我的合同</div>
 
-    <div id="app" align="center">
+    <div id="app" align="center">    <!--注意：prop属性不允许大写字母开头！！-->
         <template>
             <el-table
                     :data="tableData"
@@ -62,7 +62,7 @@
                         width="180">                       <!--align="center"可以居中显示-->
                     <template slot-scope="scope">
                         <el-button type="text" size="small" @click="OnFindLeaseCar(scope.row.contactnoID)">查看已租车位</el-button>
-                        <el-button type="text" size="small" @click="renewal">续约</el-button>
+                        <el-button type="text" size="small" @click="">续约</el-button>
                         <el-button type="text" size="small" @click="">解约</el-button>
                     </template>
                 </el-table-column>
@@ -73,8 +73,6 @@
         <el-pagination
                 @size-change="handleSizeChange"
                 @current-change="handleCurrentChange"
-
-                ref="pagination"/><!--保持页码不变-->
 
                 background
                 layout="prev, pager, next"
@@ -98,7 +96,7 @@
         for (let i = 0; i < strs.length; i++) {
             theRequest[strs[i].split('=')[0]] = strs[i].split('=')[1];
         }
-        currPage = theRequest.contractCurrPage;
+        //currPage = theRequest.contractCurrPage;
     };
 
 
@@ -148,7 +146,6 @@
                     url: "findContract",
                     data: params
                 }).then(function (value) {
-
                     //传值
                     _this.tableData=value.data
 

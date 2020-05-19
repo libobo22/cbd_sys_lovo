@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>企业查看CBD空闲车位</title>
-    <link rel="stylesheet" href="../../elementUI/elementUI.css"/>
-    <link rel="stylesheet" href="css/adminIndex.css"/>
+    <link rel="stylesheet" href="elementUI/elementUI.css"/>
     <!-- import Vue before Element -->
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src ="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
     <!-- 引入组件库 -->
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 </head>
@@ -38,6 +38,9 @@
         </el-table>
     </template><p></p>
     <el-pagination
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+
             background
             layout="prev, pager, next"
             :total="1000">
@@ -52,33 +55,63 @@
 </body>
 
 <script>
+
+    let currPage = 1;
+    let numbers = 5;
+
     app = new Vue({
         el:"#app",
         data() {
             return {
-                tableData: [{
+
+                tableData:[],
+
+                /*tableData: [{
                     carPlace: '朝阳路十三号',
                     carNumber: 'EX666',
                     longDate: '2021-1-1'
-                    },
-                    {
-                        carPlace: '朝阳路十三号',
-                        carNumber: 'EX666',
-                        longDate: '2021-1-1'
-                    },
-                    {
-                        carPlace: '朝阳路十三号',
-                        carNumber: 'EX666',
-                        longDate: '2021-1-1'
-                    },
-                    {
-                        carPlace: '朝阳路十三号',
-                        carNumber: 'EX666',
-                        longDate: '2021-1-1'
-                    },]
+                    }]*/
             }
         },
+
+
+
+        //立即加载执行
+        mounted:function(){
+            this.findFreeCar();
+        },
+
+
         methods: {
+
+            //查看CBD空闲车位
+            findFreeCar(){
+                let _this = this;
+                let params = new URLSearchParams();
+                params.append("currPage",currPage)
+                params.append("numbers",numbers)
+
+                axios({
+                    method: "post",
+                    url: "findFree",
+                    data: params
+                }).then(function (value) {
+                    _this.tableData = value.data;
+                }).catch(function (error) {
+                    console.log(error)
+                })
+            },
+
+            //分页
+            handleCurrentChange(val) {
+                //alert("当前页:"+val);
+
+                //真分页
+                currPage = val;
+                this.findFreeCar();
+
+            },
+
             OnReturn(){
                 alert("返回")
             }

@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>我的合同</title>
-    <link rel="stylesheet" href="../../elementUI/elementUI.css"/>
-    <link rel="stylesheet" href="css/adminIndex.css"/>
+    <link rel="stylesheet" href="elementUI/elementUI.css"/>
     <!-- 在Element之前引入vue -->
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src ="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
     <!-- 引入组件库 -->
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 </head>
@@ -14,12 +14,17 @@
 
     <div align="center" style="font-size: 20px;">我的合同</div>
 
-    <div id="app" align="center">
+    <div id="app" align="center">    <!--注意：prop属性不允许大写字母开头！！-->
         <template>
             <el-table
                     :data="tableData"
                     stripe
                     style="width: 100%">
+                <el-table-column v-if="scc"
+                        prop="contactnoID"
+                        label="合同ID"
+                        width="140">
+                </el-table-column>
                 <el-table-column
                         prop="contactno"
                         label="合同编号"
@@ -28,25 +33,22 @@
                 <el-table-column
                         prop="contractStrat"
                         label="合同开始日期"
-                        width="140">
+                        width="180">
                 </el-table-column>
                 <el-table-column
                         prop="contractEnd"
                         label="合同结束日期"
-                        width="140">
+                        width="180">
                 </el-table-column>
                 <el-table-column
                         prop="copyOfContract"
                         label="合同复印件"
                         width="140">
                     <template slot-scope="scope">
-                        <el-button type="text" @click="dialogVisible = true">查看</el-button>
-                        <el-dialog :visible.sync="dialogVisible" width="30%">
-                                <el-image :src="src" style="height: 200px"></el-image>
-                                <span slot="footer" class="dialog-footer">
-                                    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-                                </span>
-                        </el-dialog>
+                        <el-popover placement="left" trigger="hover"> <!--trigger属性值：hover、click、focus 和 manual-->
+                            <img :src="scope.row.copyOfContract"  style="height: 380px;width: 500px;align-content: center"></img>
+                            <img slot="reference" :src="scope.row.copyOfContract" :alt="scope.row.copyOfContract" style="max-height: 80px;max-width: 50px">
+                        </el-popover>
                     </template>
                 </el-table-column>p
                 <el-table-column
@@ -59,8 +61,8 @@
                         label="操作"
                         width="180">                       <!--align="center"可以居中显示-->
                     <template slot-scope="scope">
-                        <el-button type="text" size="small" @click="OnFindFreeCar">查看已租车位</el-button>
-                        <el-button type="text" size="small" @click="renewal">续约</el-button>
+                        <el-button type="text" size="small" @click="OnFindLeaseCar(scope.row.contactnoID)">查看已租车位</el-button>
+                        <el-button type="text" size="small" @click="">续约</el-button>
                         <el-button type="text" size="small" @click="">解约</el-button>
                     </template>
                 </el-table-column>
@@ -69,6 +71,9 @@
         </template><br>
 
         <el-pagination
+                @size-change="handleSizeChange"
+                @current-change="handleCurrentChange"
+
                 background
                 layout="prev, pager, next"
                 :total="1000">
@@ -82,22 +87,39 @@
     let currPage = 1;
     let numbers = 5;
 
+    //得到页面传参
+    let url=location.search;
+    let theRequest=new Object();
+    if (url.indexOf('?')!=-1){
+        let str = url.substr(1)
+        let strs= str.split("&")
+        for (let i = 0; i < strs.length; i++) {
+            theRequest[strs[i].split('=')[0]] = strs[i].split('=')[1];
+        }
+        //currPage = theRequest.contractCurrPage;
+    };
+
+
     app = new Vue({
         el:"#app",
         data() {
+
             return {
 
+                //隐藏合同ID
+                scc:false,
 
-                dialogVisible: false,
-                src:'photos/1.png',
+                /*动态数据*/
+                tableData:[],
 
-                tableData: [{
+                /*固定数据*/
+                /*tableData: [{
                     contactno: '254841',
                     contractStrat: '2020-1-1',
                     contractEnd: '2021-1-1',
                     copyOfContract:'1.png',
                     price:'5001'
-                }]
+                }]*/
             }
         },
 
@@ -105,6 +127,7 @@
         //立即加载执行
         mounted:function(){
             this.findAllContract();
+
         },
 
 
@@ -112,16 +135,20 @@
 
             findAllContract(){//查看所有合同
 
+                let _this = this;  //很重要！！
+
                 let params = new URLSearchParams();
                 params.append("currPage",currPage)
                 params.append("numbers",numbers)
 
                 axios({
                     method: "post",
-                    url: "http://127.0.0.1:8001/findCon",
+                    url: "findContract",
                     data: params
                 }).then(function (value) {
-                    alert(value)
+                    //传值
+                    _this.tableData=value.data
+
                 }).catch(function (error) {
                     console.log(error)
                 })
@@ -129,8 +156,19 @@
             },
 
 
-            OnFindFreeCar(){//查看CBD空闲车位
-                location.href="findLeaseCar.html"
+            //分页
+            handleCurrentChange(val) {
+                //alert("当前页:"+val);
+
+                //真分页
+                currPage = val;
+                this.findAllContract();
+
+            },
+
+
+            OnFindLeaseCar(obj){//查看已租车位
+                location.href="findLeaseCar.html?id="+obj+"&currPage="+currPage+""
             },
             renewal(){//续约
                 location.href="renewal.html"

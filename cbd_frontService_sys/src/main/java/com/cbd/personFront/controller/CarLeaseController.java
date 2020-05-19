@@ -24,16 +24,4 @@ public class CarLeaseController {
         return "ok";
     }
 
-    
-
-
-
-
-
-
-
-
-
-
-
 }

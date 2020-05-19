@@ -42,7 +42,7 @@ public class Test {
 
     @org.junit.Test
     public void findCBDFreeCar(){//查看CBD空闲车位
-        List<CBDFreeCar> list = service.findCBDFreeCar(0,1,5);
+        List<CBDFreeCar> list = service.findCBDFreeCar(2,1,5);
 
         for (CBDFreeCar cbdFreeCar : list) {
             System.out.println(cbdFreeCar.toString());
@@ -52,11 +52,17 @@ public class Test {
 
     @org.junit.Test
     public void findBil(){//查询账单
-        List<BillDto> list = service.findAllBill(Date.valueOf("2020-1-1"), Date.valueOf("2022-1-1"), 1, 1);
+        List<BillDto> list = service.findAllBill(null, null, 1, 1);
 
         for (BillDto billDto : list) {
             System.out.println(billDto.toString());
         }
+    }
+
+    @org.junit.Test
+    public void findBillAll(){
+        List<AllBillDto> list = service.findBillAll();
+
     }
 
 
