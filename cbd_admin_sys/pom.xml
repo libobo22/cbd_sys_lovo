@@ -11,6 +11,8 @@
 
     <artifactId>cbd_admin_sys</artifactId>
 
+    <packaging>jar</packaging>
+
     <dependencies>
         <dependency>
             <groupId>com.project</groupId>

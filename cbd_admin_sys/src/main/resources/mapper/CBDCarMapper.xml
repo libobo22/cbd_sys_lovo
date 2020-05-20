@@ -6,4 +6,7 @@
 
     </resultMap>
 
+    <update id="update">
+         update t_cbdCar set externalContractID=0 where externalContractID=#{id};
+    </update>
 </mapper>

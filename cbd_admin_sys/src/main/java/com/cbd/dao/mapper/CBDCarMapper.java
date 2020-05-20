@@ -11,4 +11,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CBDCarMapper extends BaseMapper<CBDCarBean> {
 
+    /**
+     * 修改外部合约外键
+     * @param ExternalId
+     */
+    public void update(int ExternalId);
+
 }

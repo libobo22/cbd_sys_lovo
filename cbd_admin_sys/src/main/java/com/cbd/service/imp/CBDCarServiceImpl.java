@@ -1,8 +1,11 @@
 package com.cbd.service.imp;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cbd.bean.CBDCarBean;
+import com.cbd.bean.ExternalContractBean;
+import com.cbd.bean.Pagination;
 import com.cbd.dao.mapper.CBDCarMapper;
 import com.cbd.service.ICBDCarService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +20,23 @@ public class CBDCarServiceImpl implements ICBDCarService {
     private CBDCarMapper mapper;
 
     @Override
-    public List<CBDCarBean> findAll(int currentPage, int pageSize) {
-        IPage<CBDCarBean> cbdPage = new Page<>(currentPage, pageSize);//参数一是当前页，参数二是每页个数
-        cbdPage = mapper.selectPage(cbdPage, null);
-        List<CBDCarBean> list = cbdPage.getRecords();
-        return list;
+    public Pagination<CBDCarBean> findAll(int currentPage, int pageSize) {
+
+        QueryWrapper<CBDCarBean> wrapper = new QueryWrapper<>();
+        wrapper.notLike("cbdCarStatus",0);
+        Page<CBDCarBean> page = new Page<>(currentPage, pageSize);
+        IPage<CBDCarBean> cbd = mapper.selectPage(page, wrapper);
+
+
+        List<CBDCarBean> list = cbd.getRecords();
+
+        int totalCount = mapper.selectCount(wrapper);
+        Pagination<CBDCarBean> c = new Pagination<>();
+        c.setData(list);
+        c.setTotalCount(totalCount);
+
+        return c;
+
     }
 
     @Override

@@ -16,7 +16,7 @@
         <module>cbd_register_center</module>
     </modules>
     <name>cbd_sys_lovo</name>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
 
     <!-- 指定maven仓库 -->

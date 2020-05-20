@@ -73,10 +73,18 @@ public class ExternalContractBean {
      * 合同状态(1代表有效，0代表无效)
      */
     @TableField("contractStatus")
-    private Integer contractStatus;
+    private Integer contractStatus=1;
     /**
      * 该外部合约对应的所有车位信息
      */
     @TableField(exist = false)
     private List<CBDCarBean> cbdCarList;
+
+
+    @TableField("carAddress")
+    private String carAddress;
+
+    @TableField("carNumber")
+    private String carNumber;
+
 }
