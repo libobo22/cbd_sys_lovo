@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../elementUI/elementUI.css"/>
+    <link rel="stylesheet" href="css/contract.css">
+    <title>合同</title>
+</head>
+<body>
+
+<div id="contract" align="center">
+    <h3>个人合同</h3>
+    <template>
+        <el-table
+                :data="tableData"
+                stripe
+                style="width: 100%">
+            <el-table-column
+                    prop="contractNumber"
+                    label="合同编号"
+                    width="280">
+            </el-table-column>
+            <el-table-column
+                    prop="address"
+                    label="车位地址"
+                    width="280">
+            </el-table-column>
+            <el-table-column
+                    prop="titleNumber"
+                    label="车位产权证编号"
+                    width="280">
+            </el-table-column>
+            <el-table-column
+                    prop="operation"
+                    label="操作"
+                    width="280">
+                　　　　<template slot-scope="scope">
+                <el-button type="primary" @click="contractInfo = true">查看合同详细</el-button>
+                　　　　</template>
+            </el-table-column>
+        </el-table>
+    </template>
+    <el-pagination
+            background
+            layout="prev, pager, next"
+            :total="1000">
+    </el-pagination>
+
+<div  >
+    <el-dialog title="网上签约合同" :visible.sync="contractInfo" >
+    <el-form ref="form" :model="form" label-width="250px">
+        <el-form-item label="·	合同编号：" >
+            <el-input typ="text"  v-model="contractNumber" readonly style="width:90%" ></el-input>
+        </el-form-item>
+
+        <el-form-item label="·	车位出售方个人信息：" >
+            <el-row :gutter="30">
+                <nobr >
+                <el-col :span="4" ><div class="grid-content bg-purple">
+                    用户名 <el-input typ="text" v-model="sellUserName" readonly style="width:100px"></el-input>
+                </div></el-col>
+                </nobr>
+                <nobr>
+                <el-col :span="4"><div class="grid-content bg-purple">
+                     真实名 <el-input typ="text" v-model="sellRealName" readonly style="width:100px"></el-input>
+                </div></el-col>
+                </nobr>
+
+                <nobr>
+                    <el-col :span="6"><div class="grid-content bg-purple">
+                        身份证 <el-input typ="text" v-model="sellIDNumber" readonly style="width:180px"></el-input>
+                    </div></el-col>
+                </nobr>
+
+                <nobr>
+                    <el-col :span="6"><div class="grid-content bg-purple">
+                        电话号码 <el-input typ="text" v-model="sellPhone" readonly style="width:150px"></el-input>
+                    </div></el-col>
+                </nobr>
+            </el-row>
+        </el-form-item>
+
+        <nobr >
+        <el-form-item label="·	车位出售方个人信息：" >
+            <el-row :gutter="30">
+
+                    <el-col :span="4" ><div class="grid-content bg-purple">
+                        用户名 <el-input typ="text" v-model="buyUserName" readonly style="width:100px"></el-input>
+                    </div></el-col>
+
+                    <el-col :span="4"><div class="grid-content bg-purple">
+                        真实名 <el-input typ="text" v-model="buyRealName" readonly style="width:100px"></el-input>
+                    </div></el-col>
+
+                    <el-col :span="6"><div class="grid-content bg-purple">
+                        身份证 <el-input typ="text" v-model="buyIDNumber" readonly style="width:180px"></el-input>
+                    </div></el-col>
+
+                    <el-col :span="6"><div class="grid-content bg-purple">
+                        电话号码 <el-input typ="text" v-model="buyPhone" readonly style="width:150px"></el-input>
+                    </div></el-col>
+
+            </el-row>
+        </el-form-item>
+        </nobr>
+
+        <el-form-item label="·	车位信息：" >
+            <el-row :gutter="30">
+                <nobr >
+                    <el-col :span="6" ><div class="grid-content bg-purple">
+                        车位地址 <el-input typ="text" v-model="address" readonly style="width:190px"></el-input>
+                    </div></el-col>
+                </nobr>
+                <nobr>
+                    <el-col :span="11"><div class="grid-content bg-purple">
+                        车位产权证编号 <el-input typ="text" v-model="titleNumber" readonly style="width:160px"></el-input>
+                    </div></el-col>
+                </nobr>
+
+            </el-row>
+        </el-form-item>
+
+        <el-form-item label="·	交易价格：" >
+            <el-row :gutter="30">
+
+                    <el-col :span="3" ><div class="grid-content bg-purple">
+                        <el-input typ="text" v-model="price" readonly style="width:100px"></el-input>
+                    </div></el-col>
+
+
+            </el-row>
+        </el-form-item>
+
+        <el-form-item>
+            <el-button type="primary" @click="agree">同意</el-button>
+            <el-button type="primary" @click="refuse">拒绝</el-button>
+        </el-form-item>
+    </el-form>
+    </el-dialog>
+</div>
+
+</div>
+
+
+<script src="../../vue/Vue.js"></script>
+<script src="../../elementUI/elementUI.js"></script>
+<script src="../../vue/vue-resource.js"></script>
+
+<script src="js/contract.js"></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>企业信息</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="css/companyInfo.css"/>
+</head>
+<body>
+<div id="app">
+    <template>
+        <div id="ta">
+        <el-table
+                :data="tableData"
+                stripe
+                style="width: 100%">
+            <el-table-column
+                    prop="companyName"
+                    label="企业名称"
+                    width="180">
+            </el-table-column>
+            <el-table-column
+                    prop="linkman"
+                    label="联系人"
+                    width="180">
+            </el-table-column>
+            <el-table-column
+                    prop="linkPhone"
+                    label="电话"
+                    width="180">
+            </el-table-column>
+            <el-table-column
+                    prop="query"
+                    label="详情"
+                    width="180">
+                <template slot-scope="scope">
+                    <!--打开嵌套表单的 Dialog-->
+                    <el-button @click="findById(scope.row.companyID)" type="primary" size="small">查看</el-button>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    prop="del"
+                    label="删除"
+                    width="300">
+                <template slot-scope="scope">
+                    <el-button @click="del(scope.row.companyID)" type="primary" size="small">删除</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+        </div>
+        <div id="addButton">
+            <el-button  type="primary" @click="addCompany()">新增企业</el-button>
+        </div>
+
+        <div id="page" class="block">
+            <span class="demonstration"></span>
+            <el-pagination
+                    @current-change="handleCurrentChange(currentPage)"
+                    :current-page.sync="currentPage"
+                    :page-size="pageSize"
+                    layout="prev, pager, next, jumper"
+                    :total="pageCount">
+            </el-pagination>
+        </div>
+
+    </template>
+    <!--查看的嵌套表格-->
+    <el-dialog title="查看企业详细信息" :visible.sync="dialogTableVisible">
+        <el-table :data="info" label-width="80px">
+            <div id="in">
+                <!--<el-table-column property="address" label="企业地址" width="100"></el-table-column>-->
+                <el-table-column prop="phone" label="负责人电话" width="100"></el-table-column>
+                <el-table-column prop="companyName" label="企业名称" width="100"></el-table-column>
+                <el-table-column prop="principal" label="企业负责人" width="100"></el-table-column>
+            </div>
+        </el-table>
+    </el-dialog>
+
+    <!--添加的表单-->
+    <el-dialog title="新增企业" :visible.sync="dialogFormVisible">
+        <el-form ref="form" :model="form" label-width="100px" width="900px">
+            <div id="addform">
+            <el-form-item label="企业名称">
+                <el-input v-model="form.companyName" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="企业地址" >
+                <el-input v-model="form.address" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="企业联系人">
+                <el-input v-model="form.linkMan" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="企业登录名">
+                <el-input v-model="form.loginName" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="企业登录密码">
+                <el-input v-model="form.pwd" autocomplete="off"></el-input>
+            </el-form-item>
+            </div>
+        </el-form>
+        <div id="add">
+            <el-button type="primary" @click="addCompany()">添加</el-button>
+        </div>
+    </el-dialog>
+</div>
+</body>
+</html>
+
+<script src="../../../vue/Vue.js"></script>
+<script src="../../../elementUI/elementUI.js"></script>
+<script  src="js/companyInfo.js"></script>

@@ -1,0 +1,22 @@
+.el-input{
+    width: 180px;
+}
+#in{
+    float: left;
+    width: 310px;
+    margin-left: -20px;
+}
+#r{
+    float: right;
+    width: 310px;
+}
+.el-dialog__body{
+    height: 50vh;overflow: auto;
+}
+/*#ta{*/
+    /*margin-left: 100px;*/
+/*}*/
+#page{
+     margin-left:300px;
+     margin-top: 20px;
+ }

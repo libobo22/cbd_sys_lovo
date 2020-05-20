@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改信息</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="css/superAdminPermission.css"/>
+</head>
+<body>
+    <div id="app">
+        <template>
+            <el-table
+                    :data="tableData"
+                    stripe
+                    style="width: 100%">
+                <el-table-column
+                        prop="userName"
+                        label="用户名"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="role"
+                        label="角色"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="updatePermission"
+                        label="修改权限"
+                        width="180">
+                    <template slot-scope="scope">
+                        <!--打开嵌套表单的 Dialog-->
+                        <el-button @click="dialogFormVisible = true" type="primary" size="small">修改</el-button>
+                    </template>
+                </el-table-column>
+                <el-table-column
+                        prop="del"
+                        label="删除"
+                        width="100">
+                    <template slot-scope="scope">
+                        <el-button @click="del(scope.id)" type="primary" size="small">删除</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+        </template>
+        <!--修改的嵌套表单-->
+        <el-dialog title="修改" :visible.sync="dialogFormVisible">
+            <el-form ref="form" :model="form" label-width="80px">
+                <div id="in">
+                    <el-form-item label="用户名" >
+                        <el-input :disabled="true" v-model="form.userName"></el-input>
+                    </el-form-item>
+                    <el-form-item label="密码" >
+                        <el-input :disabled="true" v-model="form.pwd"></el-input>
+                    </el-form-item>
+                    <el-form-item label="工号" >
+                        <el-input :disabled="true" v-model="form.workNumber"></el-input>
+                    </el-form-item>
+                    <el-form-item label="手机号" >
+                        <el-input :disabled="true" v-model="form.phone"></el-input>
+                    </el-form-item>
+                </div>
+                <!--权限多选-->
+                <div id="role">
+                <el-form-item label="角色">
+                    <el-checkbox-group v-model="form.type">
+                        <el-checkbox label="用户管理" name="type"></el-checkbox>
+                        <el-checkbox label="车位管理" name="type"></el-checkbox>
+                        <el-checkbox label="合同管理" name="type"></el-checkbox>
+                        <el-checkbox label="投诉管理" name="type"></el-checkbox>
+                    </el-checkbox-group>
+                </el-form-item>
+                </div>
+            </el-form>
+            <div id="upbutton">
+                <el-button  type="primary" @click="update()">修改</el-button>
+            </div>
+        </el-dialog>
+        <template>
+        <div id="page" class="block">
+            <span class="demonstration"></span>
+            <el-pagination
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange"
+                    :current-page="currentPage"
+                    :page-sizes="[100, 200, 300, 400]"
+                    :page-size="100"
+                    layout="total, sizes, prev, pager, next"
+                    :total="400">
+            </el-pagination>
+        </div>
+        </template>
+    </div>
+</body>
+</html>
+
+<script src="../../../vue/Vue.js"></script>
+<script src="../../../elementUI/elementUI.js"></script>
+<script  src="js/superAdminPermission.js"></script>

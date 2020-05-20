@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cbd.dao.mapper.ExternalContractMapper">
+    <resultMap id="ExternalMap" type="com.cbd.bean.ExternalContractBean" >
+
+    </resultMap>
+
+    <update id="updateContractNumber">
+      update t_externalContract set contractExtensionNumber=#{param2},contractStatus=0 where externalContractID=#{param1};
+    </update>
+
+
+    <update id="updateStatus">
+        update t_externalContract set contractStatus=0 where externalContractID=#{id};
+    </update>
+</mapper>

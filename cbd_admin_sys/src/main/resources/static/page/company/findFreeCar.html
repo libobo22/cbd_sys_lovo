@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>企业查看CBD空闲车位</title>
+    <link rel="stylesheet" href="../../elementUI/elementUI.css"/>
+    <link rel="stylesheet" href="css/adminIndex.css"/>
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<body>
+
+<div align="center" style="font-size: 20px;">CBD空闲车位</div>
+
+<div id="app" align="center">
+    <template>
+        <el-table
+                :data="tableData"
+                stripe
+                style="width: 100%">
+            <el-table-column
+                    prop="carPlace"
+                    label="车位位置"
+                    width="310">
+            </el-table-column>
+            <el-table-column
+                    prop="carNumber"
+                    label="车位号"
+                    width="310">
+            </el-table-column>
+            <el-table-column
+                    prop="longDate"
+                    label="最长可租日期"
+                    width="310">
+            </el-table-column>
+        </el-table>
+    </template><p></p>
+    <el-pagination
+            background
+            layout="prev, pager, next"
+            :total="1000">
+    </el-pagination>
+
+</div>
+
+
+
+
+
+</body>
+
+<script>
+    app = new Vue({
+        el:"#app",
+        data() {
+            return {
+                tableData: [{
+                    carPlace: '朝阳路十三号',
+                    carNumber: 'EX666',
+                    longDate: '2021-1-1'
+                    },
+                    {
+                        carPlace: '朝阳路十三号',
+                        carNumber: 'EX666',
+                        longDate: '2021-1-1'
+                    },
+                    {
+                        carPlace: '朝阳路十三号',
+                        carNumber: 'EX666',
+                        longDate: '2021-1-1'
+                    },
+                    {
+                        carPlace: '朝阳路十三号',
+                        carNumber: 'EX666',
+                        longDate: '2021-1-1'
+                    },]
+            }
+        },
+        methods: {
+            OnReturn(){
+                alert("返回")
+            }
+        }
+    });
+</script>
+
+
+</html>

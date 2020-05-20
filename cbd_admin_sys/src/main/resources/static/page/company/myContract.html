@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的合同</title>
+    <link rel="stylesheet" href="../../elementUI/elementUI.css"/>
+    <link rel="stylesheet" href="css/adminIndex.css"/>
+    <!-- 在Element之前引入vue -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<body>
+
+    <div align="center" style="font-size: 20px;">我的合同</div>
+
+    <div id="app" align="center">
+        <template>
+            <el-table
+                    :data="tableData"
+                    stripe
+                    style="width: 100%">
+                <el-table-column
+                        prop="contactno"
+                        label="合同编号"
+                        width="140">
+                </el-table-column>
+                <el-table-column
+                        prop="contractStrat"
+                        label="合同开始日期"
+                        width="140">
+                </el-table-column>
+                <el-table-column
+                        prop="contractEnd"
+                        label="合同结束日期"
+                        width="140">
+                </el-table-column>
+                <el-table-column
+                        prop="copyOfContract"
+                        label="合同复印件"
+                        width="140">
+                    <template slot-scope="scope">
+                        <el-button type="text" @click="dialogVisible = true">查看</el-button>
+                        <el-dialog :visible.sync="dialogVisible" width="30%">
+                                <el-image :src="src" style="height: 200px"></el-image>
+                                <span slot="footer" class="dialog-footer">
+                                    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+                                </span>
+                        </el-dialog>
+                    </template>
+                </el-table-column>p
+                <el-table-column
+                        prop="price"
+                        label="成交价格"
+                        width="140">
+                </el-table-column>
+                <el-table-column
+                        prop="action"
+                        label="操作"
+                        width="180">                       <!--align="center"可以居中显示-->
+                    <template slot-scope="scope">
+                        <el-button type="text" size="small" @click="OnFindFreeCar">查看已租车位</el-button>
+                        <el-button type="text" size="small" @click="renewal">续约</el-button>
+                        <el-button type="text" size="small" @click="">解约</el-button>
+                    </template>
+                </el-table-column>
+
+            </el-table>
+        </template><br>
+
+        <el-pagination
+                background
+                layout="prev, pager, next"
+                :total="1000">
+        </el-pagination>
+    </div>
+
+</body>
+
+<script>
+
+    let currPage = 1;
+    let numbers = 5;
+
+    app = new Vue({
+        el:"#app",
+        data() {
+            return {
+
+
+                dialogVisible: false,
+                src:'photos/1.png',
+
+                tableData: [{
+                    contactno: '254841',
+                    contractStrat: '2020-1-1',
+                    contractEnd: '2021-1-1',
+                    copyOfContract:'1.png',
+                    price:'5001'
+                }]
+            }
+        },
+
+
+        //立即加载执行
+        mounted:function(){
+            this.findAllContract();
+        },
+
+
+        methods: {
+
+            findAllContract(){//查看所有合同
+
+                let params = new URLSearchParams();
+                params.append("currPage",currPage)
+                params.append("numbers",numbers)
+
+                axios({
+                    method: "post",
+                    url: "http://127.0.0.1:8001/findCon",
+                    data: params
+                }).then(function (value) {
+                    alert(value)
+                }).catch(function (error) {
+                    console.log(error)
+                })
+
+            },
+
+
+            OnFindFreeCar(){//查看CBD空闲车位
+                location.href="findLeaseCar.html"
+            },
+            renewal(){//续约
+                location.href="renewal.html"
+            },
+        }
+    });
+</script>
+
+</html>
