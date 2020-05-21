@@ -6,13 +6,14 @@ app = new Vue({
               pageSize:3,
               pageCount:0,
               tableData:[],
-               form: {
-                   companyName:"",
-                   address:"",
-                   linkMan:"",
-                   loginName:"",
-                   pwd:""
-               },
+              form:{
+                  companyName:"",
+                  linkMan:"",
+                  linkPhone:"",
+                  loginName:"",
+                  loginPwd:"",
+                  floor:0
+              },
               info:[{
                   companyName:'',
                   principal:'',
@@ -26,8 +27,33 @@ app = new Vue({
         this.handleCurrentChange(1);
     },
     methods: {
-          addCompany() {
-             app.dialogFormVisible = true
+        addCompany(){
+            app.dialogFormVisible = true;
+        },
+        addCom(){
+              axios({
+                  url:"/Company/addCompany",
+                  method:"post",
+                  params:{
+                      companyName:app.form.companyName,
+                      linkMan:app.form.linkMan,
+                      linkPhone:app.form.linkPhone,
+                      loginName:app.form.loginName,
+                      loginPwd:app.form.loginPwd,
+                      floor:app.form.floor
+                  }
+              }).then((res) =>{
+                  console.log(res.data);
+                  alert("添加成功");
+                  app.form.companyName=null;
+                  app.form.linkMan=null;
+                  app.form.linkPhone=null;
+                  app.form.loginName=null;
+                  app.form.loginPwd=null;
+                  app.form.floor=null;
+                  app.dialogFormVisible = false;
+                  this.handleCurrentChange(app.currentPage);
+              });
           },
         findById(id){
            app.dialogTableVisible = true;
@@ -49,6 +75,20 @@ app = new Vue({
             })
 
         },
+        del(id){
+            axios({
+                methods: 'post',
+                url:'/Company/dele',
+                params:{
+                    id:id
+                }
+            }).then(res=>{
+                this.handleCurrentChange(app.currentPage);
+            }).catch(function () {
+                console.log("错误");
+            })
+
+        },
         handleCurrentChange(val) {
             axios({
                 methods: 'get',
@@ -61,6 +101,7 @@ app = new Vue({
                 app.tableData=res.data.data;
                 this.pageCount=res.data.totalCount;
                 console.log(res.data.data);
+                // console.log(app.currentPage);
             }).catch(function () {
                 console.log("错误");
             })

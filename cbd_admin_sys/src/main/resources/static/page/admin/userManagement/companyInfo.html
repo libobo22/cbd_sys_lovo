@@ -79,28 +79,35 @@
 
     <!--添加的表单-->
     <el-dialog title="新增企业" :visible.sync="dialogFormVisible">
-        <el-form ref="form" :model="form" label-width="100px" width="900px">
+        <el-form :model="form" label-width="100px" width="900px">
             <div id="addform">
             <el-form-item label="企业名称">
                 <el-input v-model="form.companyName" autocomplete="off"></el-input>
             </el-form-item>
-            <el-form-item label="企业地址" >
-                <el-input v-model="form.address" autocomplete="off"></el-input>
-            </el-form-item>
+             <el-form-item label="企业楼层">
+                 <el-input v-model="form.floor" autocomplete="off"></el-input>
+             </el-form-item>
             <el-form-item label="企业联系人">
                 <el-input v-model="form.linkMan" autocomplete="off"></el-input>
             </el-form-item>
+            <el-form-item label="联系人电话">
+                <el-input v-model="form.linkPhone" autocomplete="off"></el-input>
+             </el-form-item>
             <el-form-item label="企业登录名">
                 <el-input v-model="form.loginName" autocomplete="off"></el-input>
             </el-form-item>
             <el-form-item label="企业登录密码">
-                <el-input v-model="form.pwd" autocomplete="off"></el-input>
+                <el-input v-model="form.loginPwd" autocomplete="off"></el-input>
             </el-form-item>
+
             </div>
+            <el-form-item>
+                <el-button type="primary" @click="addCom()">添加</el-button>
+            </el-form-item>
         </el-form>
-        <div id="add">
-            <el-button type="primary" @click="addCompany()">添加</el-button>
-        </div>
+        <!--<div id="add">-->
+            <!--<el-button type="primary" @click="add()">添加</el-button>-->
+        <!--</div>-->
     </el-dialog>
 </div>
 </body>
