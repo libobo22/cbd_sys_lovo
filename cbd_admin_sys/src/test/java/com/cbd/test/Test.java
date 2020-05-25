@@ -131,7 +131,7 @@ public class Test {
 //        service.del(10);
         CompanyBean companyBean = new CompanyBean();
         companyBean.setCompanyName("xxx有限公司");
-        companyBean.setFloor(2);
+        companyBean.setCompanyFloor(2);
         companyBean.setLinkman("法外");
         companyBean.setLinkPhone("2333");
         companyBean.setLoginName("XXX");

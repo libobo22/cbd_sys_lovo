@@ -12,7 +12,7 @@ app = new Vue({
                   linkPhone:"",
                   loginName:"",
                   loginPwd:"",
-                  floor:0
+                  companyFloor:0
               },
               info:[{
                   companyName:'',
@@ -40,7 +40,7 @@ app = new Vue({
                       linkPhone:app.form.linkPhone,
                       loginName:app.form.loginName,
                       loginPwd:app.form.loginPwd,
-                      floor:app.form.floor
+                      floor:app.form.companyFloor
                   }
               }).then((res) =>{
                   console.log(res.data);
@@ -50,7 +50,7 @@ app = new Vue({
                   app.form.linkPhone=null;
                   app.form.loginName=null;
                   app.form.loginPwd=null;
-                  app.form.floor=null;
+                  app.form.companyFloor=null;
                   app.dialogFormVisible = false;
                   this.handleCurrentChange(app.currentPage);
               });

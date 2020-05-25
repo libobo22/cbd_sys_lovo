@@ -47,7 +47,7 @@ public class ExternalContractServiceImpl implements IExternalContractService {
      */
     @Override
     public void contract(int id,ExternalContractBean externalContractBean) {
-        ExternalContractBean oldEx = selectById(id);
+        ExternalContractBean oldEx = mapper.selectById(id);
         externalContractBean.setContractCompany(oldEx.getContractCompany());
         externalContractBean.setCompanyAddress(oldEx.getCompanyAddress());
         mapper.insert(externalContractBean);
@@ -58,9 +58,10 @@ public class ExternalContractServiceImpl implements IExternalContractService {
         car.setCarNumber(externalContractBean.getCarNumber());
         car.setInOrOutStatus(2);
         car.setExternalContractID(externalContractBean.getExternalContractID());
+
+
         cbdCarMapper.insert(car);
-
-
+        cbdCarMapper.update(id,externalContractBean.getExternalContractID());
     }
 
     @Override

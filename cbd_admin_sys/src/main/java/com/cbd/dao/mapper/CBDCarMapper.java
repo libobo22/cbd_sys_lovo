@@ -13,8 +13,8 @@ public interface CBDCarMapper extends BaseMapper<CBDCarBean> {
 
     /**
      * 修改外部合约外键
-     * @param ExternalId
+     * @param oldExternalId
      */
-    public void update(int ExternalId);
+    public void update(int oldExternalId,int newExternalId);
 
 }

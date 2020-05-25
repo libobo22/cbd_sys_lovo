@@ -33,7 +33,7 @@ public class CompanyBean {
      * 楼层
      */
     @TableField("floor")
-    private Integer floor;
+    private Integer companyFloor;
     /**
      * 联系人
      */

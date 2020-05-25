@@ -39,7 +39,7 @@ public class CompanyController {
         c.setLinkPhone(linkPhone);
         c.setLoginName(loginName);
         c.setLoginPwd(loginPwd);
-        c.setFloor(floor);
+        c.setCompanyFloor(floor);
         service.add(c);
         return "ok";
     }
