@@ -12,6 +12,7 @@
         <module name="cbd_commons" />
         <module name="cbd_frontService_sys" />
         <module name="cbd_register_center" />
+        <module name="cbd_sys_lovo" />
         <module name="cbd_Web" />
       </profile>
     </annotationProcessing>
@@ -24,6 +25,7 @@
       <module name="cbd_commons" options="" />
       <module name="cbd_frontService_sys" options="-parameters" />
       <module name="cbd_register_center" options="-parameters" />
+      <module name="cbd_sys_lovo" options="-parameters" />
     </option>
   </component>
 </project>

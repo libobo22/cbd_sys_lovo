@@ -13,33 +13,33 @@
             <span>CBD停车系统注册</span>
         </div>
         <div>
-            <el-form ref="loginForm" :model="form"  label-width="80px" class="login-box">
+            <el-form label-width="80px" class="login-box">
                 <el-form-item label="用户名" >
-                    <el-input placeholder="请输入用户名"v-model="form.name"></el-input>
+                    <el-input placeholder="请输入用户名"v-model="name"></el-input>
                 </el-form-item>
                 <el-form-item label="密码" >
-                    <el-input placeholder="请输入密码" v-model="form.password" show-password></el-input>
+                    <el-input placeholder="请输入密码" v-model="password" show-password></el-input>
                 </el-form-item>
                 <el-form-item label="真实姓名" >
-                    <el-input placeholder="请输入真实姓名"v-model="form.realName"></el-input>
+                    <el-input placeholder="请输入真实姓名"v-model="realName"></el-input>
                 </el-form-item>
                 <el-form-item label="身份证号" >
-                    <el-input placeholder="请输入身份证号码"v-model="form.idNum"></el-input>
+                    <el-input placeholder="请输入身份证号码"v-model="idNum"></el-input>
                 </el-form-item>
                 <el-form-item label="家庭住址" >
-                    <el-input placeholder="请输入家庭住址"v-model="form.address"></el-input>
+                    <el-input placeholder="请输入家庭住址"v-model="address"></el-input>
                 </el-form-item>
                 <el-form-item label="电话号码" >
-                    <el-input placeholder="请输入电话号码"v-model="form.phone"></el-input>
+                    <el-input placeholder="请输入电话号码"v-model="phone"></el-input>
                 </el-form-item>
                 <el-form-item label="职业描述" >
-                    <el-input placeholder="请输入职业描述"v-model="form.workInfo"></el-input>
+                    <el-input placeholder="请输入职业描述"v-model="workInfo"></el-input>
                 </el-form-item>
                 <el-form-item label="邮箱地址" >
-                    <el-input placeholder="请输入邮箱地址"v-model="form.email"></el-input>
+                    <el-input placeholder="请输入邮箱地址"v-model="email"></el-input>
                 </el-form-item>
                 <el-form-item label="验证码" >
-                    <el-input placeholder="请输入手机验证码"v-model="form.code"></el-input>
+                    <el-input placeholder="请输入手机验证码"v-model="code"></el-input>
                     <el-button type="primary" @click="getCode(phone)">获取手机验证码</el-button>
                     <el-button type="primary" @click="register()">注册</el-button>
                 </el-form-item>
@@ -56,7 +56,6 @@
         el:"#app",
         data(){
             return {
-                form: {
                     name:'',
                     password:'',
                     realName:'',
@@ -66,7 +65,6 @@
                     workInfo:'',
                     email:'',
                     code:''
-                }
             }},
             methods:{
                 getCode(phone) {
@@ -76,17 +74,17 @@
                     axios({
                         method: 'post',
                         url: '/register',
-                        params: {
-                            userName: this.form.name,
-                            password: this.form.password,
-                            realName: this.form.realName,
-                            indetityNum: this.form.idNum,
-                            job: this.form.job,
-                            homeAddress: this.form.address,
-                            email: this.form.email,
-                            phone: this.form.phone
+                        param: {
+                            userName: app.name,
+                            password: app.password,
+                            realName: app.realName,
+                            indetityNum: app.idNum,
+                            job: app.workInfo,
+                            homeAddress: app.address,
+                            email: app.email,
+                            phone: app.phone
                         }
-                })
+                    })
                 }
             }
     })
