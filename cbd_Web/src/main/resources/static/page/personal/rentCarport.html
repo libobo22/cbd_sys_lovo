@@ -4,67 +4,58 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../../elementUI/elementUI.css"/>
 
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src ="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
     <title>租凭车位</title>
 </head>
 <body>
 <!--待出租车位查询信息输入-->
-<div id="rent" align="center">
-    <el-form ref="form" :model="form" label-width="100%" >
-
-        <el-row :gutter="20">
-
-            <el-col :span="7"><div class="grid-content bg-purple">
-        <el-form-item label="租凭开始时间" >
-            <el-col :span="11">
-                <el-date-picker type="date" placeholder="选择日期" v-model="startDate" style="width: 180px;;"></el-date-picker>
-            </el-col>
-        </el-form-item>
-           </div> </el-col>
-
-            <el-col :span="7"><div class="grid-content bg-purple">
-        <el-form-item label="租凭结束时间" >
-            <el-col :span="11">
-                <el-date-picker type="date" placeholder="选择日期" v-model="endDate" style="width: 180px;"></el-date-picker>
-            </el-col>
-        </el-form-item>
-            </div> </el-col>
-
-            <el-col :span="5"><div class="grid-content bg-purple">
-        <el-form-item>
-            <el-button type="primary" @click="rent">查询</el-button>
-        </el-form-item>
-            </div> </el-col>
-
-        </el-row>
-    </el-form>
-
-
-    </div>
-
 <!-- 待出租车位表 -->
 <div id="carportTable" align="center">
+    <el-container>
+        <!-- 内容显示区-->
+        <el-main>
+    <!-- 按钮区-->
+    <div class="main_button" style="margin-bottom:30px">
+        <el-form :inline="true" label-width="80px">
+            <el-form-item label="起始时间:">
+                <el-date-picker
+                        placeholder="选择日期" v-model="from.startDate" value-format="yyyy-MM-dd" style="width: 100%;"></el-date-picker>
+            </el-form-item>
+            <el-form-item label="截止时间">
+                <el-date-picker  placeholder="选择日期" v-model="from.endDate" value-format="yyyy-MM-dd" style="width: 100%;"></el-date-picker>
+            </el-form-item>
+            <el-button type="primary" @click="getRent" icon="el-icon-search">查找</el-button>
+        </el-form>
+    </div>
+
     <template>
         <el-table
                 :data="tableData"
                 stripe
                 style="width: 100%">
             <el-table-column
-                    prop="address"
+                    prop="personalCar.carAddress"
                     label="车位所在小区地址"
                     width="280">
             </el-table-column>
             <el-table-column
-                    prop="carInfo"
+                    prop="personalCar.carNumber"
                     label="车位号"
                     width="280">
             </el-table-column>
             <el-table-column
-                    prop="startDate"
+                    prop="leaseStartDate"
                     label="起始时间"
                     width="180">
             </el-table-column>
             <el-table-column
-                    prop="endDate"
+                    prop="leaseEndDate"
                     label="截止时间"
                     width="180">
             </el-table-column>
@@ -74,7 +65,7 @@
                     label="操作"
                     width="180">
                 　　　　<template slot-scope="scope">
-                          <el-button type="primary" @click="reservation = true">预约</el-button>　
+                          <el-button type="primary" @click="reservation()">预约</el-button>　
                 　　　　</template>
             </el-table-column>
 
@@ -90,11 +81,11 @@
 
 
 <!-- 留言信息输入弹出层-->
-    <div>
+
         <el-dialog title="租凭留言信息" :visible.sync="reservation" >
             <el-form ref="form" :model="form" label-width="120px">
                 <el-form-item label="留言信息" >
-                    <el-input typ="text" v-model="form.message"></el-input>
+                    <el-input typ="text" v-model="messageInfo"></el-input>
                 </el-form-item>
 
                 <el-form-item>
@@ -102,9 +93,9 @@
                 </el-form-item>
             </el-form>
         </el-dialog>
-    </div>
 
-
+        </el-main>
+    </el-container>
 </div>
 
 

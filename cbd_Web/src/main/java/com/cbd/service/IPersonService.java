@@ -174,5 +174,18 @@ public interface IPersonService {
                               @RequestParam int personalCarId,
                               @RequestParam String releaseIdentityNum);
 
+    /**
+     * 查询待出租车位
+     * @param leaseStartDate
+     * @param leaseEndDate
+     * @param page
+     * @param number
+     * @return
+     */
+    @PostMapping("/findByDateLease")
+    List<CarLeaseVo>  findByDateLease(@RequestParam String leaseStartDate,
+                                      @RequestParam String leaseEndDate,
+                                      @RequestParam int page,
+                                      @RequestParam int number);
 
     }

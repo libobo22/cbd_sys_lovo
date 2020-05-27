@@ -337,4 +337,19 @@ public class PersonController {
         return "ok";
     }
 
+    /**
+     * 查询待出租车位
+     * @param leaseStartDate
+     * @param leaseEndDate
+     * @param page
+     * @param number
+     * @return
+     */
+    @PostMapping("/findByDateLease")
+    @ResponseBody
+    List<CarLeaseVo> findByDateLease(String leaseStartDate,String leaseEndDate,int page, int number) {
+
+        return personService.findByDateLease(leaseStartDate,leaseEndDate,page,number);
+    }
+
 }

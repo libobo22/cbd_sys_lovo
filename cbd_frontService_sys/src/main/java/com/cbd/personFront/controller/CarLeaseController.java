@@ -33,5 +33,10 @@ public class CarLeaseController {
     List<CarLeaseBean> findByBuyCar(String carAddress, String carNumber, int page, int number){
         return leaseService.findByBuyCar(carAddress,carNumber,page,number);
     }
+    @ApiOperation(value = "查询待出出租车位")
+    @PostMapping("/findByDateLease")
+    List<CarLeaseBean>  findByDateLease(String leaseStartDate,String leaseEndDate,int page, int number){
+       return leaseService.findByDateLease(leaseStartDate,leaseEndDate,page,number);
+    }
 
 }
