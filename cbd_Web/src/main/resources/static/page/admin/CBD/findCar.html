@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CBD车位</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="css/findCar.css"/>
+</head>
+<body>
+    <div id="app">
+        <template>
+            <div id="ta">
+            <el-table
+                    :data="tableData"
+                    style="width: 100%">
+                <el-table-column
+                        prop="carAddress"
+                        label="车位所在地址"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="carNumber"
+                        label="车位编号"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="leaseStatus"
+                        label="租赁状态"
+                        width="180">
+                </el-table-column>
+
+            </el-table>
+            </div>
+            <div id="page" class="block">
+                <span class="demonstration"></span>
+                <el-pagination
+                        @current-change="handleCurrentChange(currentPage)"
+                        :current-page.sync="currentPage"
+                        :page-size="pageSize"
+                        layout="prev, pager, next, jumper"
+                        :total="pageCount">
+                </el-pagination>
+            </div>
+        </template>
+    </div>
+</body>
+</html>
+
+<script src="../../../vue/Vue.js"></script>
+<script src="../../../elementUI/elementUI.js"></script>
+<script  src="js/findCar.js"></script>

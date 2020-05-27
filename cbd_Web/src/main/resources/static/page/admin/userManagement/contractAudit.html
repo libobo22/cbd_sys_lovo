@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>合同审核</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="css/contractAudit.css"/>
+</head>
+<body>
+<div id="app">
+    <template>
+        <div id="ta">
+        <el-table
+                :data="tableData"
+                stripe
+                style="width: 100%">
+            <el-table-column
+                    prop="carAddress"
+                    label="车位地址"
+                    width="180">
+            </el-table-column>
+            <el-table-column
+                    prop="seller"
+                    label="出售人"
+                    width="180">
+            </el-table-column>
+            <el-table-column
+                    prop="buy"
+                    label="购买人"
+                    width="180">
+            </el-table-column>
+
+            <el-table-column label="车位产权证复印件"  width="180">
+                <el-image
+                        style="width: 30px; height: 30px"
+                        :src="form.img"
+                        :preview-src-list="form.srcList">
+                </el-image>
+            </el-table-column>
+
+            <el-table-column
+                    prop="query"
+                    label="详情"
+                    width="180">
+                <template slot-scope="scope">
+                    <!--打开嵌套表单的 Dialog-->
+                    <el-button @click="query(scope.row,scope.$index)" type="primary" size="small">查看详情</el-button>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    prop="del"
+                    label="审核"
+                    width="100">
+                <template slot-scope="scope">
+                    <el-button @click="sure(scope.id)" type="primary" size="small">过审</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+        </div>
+
+        <div id="page" class="block">
+            <span class="demonstration"></span>
+            <el-pagination
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange"
+                    :current-page="currentPage"
+                    :page-sizes="[100, 200, 300, 400]"
+                    :page-size="100"
+                    layout="total, sizes, prev, pager, next"
+                    :total="400">
+            </el-pagination>
+        </div>
+    </template>
+    <!--查看的嵌套表格-->
+
+    <el-dialog title="查看车位详情"  width="700px" :visible.sync="dialogFormVisible">
+
+        <el-form ref="form" :model="form" label-width="130px">
+            <div id="in">
+                <el-form-item label="卖方用户名">
+                    <el-input :disabled="true" v-model="form.sellerUserName" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="卖方真实姓名">
+                    <el-input :disabled="true" v-model="form.sellerRealName" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="卖方身份证号码">
+                    <el-input :disabled="true" v-model="form.sellerIdentityCard" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="卖方电话号码">
+                    <el-input :disabled="true" v-model="form.sellerPhone" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="卖方家庭地址">
+                    <el-input :disabled="true" v-model="form.sellerAddress" autocomplete="off"></el-input>
+                </el-form-item>
+
+                <el-form-item label="买方用户名">
+                    <el-input :disabled="true" v-model="form.buyUserName" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="买方真实姓名">
+                    <el-input :disabled="true" v-model="form.buyRealName" autocomplete="off"></el-input>
+                </el-form-item>
+            </div>
+            <div id="r">
+                <el-form-item label="买方身份证号码">
+                    <el-input :disabled="true" v-model="form.buyIdentityCard" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="买方电话号码">
+                    <el-input :disabled="true" v-model="form.buyPhone" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="买方家庭地址">
+                    <el-input :disabled="true" v-model="form.buyAddress" autocomplete="off"></el-input>
+                </el-form-item>
+
+
+
+                <el-form-item label="车位所在小区地址">
+                    <el-input :disabled="true" v-model="form.community" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="车位编号">
+                    <el-input :disabled="true" v-model="form.carNumber" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="产权证编号">
+                    <el-input :disabled="true" v-model="form.propertyCard" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="申请时间">
+                    <el-input :disabled="true" v-model="form.date" autocomplete="off"></el-input>
+                </el-form-item>
+            </div>
+        </el-form>
+    </el-dialog>
+</div>
+</body>
+</html>
+
+<script src="../../../vue/Vue.js"></script>
+<script src="../../../elementUI/elementUI.js"></script>
+<script  src="js/contractAudit.js"></script>

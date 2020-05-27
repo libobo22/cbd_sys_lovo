@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>投诉</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="css/complain.css"/>
+</head>
+<body>
+    <div id="app">
+        <template>
+            <div id="ta">
+            <el-table
+                    :data="tableData"
+                    stripe
+                    style="width: 100%">
+                <el-table-column
+                        prop="complainant"
+                        label="投诉人"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="complaintsReasons"
+                        label="投诉理由"
+                        width="180">
+                </el-table-column>
+
+
+                <el-table-column
+                        prop="acceptance"
+                        label="受理"
+                        width="180">
+                    <template slot-scope="scope">
+                        <el-button @click="sure()" type="primary" size="small">受理</el-button>
+                    </template>
+                </el-table-column>
+                <el-table-column
+                        prop="reject"
+                        label="驳回"
+                        width="100">
+                    <template slot-scope="scope">
+                        <el-button @click="reject()" type="primary" size="small">驳回</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+            </div>
+
+            <div id="page" class="block">
+                <span class="demonstration"></span>
+                <el-pagination
+                        @size-change="handleSizeChange"
+                        @current-change="handleCurrentChange"
+                        :current-page="currentPage"
+                        :page-sizes="[100, 200, 300, 400]"
+                        :page-size="100"
+                        layout="total, sizes, prev, pager, next"
+                        :total="400">
+                </el-pagination>
+            </div>
+        </template>
+    </div>
+</body>
+</html>
+
+<script src="../../../vue/Vue.js"></script>
+<script src="../../../elementUI/elementUI.js"></script>
+<script  src="js/complain.js"></script>
