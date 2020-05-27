@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../../elementUI/elementUI.css"/>
+    <script src ="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
     <title>添加车位</title>
 </head>
 <body>
@@ -48,6 +49,21 @@
         },
         methods: {
             addCarport() {
+                let params = new URLSearchParams();
+                let _this = this;
+                params.append("carAddress",_this.address)
+                params.append("carNumber",_this.carInfo)
+                params.append("carPropertyNum",_this.titleNumber)
+
+                axios({
+                    method:'post',
+                    url:'/addPersonalCar',
+                    data:params,
+                }).then(function (value) {
+                    _this.tableData = value.data;
+                }).catch(function (error) {
+                    console.log(error)
+                })
                 console.log('submit!');
             }
         }

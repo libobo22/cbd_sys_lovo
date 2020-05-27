@@ -35,10 +35,10 @@ public class BillBean {
     /**
      * 交易时间
      */
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss ");// 格式化时间
-    Calendar calendar = Calendar.getInstance();
-    Date date =  calendar.getTime(); // new Date();// 获取当前时间
-    private String transactionTime = sdf.format(date);
+//    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss ");// 格式化时间
+//    Calendar calendar = Calendar.getInstance();
+//    Date date =  calendar.getTime(); // new Date();// 获取当前时间
+    private String transactionTime  ;// = sdf.format(date);
 
         /**
          * 用户身份证号

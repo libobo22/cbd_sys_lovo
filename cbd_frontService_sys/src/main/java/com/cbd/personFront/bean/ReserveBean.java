@@ -1,10 +1,11 @@
 package com.cbd.personFront.bean;
 
 
+import cn.hutool.core.date.DateTime;
 import lombok.Data;
 
+import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * 预定实体类
@@ -30,9 +31,14 @@ public class ReserveBean {
     /**
      * 留言时间
      */
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss  ");
-    Date date = new Date();
-    private String reserveDate = sdf.format(date);
+//    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss  ");
+//    DateTime date = new DateTime();
+    private String reserveDate ;
+
+//    public static void main(String[] args) {
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss  ");
+//        System.out.println(sdf.format(System.currentTimeMillis()));
+//    }
 
     /**
      * 预定状态
@@ -77,7 +83,25 @@ public class ReserveBean {
         CarLeaseBean bean = new CarLeaseBean();
         bean.setCarLeaseID(carLeaseId);
         this.carLease = bean;
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss  ");
+        this.reserveDate = sdf.format(System.currentTimeMillis());
+
         this.leaveMessage = leaveMessage;
+        this.reserveStatus = reserveStatus;
+        this.ownerRealName = ownerRealName;
+        this.ownerPhone = ownerPhone;
+        this.ownerIdentityNum = ownerIdentityNum;
+        this.reserveRealName = reserveRealName;
+        this.reservePhone = reservePhone;
+        this.reserveIdentityNum = reserveIdentityNum;
+    }
+
+
+    public ReserveBean(CarLeaseBean carLease, String leaveMessage, String reserveDate, int reserveStatus, String ownerRealName, String ownerPhone, String ownerIdentityNum, String reserveRealName, String reservePhone, String reserveIdentityNum) {
+        this.carLease = carLease;
+        this.leaveMessage = leaveMessage;
+        this.reserveDate = reserveDate;
         this.reserveStatus = reserveStatus;
         this.ownerRealName = ownerRealName;
         this.ownerPhone = ownerPhone;

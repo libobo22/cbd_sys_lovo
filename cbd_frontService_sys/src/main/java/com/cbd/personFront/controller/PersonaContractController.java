@@ -19,10 +19,10 @@ public class PersonaContractController {
     IPersonalContractService contractService;
 
     @ApiOperation("根据当前用身份证号查询当前用户的合同")
-    @GetMapping("/findByPersonalContract/{identityNum}/{page}/{number}")
-   public List<PersonalContractBean> findByPersonalContract(@PathVariable String identityNum,
-                                                            @PathVariable int page,
-                                                            @PathVariable int number){
+    @PostMapping("/findByPersonalContract")
+   public List<PersonalContractBean> findByPersonalContract(String identityNum,
+                                                            int page,
+                                                            int number){
        return contractService.findByPersonalContract(identityNum,page,number);
    }
 
@@ -33,7 +33,7 @@ public class PersonaContractController {
    }
 
    @ApiOperation("根据身份证号查成交历史记录")
-   @GetMapping("/findByHistory")
+   @PostMapping("/findByHistory")
    public List<PersonalContractBean> findByHistory(String IdentityNum,int page ,int number){
         return contractService.findByHistory(IdentityNum,page,number);
    }

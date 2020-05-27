@@ -12,8 +12,8 @@ import java.lang.reflect.Method;
 /**
  * 响应性能切面类
  */
-@Component
-@Aspect
+//@Component
+//@Aspect
 public class PerformanceAspect {
 
     @Around("@annotation(com.cbd.annotation.PerformanceAnno)")

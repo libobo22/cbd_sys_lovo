@@ -32,21 +32,23 @@ public class PersonalCarController {
 //        return userName+"/"+password;
 //    }
 
+
     @ApiOperation(value = "添加车位")
     @PostMapping("/addPersonalCar")
-    public String addPersonalCar(PersonalCarBean personalCarBean){
-        personalCarService.addPersonalCar(personalCarBean);
+    public String addPersonalCar(@RequestBody PersonalCarBean personalCar){
+        System.out.println(personalCar);
+        personalCarService.addPersonalCar(personalCar);
         return "ok";
     }
 
-
-    @ApiOperation(value = "根据用户用户身份证号查询，该用户拥有的所有车位")
-    @GetMapping("/findByAllCar/{identityNum}/{page}/{number}")
-    public List<PersonalCarBean> findByAllCar(@PathVariable String identityNum,
-                                             @PathVariable int page,
-                                             @PathVariable int number){
+    @ApiOperation(value = "根据用户身份证号查询，该用户拥有的所有车位")
+    @PostMapping("/findByCarAll")
+    public List<PersonalCarBean> findByAllCar(String identityNum,
+                                              int page,
+                                              int number){
         return personalCarService.findByCar(identityNum,page,number);
-  }
+    }
+
 
   @ApiOperation(value = "签约成功后根据车位ID修改车位主人信息")
   @PostMapping("/updateCar")
@@ -54,8 +56,5 @@ public class PersonalCarController {
         personalCarService.updateCar(carID,realName,phone,identityNum);
         return "ok";
   }
-
-
-
 
 }

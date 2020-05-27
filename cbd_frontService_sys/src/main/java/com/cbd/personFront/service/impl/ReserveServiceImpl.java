@@ -33,7 +33,7 @@ public class ReserveServiceImpl implements IReserveService {
     }
 
     @Override
-    public void updateState(int state, int reserveId) {
+    public void updateState(String state, int reserveId) {
         reserveDao.updateState(state,reserveId);
     }
 }

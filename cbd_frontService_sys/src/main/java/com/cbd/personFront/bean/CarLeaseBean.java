@@ -21,9 +21,9 @@ public class CarLeaseBean {
     /**
      * 租赁开始时间
      */
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss ");// 格式化时间
-    java.util.Date date = new Date();// 获取当前时间
-    private String leaseStartDate = sdf.format(date);
+//    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss ");// 格式化时间
+//    java.util.Date date = new Date();// 获取当前时间
+    private String leaseStartDate ;// = sdf.format(date);
 
     /**
      * 租凭结束时间
