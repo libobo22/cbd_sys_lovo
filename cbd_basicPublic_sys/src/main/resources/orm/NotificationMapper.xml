@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cbd.dao.INotificationDao">
+    
+    <resultMap id="BaseResultMap" type="Notification">
+        <id column="pk_message_id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="type" property="type"/>
+        <result column="status" property="status"/>
+        <result column="create_date" property="createDate"/>
+<!--        <association column="fk_user_id" property="user"/>-->
+    </resultMap>
+
+    <sql id="BaseColumn">
+        pk_message_id,title,content,status,type,create_date,fk_user_id
+    </sql>
+
+    <sql id="DynaSql">
+        <if test="startDate != null">
+            and t.create_date &gt;= #{startDate}
+        </if>
+        <if test="endDate != null">
+            and t.create_date &lt;= #{endDate}
+        </if>
+        <if test="status != null">
+            and t.status = #{status}
+        </if>
+    </sql>
+
+    <select id="getNotificationListByCondition" resultMap="BaseResultMap">
+        select *
+        from t_message t
+        where t.fk_user_id=#{userId}
+            and t.status!=-1
+            <include refid="DynaSql"/>
+        limit #{startIndex},#{pageSize}
+    </select>
+
+    <select id="getTotalCountByCondition" resultType="int">
+        select count(*)
+        from t_message t
+        where t.fk_user_id=#{userId}
+        and t.status!=-1
+        <include refid="DynaSql"/>
+    </select>
+
+    <update id="updateStatusById">
+        update t_message t set t.status=#{status}
+        where t.pk_message_id in
+            <foreach collection="notificationList" item="notification" separator="," open="(" close=")">
+                #{notification.id}
+            </foreach>
+    </update>
+    <insert id="saveByEntity" parameterType="Notification">
+        insert into t_message
+        values (null, #{title}, #{content}, #{status}, #{type}, #{createDate}, #{user.id})
+    </insert>
+    <select id="getByNotificationId" parameterType="int" resultMap="BaseResultMap">
+        select *
+        from t_message
+        where pk_message_id=#{notificationId}
+    </select>
+
+
+</mapper>

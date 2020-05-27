@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cbd.dao.IComplaintUserDao">
+
+    <resultMap id="BaseResultMap" type="User">
+        <id column="pk_user_id" property="id"/>
+        <result column="userName" property="userName"/>
+        <result column="password" property="password"/>
+        <result column="real_name" property="realName"/>
+        <result column="id_card" property="idCard"/>
+        <result column="home_address" property="homeAddress"/>
+        <result column="phone" property="phone"/>
+        <result column="job" property="job"/>
+        <result column="email" property="email"/>
+        <result column="credit" property="credit"/>
+    </resultMap>
+
+    <select id="getByUserId" parameterType="int" resultMap="BaseResultMap">
+        select *
+        from t_user u left join t_login_user lu
+        on u.pk_user_id=lu.pk_user_id
+        where u.pk_user_id=#{userId}
+    </select>
+
+    <update id="updateCredit">
+        update t_user
+        set credit=#{credit}
+        where pk_user_id=#{userId}
+    </update>
+</mapper>

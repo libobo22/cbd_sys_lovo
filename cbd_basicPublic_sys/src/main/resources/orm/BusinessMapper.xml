@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cbd.dao.IBusinessDao">
+
+    <resultMap id="BaseResultMap" type="business">
+        <id column="pk_user_id" property="id"/>
+        <result column="f_name" property="name"/>
+        <result column="f_floor" property="floor"/>
+        <result column="contact" property="contact"/>
+        <result column="contact_phone" property="contactPhone"/>
+        <result column="userName" property="userName"/>
+        <result column="password" property="password"/>
+    </resultMap>
+
+    <update id="updateBusinessById" parameterType="business">
+		update t_business set contact = #{param2},contact_phone = #{param3} where pk_user_id= #{param1}
+	</update>
+
+    <sql id="BaseColumn">
+        pk_user_id,f_name,f_floor,contact,contact_phone,status
+    </sql>
+
+    <sql id="DynaSql">
+        t.status=1
+        <if test="name != null and name !=''">
+            and f_name like "%"#{name}"%"
+        </if>
+        <if test="floor != null and floor !=''">
+            and f_floor like "%"#{floor}"%"
+        </if>
+        <if test="contact != null and contact !=''">
+            and contact like "%"#{contact}"%"
+        </if>
+        <if test="contactPhone != null and contactPhone !=''">
+            and contact_phone like "%"#{contactPhone}"%"
+        </if>
+    </sql>
+
+    <select id="getListByCondition" resultMap="BaseResultMap">
+        select *
+        from t_business t
+        <where>
+            <include refid="DynaSql"/>
+        </where>
+        limit #{startIndex},#{pageSize}
+    </select>
+
+    <select id="getTotalCountByCondition" resultType="int">
+        select count(*)
+        from t_business t
+        <where>
+            <include refid="DynaSql"/>
+        </where>
+    </select>
+
+    <select id="getById" parameterType="int" resultMap="BaseResultMap">
+        select *
+        from t_business b join t_login_user l
+        ON b.pk_user_id=l.pk_user_id
+        WHERE l.pk_user_id = #{id}
+    </select>
+
+    <update id="updateStatusById">
+        update t_business t set t.status=#{status}
+        where t.pk_user_id = #{id}
+    </update>
+
+    <insert id="saveByEntity" parameterType="business">
+        insert into t_business
+        values (#{id}, #{name}, #{floor}, #{contact}, #{contactPhone}, #{status})
+    </insert>
+
+
+</mapper>

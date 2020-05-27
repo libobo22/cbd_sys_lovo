@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cbd.dao.IUserDao">
+
+    <resultMap type="User" id="UserMap">
+        <id column="pk_user_id" property="id"/>
+        <result column="real_name" property="realName"/>
+        <result column="id_card" property="idCard"/>
+        <result column="home_address" property="homeAddress"/>
+        <result column="phone" property="phone"/>
+        <result column="job" property="job"/>
+        <result column="email" property="email"/>
+        <result column="id_photo" property="idPhoto"/>
+        <result column="credit" property="credit"/>
+        <result column="userName" property="userName"/>
+        <result column="password" property="password"/>
+    </resultMap>
+
+
+    <insert id="registerUser" parameterType="User">
+		insert into t_user (pk_user_id,real_name,id_card,home_address,phone,job,email,id_photo,credit) values (#{id}, #{realName}, #{idCard}, #{homeAddress},#{phone},#{job},#{email},#{idPhoto},#{credit})
+	</insert>
+
+    <update id="updateUserById">
+		update t_user  set home_address = #{homeAddress},phone = #{phone},job = #{job},email = #{email} where pk_user_id= #{id}
+	</update>
+
+    <select id="findById" parameterType="int" resultMap="UserMap">
+		select * from t_user u
+		left outer join t_login_user tlu on u.pk_user_id = tlu.pk_user_id
+		where u.pk_user_id = #{id}
+	</select>
+
+</mapper>

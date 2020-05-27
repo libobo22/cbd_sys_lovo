@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cbd.dao.IStatisticsDao">
+
+    <insert id="save" parameterType="RequestStatistics">
+        insert into t_statistics
+        values (null, #{expendTime}, #{requestUri}, #{requestTime})
+    </insert>
+
+    <select id="getStatistics" resultType="Statistics">
+        SELECT
+        (CASE
+        WHEN t.expend_time>=0 AND t.expend_time&lt;=3 THEN
+        'levelOne'
+        WHEN t.expend_time>3 AND t.expend_time&lt;=5 THEN
+        'levelTwo'
+        WHEN t.expend_time>5 AND t.expend_time&lt;=10 THEN
+        'levelThree'
+        ELSE
+        'levelFour'
+        END ) AS level ,count(t.pk_statistics_id) as totalCount
+        FROM t_statistics t
+        <if test="daysAgo != null">
+            where request_time &gt;= #{daysAgo}
+        </if>
+        GROUP BY level
+    </select>
+
+</mapper>
