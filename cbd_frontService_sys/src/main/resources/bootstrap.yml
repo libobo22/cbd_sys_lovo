@@ -2,7 +2,7 @@ server:
   port: 8004
 eureka:
   instance:
-    hostname: 127.0.0.1  #服务器的IP地址
+    hostname: 192.168.43.252  #服务器的IP地址
   client:
     serviceUrl:    #注册服务器的地址
       defaultZone: http://192.168.43.240:8008/eureka/

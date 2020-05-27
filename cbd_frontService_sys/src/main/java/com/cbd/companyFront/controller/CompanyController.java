@@ -28,49 +28,49 @@ public class CompanyController {
     }
 
     //查看所有合同
-    @RequestMapping("findContract")
+    @RequestMapping("/findContract")
     @ResponseBody
     public List<ContractDto> findAllContract(int currPage, int numbers){
         return service.findAllContractDto(currPage, numbers);
     }
 
     //查看已租车位
-    @RequestMapping("findLease")
+    @RequestMapping("/findLease")
     @ResponseBody
     public List<LeaseCarDto> findLeaseCar(int id,int currPage, int numbers){
         return service.findLeaseCar(id,currPage,numbers);
     }
 
     //查看CBD空闲车位
-    @RequestMapping("findFree")
+    @RequestMapping("/findFree")
     @ResponseBody
     public List<CBDFreeCar> findFreeCar(int currPage,int numbers){
         return service.findCBDFreeCar(2, currPage, numbers);
     }
 
     //查看账单信息
-    @RequestMapping("findBill")
+    @RequestMapping("/findBill")
     @ResponseBody
     public List<BillDto> findBill(String start,String end,int currPage,int numbers){
         return service.findAllBill(start, end, currPage, numbers);
     }
 
     //查看合计账单
-    @RequestMapping("findBillAll")
+    @RequestMapping("/findBillAll")
     @ResponseBody
     public List<AllBillDto> findBillAll(){
         return service.findBillAll();
     }
 
     //查看企业信息
-    @RequestMapping("findMine")
+    @RequestMapping("/findMine")
     @ResponseBody
     public CompanyInfoDto findMine(){
         return service.findCompanyByID(1);
     }
 
     //修改企业
-    @RequestMapping("updateMine")
+    @RequestMapping("/updateMine")
     @ResponseBody
     public int update(String logName,String logPass,String linkman,String linkPhone){
         int i = service.updateCompanyInfo(1,logName,logPass,linkman,linkPhone);

@@ -1,4 +1,5 @@
 package com.cbd.companyFront.dto;
+import cn.hutool.core.date.DateTime;
 import lombok.Data;
 
 import java.util.Date;
@@ -16,13 +17,13 @@ public class CBDFreeCar {
     private String carNumber;
 
     /**最长可租日期*/
-    private Date longDate;
+    private String longDate;
 
 
     public CBDFreeCar() {
     }
 
-    public CBDFreeCar(String carPlace, String carNumber, Date longDate) {
+    public CBDFreeCar(String carPlace, String carNumber, String longDate) {
         this.carPlace = carPlace;
         this.carNumber = carNumber;
         this.longDate = longDate;

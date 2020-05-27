@@ -20,7 +20,7 @@
     </select>
 
     <select id="findCBDFreeCar" resultType="cBDFreeCar">
-        select carAddress carPlace, carNumber from t_cbdCar2 where leaseStatus=#{param1} limit #{param2},#{param3}
+        select carAddress carPlace, carNumber,longDate from t_cbdCar2 where leaseStatus=#{param1} limit #{param2},#{param3}
     </select>
 
     <select id="findAllBill" resultType="billDto">
