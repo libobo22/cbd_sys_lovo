@@ -38,5 +38,5 @@ public interface IReserveService {
      * @param state 预定状态（1代表预定成功，2代表正在预定，3代表预定失败）
      * @param reserveId 预定车位ID
      */
-    public void updateState(int state,int reserveId);
+    public void updateState(String state,int reserveId);
 }

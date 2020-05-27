@@ -1,9 +1,8 @@
-package com.cbd.personFront.bean;
+package com.cbd.Vo.personVo;
 
 
 import lombok.Data;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -11,7 +10,7 @@ import java.util.Date;
  * 车位租凭实体类
  */
 @Data
-public class CarLeaseBean {
+public class CarLeaseVo {
 
     /**
      * 车位租赁ID
@@ -22,8 +21,8 @@ public class CarLeaseBean {
      * 租赁开始时间
      */
 //    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss ");// 格式化时间
-//    java.util.Date date = new Date();// 获取当前时间
-    private String leaseStartDate ;// = sdf.format(date);
+//    Date date = new Date();// 获取当前时间
+    private String leaseStartDate ;//= sdf.format(date);
 
     /**
      * 租凭结束时间
@@ -53,31 +52,21 @@ public class CarLeaseBean {
     /**
      * 车位
      */
-    private PersonalCarBean personalCar;
+    private PersonalCarVo personalCar;
 
-    public CarLeaseBean() {
+    public CarLeaseVo() {
     }
 
-    public CarLeaseBean( String leaseEndDate, float price, int leaseStatus,int leaseBuy, int personalCarId,String releaseIdentityNum) {
+    public CarLeaseVo(String leaseEndDate, float price, int leaseStatus, int leaseBuy, int personalCarId, String releaseIdentityNum) {
         this.releaseIdentityNum = releaseIdentityNum;
         this.leaseEndDate = leaseEndDate;
         this.price = price;
         this.leaseStatus = leaseStatus;
-        PersonalCarBean car = new PersonalCarBean();
+        PersonalCarVo car = new PersonalCarVo();
         car.setCarID(personalCarId);
         this.personalCar = car;
         this.leaseBuy = leaseBuy;
     }
 
-    @Override
-    public String toString() {
-        return "CarLeaseBean{" +
-                "carLeaseID=" + carLeaseID +
-                ", leaseStartDate=" + leaseStartDate +
-                ", leaseEndDate=" + leaseEndDate +
-                ", price=" + price +
-                ", leaseStatus=" + leaseStatus +
-                ", personalCar=" + personalCar +
-                '}';
-    }
+
 }

@@ -18,7 +18,7 @@ public class BillTest {
 
     @Test
     public void findByBill(){
-        System.out.println(billService.findByBill("510",1,3));
+        System.out.println(billService.findByBill("510","","",1,3));
     }
 
     @Test

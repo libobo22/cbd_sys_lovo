@@ -1,42 +1,53 @@
 
+let page = 1;
+let number = 5;
+let beReserveIdentityNum = "510*****66666";
 
-new Vue({
+    new Vue({
     el:"#reservationDiv",
     data() {
         return {
-            tableData: [{
-                address: '上海市普陀区金沙江路 1518 弄',
-                carInfo: '小区车位编号3221',
-                userName: '张三',
-                scheduledTime: '2020-09-09',
-                message:'我买了',
-                status:'已预约',
-            }, {
-                address: '上海市普陀区金沙江路 1518 弄',
-                carInfo: '小区车位编号3221',
-                userName: '张三',
-                scheduledTime: '2020-09-09',
-                message:'我买了',
-                status:'已预约',
-            }, {
-                address: '上海市普陀区金沙江路 1518 弄',
-                carInfo: '小区车位编号3221',
-                userName: '张三',
-                scheduledTime: '2020-09-09',
-                message:'我买了',
-                status:'已预约',
-            }, {
-                address: '上海市普陀区金沙江路 1518 弄',
-                carInfo: '小区车位编号3221',
-                userName: '张三',
-                scheduledTime: '2020-09-09',
-                message:'我买了',
-                status:'已预约',
-            }],
+            tableData: [{}],
 
         }
     },
+
+        //立即加载执行
+        mounted:function(){
+            this.findByReserve();
+        },
+
     methods: {
+        //查询预定车位
+        findByReserve(){
+            let params = new URLSearchParams();
+            let _this = this;
+            params.append("page",page)
+            params.append("numbers",number)
+            params.append("beReserveIdentityNum",beReserveIdentityNum)
+
+            axios({
+                method:'get',
+                url:'/findByReserve/'+beReserveIdentityNum+'/'+page+'/'+number,
+                // data:params,
+            }).then(function (value) {
+                _this.tableData = value.data;
+            }).catch(function (error) {
+                console.log(error)
+            })
+        },
+
+        //分页
+        handleCurrentChange(val) {
+            //alert("当前页:"+val);
+            //真分页
+            page = val;
+            this.findByReserve();
+
+        },
+
+
+        //返回
         dropout:function() {
             location.href='findCarport.html';
         }

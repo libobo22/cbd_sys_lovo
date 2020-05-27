@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../../elementUI/elementUI.css"/>
+
+    <script src ="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
     <title>查看预约车位</title>
 </head>
 <body>
@@ -14,38 +16,38 @@
                   stripe
                   style="width: 100%">
             <el-table-column
-                    prop="address"
+                    prop="carLease.personalCar.carAddress"
                     label="车位所在小区地址"
                     width="220">
             </el-table-column>
 
 
             <el-table-column
-                    prop="carInfo"
+                    prop="carLease.personalCar.carNumber"
                     label="小区车位编号"
                     width="180">
             </el-table-column>
 
             <el-table-column
-                    prop="userName"
+                    prop="ownerRealName"
                     label="用户名"
                     width="100">
             </el-table-column>
 
             <el-table-column
-                    prop="scheduledTime"
+                    prop="reserveDate"
                     label="预定时间"
                     width="120">
             </el-table-column>
 
             <el-table-column
-                    prop="message"
+                    prop="leaveMessage"
                     label="留言"
                     width="120">
             </el-table-column>
 
             <el-table-column
-                    prop="status"
+                    prop="reserveStatus"
                     label="状态"
                     width="100">
             </el-table-column>

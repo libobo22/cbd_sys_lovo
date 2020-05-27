@@ -17,8 +17,8 @@ import java.lang.reflect.Method;
 /**
  * 日志切面类
  */
-@Component
-@Aspect
+//@Component
+//@Aspect
 public class LogAspect {
 
     @Around("@annotation(com.cbd.annotation.LogAnno)")

@@ -21,9 +21,18 @@ public class ComplainServiceController{
     IComplainService complainService;
 
     @ApiOperation("添加投诉信息 ")
-    @PostMapping("/ addComplain")
-    public String addComplain(ComplainBean bean){
-        complainService.addComplain(bean);
+    @PostMapping("/addComplain")
+    public String addComplain(Integer carLeaseId,
+                              String complainInfo,
+                              String complainRealName,
+                              String complainPhone,
+                              String complainIdentityNum,
+                              String beComplainRealName,
+                              String beComplainPhone,
+                              String beComplainIdentityNum){
+        ComplainBean complainBean  = new ComplainBean(carLeaseId,complainInfo,0,complainRealName,complainPhone,complainIdentityNum,beComplainRealName,beComplainPhone,beComplainIdentityNum);
+
+        complainService.addComplain(complainBean);
         return "ok";
     }
 

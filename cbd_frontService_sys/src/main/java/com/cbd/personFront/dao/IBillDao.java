@@ -16,7 +16,7 @@ public interface IBillDao {
      *  @param number 每页显示多少条数
      * @return
      */
-    List<BillBean> findByBill(String IdentityNum, int index, int number);
+    List<BillBean> findByBill(String IdentityNum,String startDate,String endDate, int index, int number);
 
     /**
      * 添加账单

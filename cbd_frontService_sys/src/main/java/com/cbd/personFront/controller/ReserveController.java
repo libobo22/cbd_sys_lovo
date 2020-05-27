@@ -18,8 +18,18 @@ public class ReserveController {
 
     @ApiOperation("添加车位预定")
     @PostMapping("/addReserve")
-    public String addReserve(ReserveBean bean){
+    public String addReserve(int carLeaseId,
+                             String leaveMessage,
+                             int reserveStatus,
+                             String ownerRealName,
+                             String ownerPhone,
+                             String ownerIdentityNum,
+                             String reserveRealName,
+                             String reservePhone,
+                             String reserveIdentityNum){
+        ReserveBean bean = new ReserveBean(carLeaseId,leaveMessage,reserveStatus,ownerRealName,ownerPhone,ownerIdentityNum,reserveRealName,reservePhone,reserveIdentityNum);
         reserveService.addReserve(bean);
+        System.out.println(bean.toString());
         return "ok";
     }
 
@@ -40,8 +50,8 @@ public class ReserveController {
     }
 
     @ApiOperation("根据预定ID修改预定状态")
-    @PostMapping("/updateState")
-    public String updateState(int newState,int reserveId){
+    @PostMapping("/updateReservationState")
+    public String updateState(String newState,int reserveId){
         reserveService.updateState(newState,reserveId);
         return "ok";
     }

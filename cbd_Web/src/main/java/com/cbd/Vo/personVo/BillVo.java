@@ -1,4 +1,4 @@
-package com.cbd.personFront.bean;
+package com.cbd.Vo.personVo;
 
 import lombok.Data;
 
@@ -10,7 +10,7 @@ import java.util.Date;
  * 账单实体类
  */
 @Data
-public class BillBean {
+public class BillVo {
 
     /**
      * 账单id
@@ -38,32 +38,22 @@ public class BillBean {
 //    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss ");// 格式化时间
 //    Calendar calendar = Calendar.getInstance();
 //    Date date =  calendar.getTime(); // new Date();// 获取当前时间
-    private String transactionTime  ;// = sdf.format(date);
+    private String transactionTime ; // = sdf.format(date);
 
         /**
          * 用户身份证号
          */
     private String IdentityNum;
 
-    public BillBean() {
+    public BillVo() {
     }
 
-    public BillBean(float expenditure, float income, String remarks, String identityNum) {
+    public BillVo(float expenditure, float income, String remarks, String identityNum) {
         this.expenditure = expenditure;
         this.income = income;
         this.remarks = remarks;
         IdentityNum = identityNum;
     }
 
-    @Override
-    public String toString() {
-        return "BillBean{" +
-                "billId=" + billId +
-                ", expenditure=" + expenditure +
-                ", income=" + income +
-                ", remarks='" + remarks + '\'' +
-                ", transactionTime='" + transactionTime + '\'' +
-                ", IdentityNum='" + IdentityNum + '\'' +
-                '}';
-    }
+
 }

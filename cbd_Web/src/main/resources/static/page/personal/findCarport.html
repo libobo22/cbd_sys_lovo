@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../../elementUI/elementUI.css"/>
     <title>查看车位</title>
+    <script src ="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
 </head>
 <body>
 
@@ -23,27 +24,34 @@
                   stripe
                   style="width: 100%">
               <el-table-column
-                      prop="carInfo"
+                      prop="carNumber"
                       label="小区车位编号"
                       width="280">
               </el-table-column>
               <el-table-column
-                      prop="address"
+                      prop="carAddress"
                       label="车位所在小区地址"
                       width="280">
               </el-table-column>
               <el-table-column
-                      prop="titleNumber"
+                      prop="carPropertyNum"
                       label="车位产权证编号"
                       width="280">
               </el-table-column>
+
+              <el-table-column v-if="carID" prop="carID"></el-table-column>
+
               <el-table-column
                       prop="operation"
                       label="操作"
                       width="280">
                   　　　　<template slot-scope="scope">
-                           <el-button type="primary" @click="letCarport = true">招租</el-button>　　　　　
-                           <el-button type="primary" @click="sellCarport = true">出售</el-button>
+                           <el-button type="primary" @click="openLetCarport(scope.row.carID,
+                                                                            scope.row.carAddress,
+                                                                            scope.row.carPropertyNum)">招租</el-button>　　　　　
+                           <el-button type="primary" @click="openSellCarport(scope.row.carID,
+                                                                            scope.row.carAddress,
+                                                                            scope.row.carPropertyNum)">出售</el-button>
                   　　　　</template>
               </el-table-column>
           </el-table>
@@ -67,15 +75,15 @@
                       <el-input typ="text" v-model="form.carInfo" readonly></el-input>
                   </el-form-item>
 
-                  <el-form-item label="租凭开始时间" >
-                      <el-col :span="11">
-                          <el-date-picker type="date" placeholder="选择日期" v-model="form.startDate" style="width: 100%;"></el-date-picker>
-                      </el-col>
-                  </el-form-item>
+<!--                  <el-form-item label="租凭开始时间" >-->
+<!--                      <el-col :span="11">-->
+<!--                          <el-date-picker type="date" placeholder="选择日期" v-model="form.startDate" style="width: 100%;"></el-date-picker>-->
+<!--                      </el-col>-->
+<!--                  </el-form-item>-->
 
                   <el-form-item label="租凭结束时间" >
                       <el-col :span="11">
-                          <el-date-picker type="date" placeholder="选择日期" v-model="form.endDate" style="width: 100%;"></el-date-picker>
+                          <el-date-picker type="date" placeholder="选择日期" value-format="yyyy-MM-dd HH:mm:ss" v-model="form.endDate" style="width: 100%;"></el-date-picker>
                       </el-col>
                   </el-form-item>
 
@@ -115,8 +123,6 @@
               </el-form>
           </el-dialog>
       </div>
-
-
 
   </div>
 

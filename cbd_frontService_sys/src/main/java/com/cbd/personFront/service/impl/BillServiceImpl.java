@@ -18,9 +18,9 @@ public class BillServiceImpl implements IBillService {
     IBillDao billDao;
 
     @Override
-    public List<BillBean> findByBill(String IdentityNum, int page, int number) {
+    public List<BillBean> findByBill(String IdentityNum,String startDate,String endDate, int page, int number) {
         int index=(page-1)*number;
-        return billDao.findByBill(IdentityNum,index,number);
+        return billDao.findByBill(IdentityNum,startDate,endDate,index,number);
     }
 
     @Override

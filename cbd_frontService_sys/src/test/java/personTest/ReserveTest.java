@@ -36,7 +36,7 @@ public class ReserveTest {
 
     @Test
     public void updateState(){
-        service.updateState(1,7);
+        service.updateState("1",7);
     }
 
 }

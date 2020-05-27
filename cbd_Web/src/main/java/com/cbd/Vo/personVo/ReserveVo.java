@@ -1,17 +1,27 @@
-package com.cbd.personFront.bean;
+package com.cbd.Vo.personVo;
 
 
 import cn.hutool.core.date.DateTime;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
 
+import java.io.IOException;
 import java.sql.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+
 
 /**
  * 预定实体类
  */
+
 @Data
-public class ReserveBean {
+public class ReserveVo {
 
     /**
      * 预定ID
@@ -21,7 +31,7 @@ public class ReserveBean {
     /**
      * 车位租凭
      */
-    private CarLeaseBean carLease;
+    private CarLeaseVo carLease;
 
     /**
      * 留言信息
@@ -31,20 +41,15 @@ public class ReserveBean {
     /**
      * 留言时间
      */
-//    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss  ");
-//    DateTime date = new DateTime();
+    /*SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss  ");
+    Date date = new Date();*/
     private String reserveDate ;
-
-//    public static void main(String[] args) {
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss  ");
-//        System.out.println(sdf.format(System.currentTimeMillis()));
-//    }
 
     /**
      * 预定状态
-     * 0待预约，1已预约，2已签约
+     * 3待预约，1已预约，2已签约,4拒绝签约
      */
-    private int reserveStatus;
+    private String reserveStatus;
 
     /**
      * 车位主人真实名字
@@ -76,17 +81,14 @@ public class ReserveBean {
      */
     private String reserveIdentityNum;
 
-    public ReserveBean() {
+    public ReserveVo() {
     }
 
-    public ReserveBean(int carLeaseId, String leaveMessage, int reserveStatus, String ownerRealName, String ownerPhone, String ownerIdentityNum, String reserveRealName, String reservePhone, String reserveIdentityNum) {
-        CarLeaseBean bean = new CarLeaseBean();
+
+    public ReserveVo(int carLeaseId, String leaveMessage, String reserveStatus, String ownerRealName, String ownerPhone, String ownerIdentityNum, String reserveRealName, String reservePhone, String reserveIdentityNum) {
+        CarLeaseVo bean = new CarLeaseVo();
         bean.setCarLeaseID(carLeaseId);
         this.carLease = bean;
-
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss  ");
-        this.reserveDate = sdf.format(System.currentTimeMillis());
-
         this.leaveMessage = leaveMessage;
         this.reserveStatus = reserveStatus;
         this.ownerRealName = ownerRealName;
@@ -98,7 +100,7 @@ public class ReserveBean {
     }
 
 
-    public ReserveBean(CarLeaseBean carLease, String leaveMessage, String reserveDate, int reserveStatus, String ownerRealName, String ownerPhone, String ownerIdentityNum, String reserveRealName, String reservePhone, String reserveIdentityNum) {
+    public ReserveVo(CarLeaseVo carLease, String leaveMessage, String reserveDate, String reserveStatus, String ownerRealName, String ownerPhone, String ownerIdentityNum, String reserveRealName, String reservePhone, String reserveIdentityNum) {
         this.carLease = carLease;
         this.leaveMessage = leaveMessage;
         this.reserveDate = reserveDate;

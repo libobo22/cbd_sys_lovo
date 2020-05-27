@@ -1,15 +1,14 @@
-package com.cbd.personFront.bean;
+package com.cbd.Vo.personVo;
 
 import lombok.Data;
 
-import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 /**
  * 投诉实体类
  */
 @Data
-public class ComplainBean {
+public class ComplainVo {
 
     /**
      * 投诉id
@@ -19,7 +18,7 @@ public class ComplainBean {
     /**
      *车位租凭类
      */
-    private CarLeaseBean carLease;
+    private CarLeaseVo carLease;
 
     /**
      * 车位投诉信息
@@ -31,7 +30,7 @@ public class ComplainBean {
      */
 //    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss ");// 格式化时间
 //    java.util.Date date = new java.util.Date();// 获取当前时间
-    private String complainDate ;// =  sdf.format(date);
+    private String complainDate ;
 
     /**
      * 投诉状态
@@ -69,29 +68,24 @@ public class ComplainBean {
      */
     private String beComplainIdentityNum;
 
-    public ComplainBean() {
+    public ComplainVo() {
     }
 
-    public ComplainBean(int carLeaseId,
-                        String complainInfo,
-                        int adminCheckStatus,
-                        String complainRealName,
-                        String complainPhone,
-                        String complainIdentityNum,
-                        String beComplainRealName,
-                        String beComplainPhone,
-                        String beComplainIdentityNum) {
+    public ComplainVo(int carLeaseId,
+                      String complainInfo,
+                      String complainRealName,
+                      String complainPhone,
+                      String complainIdentityNum,
+                      String beComplainRealName,
+                      String beComplainPhone,
+                      String beComplainIdentityNum) {
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss  ");
-        this.complainDate = sdf.format(System.currentTimeMillis());
-
-
-        CarLeaseBean carLeaseBean = new CarLeaseBean();
+        CarLeaseVo carLeaseBean = new CarLeaseVo();
         carLeaseBean.setCarLeaseID(carLeaseId);
         this.carLease = carLeaseBean;
 
         this.complainInfo = complainInfo;
-        this.adminCheckStatus = adminCheckStatus;
+        this.adminCheckStatus = 0;
         this.complainRealName = complainRealName;
         this.complainPhone = complainPhone;
         this.complainIdentityNum = complainIdentityNum;
