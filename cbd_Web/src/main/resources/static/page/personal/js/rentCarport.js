@@ -1,3 +1,16 @@
+let page = 1;
+let number = 5;
+
+//模拟当前用户信息
+let reserveRealName = "王二麻子"
+let reservePhone = "13988772334"
+let reserveIdentityNum = "51099234354688000"
+
+//出售车位用户信息
+let letOwnerRealName;
+let letOwnerPhone;
+let letOwnerIdentityNum;
+let letOarLeaseID;
 
 rent = new Vue({
     el:"#rent",
@@ -17,28 +30,7 @@ new Vue({
     el:"#carportTable",
     data() {
         return {
-            tableData: [{
-                address: '上海市普陀区金沙江路 1518 弄',
-                carInfo: '小区车位编号3221',
-                startDate: '2020-20-09',
-                endDate: '2222-22-22',
-                operation: ''
-            }, {
-                address: '上海市普陀区金沙江路 1518 弄',
-                carInfo: '小区车位编号3221',
-                startDate: '2020-20-09',
-                endDate: '2222-22-22'
-            }, {
-                address: '上海市普陀区金沙江路 1518 弄',
-                carInfo: '小区车位编号3221',
-                startDate: '2020-20-09',
-                endDate: '2222-22-22'
-            }, {
-                address: '上海市普陀区金沙江路 1518 弄',
-                carInfo: '小区车位编号3221',
-                startDate: '2020-20-09',
-                endDate: '2222-22-22'
-            }],
+            tableData: [],
             reservation: false,
             form: {
                 address:'',

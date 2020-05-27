@@ -59,7 +59,7 @@ let letOarLeaseID;
             axios({
 
                 method:"post",
-                url:"/ ",
+                url:"/findByBuyCar",
                 data:params
             }).then(function (value) {
                 _this.tableData = value.data;
