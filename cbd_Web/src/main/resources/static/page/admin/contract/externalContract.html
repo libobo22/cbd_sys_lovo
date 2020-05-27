@@ -46,10 +46,10 @@
                     </el-image>
 
                 <el-table :data="rowInfo.carArray">
-                    <el-table-column property="contractCompany" label="合同单位" width="150"></el-table-column>
+                    <el-table-column property="contractCompany" label="单位名称" width="150"></el-table-column>
                     <el-table-column property="linkMan" label="联系人" width="200"></el-table-column>
                     <el-table-column property="linkPhone" label="联系电话" width="200"></el-table-column>
-                    <el-table-column property="companyAddress" label="车位地址" width="200"></el-table-column>
+                    <el-table-column property="companyAddress" label="公司地址" width="200"></el-table-column>
                     <el-table-column property="contractStartDate" label="合同生效日期" width="200"></el-table-column>
                     <el-table-column property="contractEndDate" label="合同结束日期" width="200"></el-table-column>
                     <el-table-column property="dealPrice" label="成交价格" width="200"></el-table-column>
@@ -66,9 +66,7 @@
                         <el-form-item label="合同编号">
                             <el-input  v-model="form.contractNumber" autocomplete="off"></el-input>
                         </el-form-item>
-                        <el-form-item label="合同单位">
-                            <el-input  v-model="form.contractCompany" autocomplete="off"></el-input>
-                        </el-form-item>
+
                         <el-form-item label="对方联系人">
                             <el-input  v-model="form.linkMan" autocomplete="off"></el-input>
                         </el-form-item>

@@ -12,3 +12,5 @@ spring:
   servlet:
     multipart:
       enabled: true
+  main:
+    allow-bean-definition-overriding: true

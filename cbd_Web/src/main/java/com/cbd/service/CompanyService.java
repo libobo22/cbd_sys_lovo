@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * 企业前端接口
  */
-@FeignClient("frontService")//adminService
+@FeignClient("adminService")
 public interface CompanyService {
 
     //查看所有合同

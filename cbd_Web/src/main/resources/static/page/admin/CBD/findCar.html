@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>投诉</title>
+    <title>CBD车位</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <link rel="stylesheet" href="css/findCar.css"/>
 </head>
@@ -12,7 +13,6 @@
             <div id="ta">
             <el-table
                     :data="tableData"
-                    stripe
                     style="width: 100%">
                 <el-table-column
                         prop="carAddress"
@@ -24,18 +24,22 @@
                         label="车位编号"
                         width="180">
                 </el-table-column>
+                <el-table-column
+                        prop="leaseStatus"
+                        label="租赁状态"
+                        width="180">
+                </el-table-column>
+
             </el-table>
             </div>
             <div id="page" class="block">
                 <span class="demonstration"></span>
                 <el-pagination
-                        @size-change="handleSizeChange"
-                        @current-change="handleCurrentChange"
-                        :current-page="currentPage"
-                        :page-sizes="[100, 200, 300, 400]"
-                        :page-size="100"
-                        layout="total, sizes, prev, pager, next"
-                        :total="400">
+                        @current-change="handleCurrentChange(currentPage)"
+                        :current-page.sync="currentPage"
+                        :page-size="pageSize"
+                        layout="prev, pager, next, jumper"
+                        :total="pageCount">
                 </el-pagination>
             </div>
         </template>
