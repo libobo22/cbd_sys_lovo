@@ -2,6 +2,7 @@ package com.cbd.bean;
 
 import lombok.Data;
 
+
 /**
  * 管理员
  * */

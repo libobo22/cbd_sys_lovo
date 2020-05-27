@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cbd.dao.ILoginLogDao">
+    <resultMap id="loginLogMap" type="LoginLog">
+        <id column="pk_log_id" property="logId"/>
+        <result column="login_date" property="date"/>
+        <result column="login_ip_addr" property="ipAddr"/>
+        <result column="login_addr" property="address"/>
+        <result column="user_name" property="username"/>
+        <association column="fk_user_id" property="userLogin" javaType="UserLogin">
+            <id column="fk_user_id" property="id"></id>
+        </association>
+    </resultMap>
+
+    <resultMap id="userLoginMap" type="UserLogin">
+        <id column="pk_user_id" property="id"/>
+    </resultMap>
+
+    <insert id="addLoginLog" parameterType="LoginLog">
+        insert into t_login_log
+        values (null, #{date}, #{ipAddr}, #{address}, #{username}, #{userLogin.id})
+    </insert>
+
+    <select id="findIdByUserName" resultMap="userLoginMap">
+        select pk_user_id from t_user where 1 = 1
+        <if test="username!=null">
+            and real_name like "%"#{username}"%"
+        </if>
+    </select>
+
+    <select id="findLoginLogByUserLoginId" resultMap="loginLogMap">
+        select * from t_login_log where fk_user_id=#{userId}
+        <if test="startDate!=null">
+            and login_date <![CDATA[>=]]> #{startDate}
+        </if>
+        <if test="endDate!=null">
+            and login_date <![CDATA[<=]]> #{endDate}
+        </if>
+        limit #{startIndex},#{pageSize}
+    </select>
+    <select id="findLoginLog" resultMap="loginLogMap">
+        select * from t_login_log where 1 = 1
+        <if test="startDate!=null">
+            and login_date <![CDATA[>=]]> #{startDate}
+        </if>
+        <if test="endDate!=null">
+            and login_date <![CDATA[<=]]> #{endDate}
+        </if>
+        limit #{startIndex},#{pageSize}
+    </select>
+    <select id="getTotalCount" resultType="int">
+        select count(*) from t_login_log where 1 = 1
+        <if test="startDate!=null">
+            and login_date <![CDATA[>=]]> #{startDate}
+        </if>
+        <if test="endDate!=null">
+            and login_date <![CDATA[<=]]> #{endDate}
+        </if>
+    </select>
+    <select id="getTotalCountByUserId" resultType="int">
+        select count(*) from t_login_log where fk_user_id=#{userId}
+        <if test="startDate!=null">
+            and login_date <![CDATA[>=]]> #{startDate}
+        </if>
+        <if test="endDate!=null">
+            and login_date <![CDATA[<=]]> #{endDate}
+        </if>
+    </select>
+</mapper>

@@ -12,5 +12,6 @@ public class CompanyMain {
 
         //启动
         SpringApplication.run(CompanyMain.class);
+
     }
 }

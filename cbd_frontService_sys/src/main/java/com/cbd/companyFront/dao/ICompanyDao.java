@@ -32,6 +32,4 @@ public interface ICompanyDao {
     /**修改企业信息*/
     void updateCompanyInfo(int id,String logName,String logPass,String linkman,String linkPhone);
 
-
-
 }
