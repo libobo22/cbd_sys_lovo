@@ -1,4 +1,5 @@
 package com.cbd.Vo.CompanyVo;
+import cn.hutool.core.date.DateTime;
 import lombok.Data;
 
 import java.util.Date;
@@ -16,13 +17,13 @@ public class CBDFreeCarVo {
     private String carNumber;
 
     /**最长可租日期*/
-    private Date longDate;
+    private String longDate;
 
 
     public CBDFreeCarVo() {
     }
 
-    public CBDFreeCarVo(String carPlace, String carNumber, Date longDate) {
+    public CBDFreeCarVo(String carPlace, String carNumber, String longDate) {
         this.carPlace = carPlace;
         this.carNumber = carNumber;
         this.longDate = longDate;
