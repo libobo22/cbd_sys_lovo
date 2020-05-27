@@ -54,6 +54,17 @@ findCarport = new Vue({
                    console.log(error)
                 })
             },
+
+
+            //分页
+            handleCurrentChange(val) {
+                //alert("当前页:"+val);
+                //真分页
+                page = val;
+                this.findCar();
+
+            },
+
             //打开租凭车位弹出层
             openLetCarport(id,carAddress,carPropertyNum){
               // alert(id+carAddress+carPropertyNum)
