@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 //自定义dao映射类交给mybatis
-@MapperScan("com.cbd.companyFront.dao,com.cdb.personFront.dao")
+@MapperScan({"com.cbd.companyFront.dao","com.cdb.personFront.dao"})
 @SpringBootApplication
 public class CompanyMain {
 
