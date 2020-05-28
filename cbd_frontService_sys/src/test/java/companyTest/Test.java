@@ -1,5 +1,5 @@
 package companyTest;
-import com.cbd.companyFront.CompanyMain;
+import com.cbd.CompanyMain;
 import com.cbd.companyFront.dto.*;
 import com.cbd.companyFront.service.ICompanyService;
 import org.junit.runner.RunWith;
@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.sql.Date;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
