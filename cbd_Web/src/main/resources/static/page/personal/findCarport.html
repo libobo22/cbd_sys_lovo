@@ -57,10 +57,14 @@
           </el-table>
 
       </template>
+<!--      分页-->
       <el-pagination
-      background
-      layout="prev, pager, next"
-      :total="1000">
+              @size-change="handleSizeChange"
+              @current-change="handleCurrentChange"
+
+              background
+              layout="prev, pager, next"
+              :total="1000">
       </el-pagination>
 
 <!--     招租-->
